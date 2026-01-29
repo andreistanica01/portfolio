@@ -92,7 +92,7 @@ export default function Portfolio() {
       <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-700 delay-300 ${
         isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
-        <div className="border-b border-border/50 bg-background/80 backdrop-blur-md">
+        <div className="border-b border-border/20 bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
             <div className="flex items-center justify-between">
               <h1 className="text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
@@ -113,10 +113,10 @@ export default function Portfolio() {
                 </a>
               </div>
               <a 
-                href="mailto:your.email@example.com" 
+                href="mailto:bevel.graphics1@gmail.com" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                your.email@example.com
+                bevel.graphics1@gmail.com
               </a>
             </div>
           </div>
@@ -126,11 +126,17 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section 
         id="work"
-        className={`relative min-h-screen flex flex-col justify-end pt-32 pb-20 px-6 lg:px-12 transition-all duration-1000 delay-500 ${
+        className={`relative min-h-screen flex flex-col justify-end pb-20 px-6 lg:px-12 transition-all duration-1000 delay-500 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background/95" />
+        {/* Background Image - extends to cover header */}
+        <div 
+          className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/images/untitled1png.jpeg)' }}
+        />
+        {/* Gradient Overlay - same strong fade at top and bottom */}
+        <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-end justify-between gap-8">
@@ -144,7 +150,7 @@ export default function Portfolio() {
             </div>
             <div className="text-right">
               <p className="text-4xl font-light text-muted-foreground">
-                2024
+                2026
               </p>
             </div>
           </div>
@@ -318,13 +324,10 @@ export default function Portfolio() {
             © 2026 All rights reserved
           </p>
           <div className="flex items-center gap-8">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.instagram.com/bevel.graphics/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Instagram
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Behance
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.artstation.com/bevelgraphics" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               ArtStation
             </a>
           </div>
