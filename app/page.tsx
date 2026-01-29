@@ -141,7 +141,7 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-end justify-between gap-8">
             <div className="space-y-4">
-              <h2 className="text-7xl md:text-9xl font-bold tracking-tighter">
+              <h2 className="text-7xl md:text-9xl font-bold tracking-tight">
                 Portfolio
               </h2>
               <p className="text-xl text-muted-foreground">
