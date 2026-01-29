@@ -76,7 +76,7 @@ export default function Portfolio() {
 
       {/* Entry Animation Overlay */}
       <div 
-        className={`fixed inset-0 z-50 bg-background flex items-center justify-center transition-all duration-1000 ${
+        className={`fixed inset-0 z-50 bg-background flex items-center justify-center transition-all duration-3000 ${
           isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
