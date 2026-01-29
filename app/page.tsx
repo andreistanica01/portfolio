@@ -96,7 +96,7 @@ export default function Portfolio() {
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
             <div className="flex items-center justify-between">
               <h1 className="text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
-                Your Name
+                Bevel Graphics
               </h1>
               <div className="flex items-center gap-8">
                 <a href="#" className="text-sm hover:text-muted-foreground transition-colors">
