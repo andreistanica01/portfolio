@@ -82,7 +82,7 @@ export default function Portfolio() {
       >
         <div className="text-center space-y-6">
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter animate-pulse">
-            3D
+            Bevel Graphics
           </h1>
           <div className="h-1 w-32 bg-foreground mx-auto animate-pulse" />
         </div>
