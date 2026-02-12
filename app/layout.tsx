@@ -10,7 +10,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: '3D Artist Portfolio | Modern 3D Modeling Showcase',
   description: 'Professional 3D modeling portfolio showcasing creative projects and visual artistry in modern design',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon-dark-32x32.png', 
         media: '(prefers-color-scheme: dark)',
       },
       {

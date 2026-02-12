@@ -1,6 +1,5 @@
 'use client'
-
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { NoiseOverlay } from "@/components/noise-overlay"
