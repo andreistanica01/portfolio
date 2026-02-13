@@ -65,7 +65,7 @@ const projects = [
   },
   {
     id: "5",
-    title: "ASAD",
+    title: "Organic Creature",
     subtitle: "Personal Project",
     description: "Detailed creature design with organic modeling, fur simulation, and realistic shading. The project explores anatomy, surface detail, and believable creature design.",
     tools: ["ZBrush", "Maya", "Houdini", "V-Ray"],

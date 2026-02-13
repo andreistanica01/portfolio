@@ -238,8 +238,8 @@ export default function Portfolio() {
           <div className="flex flex-col md:flex-row gap-8 items-start">
             <div className="shrink-0">
               <div className="w-32 h-32 rounded-full bg-gradient-to-br from-muted via-muted/50 to-background border-2 border-border overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-muted-foreground" 
-                style={{ backgroundImage: 'url(/images/image2.jpeg)' }}>
+                <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-muted-foreground" >
+                  <img src='/images/image2.jpeg' alt="Profile Image" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
