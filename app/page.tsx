@@ -172,6 +172,7 @@ export default function Portfolio() {
                 {/* Project Card */}
                 <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-muted/20 to-background/50 border border-border group-hover:border-foreground/30 transition-all duration-500">
                   {/* Content Overlay */}
+                  <img src='/images/purple.png' alt="Julietta H6" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 bg-background/90 backdrop-blur-sm">
                     <div className="space-y-2">
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">
