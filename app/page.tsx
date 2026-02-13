@@ -239,7 +239,7 @@ export default function Portfolio() {
             <div className="shrink-0">
               <div className="w-32 h-32 rounded-full bg-gradient-to-br from-muted via-muted/50 to-background border-2 border-border overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-muted-foreground" 
-                style={{ backgroundImage: 'url(/images/purple1.jpg)' }}>
+                style={{ backgroundImage: 'url(/images/image2.jpeg)' }}>
                 </div>
               </div>
             </div>
