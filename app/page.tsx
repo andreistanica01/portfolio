@@ -132,7 +132,7 @@ export default function Portfolio() {
         {/* Background Image - extends to cover header */}
         <div 
           className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/untitled1png.jpeg)' }}
+          style={{ backgroundImage: 'url(/images/purple1.jpg)' }}
         />
         {/* Gradient Overlay - same strong fade at top and bottom */}
         <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
@@ -248,9 +248,10 @@ export default function Portfolio() {
                 About
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Specialized 3D artist with over 6 years of experience creating photorealistic 
-                environments, characters, and product visualizations. Passionate about pushing 
-                the boundaries of digital artistry through technical innovation and creative storytelling.
+              Dedicated 3D artist with nearly 2 years of experience in Blender, specializing in hard-surface modeling and product visualization.
+              I focus on blueprint-based modeling accuracy, ensuring precise proportions and clean topology in every project. 
+              With my strong attention to detail, i create high-quality, production-ready assets enhanced by realistic materials and professional lighting setups. 
+              My goal is to deliver visually striking renders that are getting enhanced with my post-production.
               </p>
             </div>
           </div>
@@ -262,9 +263,6 @@ export default function Portfolio() {
               </h3>
               <div className="space-y-2 text-sm">
                 <p>Blender</p>
-                <p>Maya</p>
-                <p>ZBrush</p>
-                <p>Cinema 4D</p>
               </div>
             </div>
             <div className="space-y-3">
@@ -272,21 +270,18 @@ export default function Portfolio() {
                 Rendering
               </h3>
               <div className="space-y-2 text-sm">
-                <p>V-Ray</p>
-                <p>Octane</p>
+                <p>Blender Cycles</p>
                 <p>Unreal Engine</p>
-                <p>Marmoset</p>
               </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
-                Texturing
+                Post Production
               </h3>
               <div className="space-y-2 text-sm">
-                <p>Substance Painter</p>
-                <p>Substance Designer</p>
                 <p>Photoshop</p>
-                <p>After Effects</p>
+                <p>DaVinci Resolve</p>
+                <p>Affinity</p>
               </div>
             </div>
           </div>
