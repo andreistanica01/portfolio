@@ -29,7 +29,7 @@ export function NoiseOverlay() {
         data[i] = value     // red
         data[i + 1] = value // green
         data[i + 2] = value // blue
-        data[i + 3] = 100   // alpha (more visible)
+        data[i + 3] = 65   // alpha (more visible)
       }
 
       ctx.putImageData(imageData, 0, 0)
@@ -57,7 +57,7 @@ export function NoiseOverlay() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none opacity-70"
+      className="fixed inset-0 pointer-events-none opacity-40"
       style={{ zIndex: 99999, mixBlendMode: 'overlay' }}
       aria-hidden="true"
     />
