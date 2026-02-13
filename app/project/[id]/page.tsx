@@ -160,7 +160,9 @@ export default function ProjectPage() {
       <section className="relative min-h-[60vh] flex flex-col justify-end pt-32 pb-12 px-6 lg:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
-         <img src={project.thumbnail} alt={project.title} className="w-1/3 aspect-video object-cover rounded-lg border border-border shadow-lg" />
+          <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
+            <img src={project.thumbnail} alt={project.title} className="w-1/3 aspect-video object-cover rounded-lg border border-border shadow-lg" /> 
+          </div>
         <div className="max-w-7xl mx-auto relative z-10 w-full space-y-6">
           <Link 
             href="/"

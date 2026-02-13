@@ -128,7 +128,7 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section 
+      <section
         id="work"
         className={`relative min-h-screen flex flex-col justify-end pb-20 px-6 lg:px-12 transition-all duration-1000 delay-500 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -140,7 +140,7 @@ export default function Portfolio() {
           style={{ backgroundImage: 'url(/images/purple.png)' }}
         />
         {/* Gradient Overlay - same strong fade at top and bottom */}
-        <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
+      <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-end justify-between gap-8">
