@@ -9,6 +9,7 @@ import { ArrowLeft, Play } from "lucide-react"
 const projects = [
   {
     id: "1",
+    thumbnail: "/images/purple.png",
     title: "Anuket",
     subtitle: "Personal Project",
     description: "'Anuket' is the ancient Egyptian goddess of the Nile. This was a personal project to display my 3D environment/generalist abilities. Most of the models are from BigMediumSmall or Quixel, which allowed me to focus on scene assembly and other aspects. You can watch the breakdown video above.",
@@ -159,7 +160,7 @@ export default function ProjectPage() {
       <section className="relative min-h-[60vh] flex flex-col justify-end pt-32 pb-12 px-6 lg:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
-        
+         <img src={project.thumbnail} alt={project.title} className="w-1/3 aspect-video object-cover rounded-lg border border-border shadow-lg" />
         <div className="max-w-7xl mx-auto relative z-10 w-full space-y-6">
           <Link 
             href="/"

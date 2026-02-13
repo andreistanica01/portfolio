@@ -13,8 +13,8 @@ export default function Portfolio() {
 
   const projects = [
     {
-      thumbnail: "/images/purple.png",
       id: 1,
+      thumbnail: "/images/purple.png",
       title: "Julietta H6",
       subtitle: "Ancient Egyptian Temple",
       description: "A detailed recreation of an ancient Egyptian temple environment showcasing advanced modeling and rendering techniques.",
@@ -24,6 +24,7 @@ export default function Portfolio() {
     },
     {
       id: 2,
+      thumbnail: "/images/purple.png",
       title: "R8 Steering Wheel",
       subtitle: "Urban Night Scene",
       description: "Futuristic cityscape with neon-lit streets, atmospheric fog, and detailed architectural elements.",
@@ -33,6 +34,7 @@ export default function Portfolio() {
     },
     {
       id: 3,
+      thumbnail: "/images/purple.png",
       title: "Ocean Drive",
       subtitle: "Sci-Fi Warrior",
       description: "High-detail character sculpt with advanced texturing, rigging, and material work.",
@@ -42,6 +44,7 @@ export default function Portfolio() {
     },
     {
       id: 4,
+      thumbnail: "/images/purple.png",
       title: "Maison Margiela Replica",
       subtitle: "Premium Watch",
       description: "Photorealistic product rendering with studio lighting and material refinement.",
@@ -51,6 +54,7 @@ export default function Portfolio() {
     },
     {
       id: 5,
+      thumbnail: "/images/purple.png",
       title: "Organic Creature",
       subtitle: "Fantasy Beast",
       description: "Detailed creature design with organic modeling, fur simulation, and realistic shading.",
@@ -172,8 +176,8 @@ export default function Portfolio() {
               >
                 {/* Project Card */}
                 <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-muted/20 to-background/50 border border-border group-hover:border-foreground/30 transition-all duration-500">
+                <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
                   {/* Content Overlay */}
-                  <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 bg-background/90 backdrop-blur-sm">
                     <div className="space-y-2">
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">
