@@ -23,25 +23,13 @@ export function NoiseOverlay() {
     const generateNoise = () => {
       const imageData = ctx.createImageData(canvas.width, canvas.height)
       const data = imageData.data
-      const blockSize = 4 // 4x4 pixel blocks
 
-      for (let y = 0; y < canvas.height; y += blockSize) {
-        for (let x = 0; x < canvas.width; x += blockSize) {
-          const value = Math.random() * 255
-
-          for (let dy = 0; dy < blockSize; dy++) {
-            for (let dx = 0; dx < blockSize; dx++) {
-              const px = Math.min(x + dx, canvas.width - 1)
-              const py = Math.min(y + dy, canvas.height - 1)
-              const index = (py * canvas.width + px) * 4
-
-              data[index] = value     // red
-              data[index + 1] = value // green
-              data[index + 2] = value // blue
-              data[index + 3] = 80    // alpha (more visible)
-            }
-          }
-        }
+      for (let i = 0; i < data.length; i += 4) {
+        const value = Math.random() * 255
+        data[i] = value     // red
+        data[i + 1] = value // green
+        data[i + 2] = value // blue
+        data[i + 3] = 100   // alpha (more visible)
       }
 
       ctx.putImageData(imageData, 0, 0)
@@ -69,7 +57,7 @@ export function NoiseOverlay() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none opacity-60"
+      className="fixed inset-0 pointer-events-none opacity-70"
       style={{ zIndex: 99999, mixBlendMode: 'overlay' }}
       aria-hidden="true"
     />
