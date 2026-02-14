@@ -17,14 +17,14 @@ export default function Portfolio() {
       thumbnail: "/images/purple.png",
       title: "Julietta H6",
       subtitle: "Ancient Egyptian Temple",
-      description: "A detailed recreation of an ancient Egyptian temple environment showcasing advanced modeling and rendering techniques.",
+      description: "The Julietta H6 was created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
       tools: ["Blender","Photoshop"],
       year: "2026",
       type: "Automotive"
     },
     {
       id: 2,
-      thumbnail: "/images/purple.png",
+      thumbnail: "/images/steer1.jpg",
       title: "R8 Steering Wheel",
       subtitle: "Urban Night Scene",
       description: "Futuristic cityscape with neon-lit streets, atmospheric fog, and detailed architectural elements.",
@@ -44,7 +44,7 @@ export default function Portfolio() {
     },
     {
       id: 4,
-      thumbnail: "/images/purple.png",
+      thumbnail: "/images/portrait002.png",
       title: "Maison Margiela Replica",
       subtitle: "Premium Watch",
       description: "Photorealistic product rendering with studio lighting and material refinement.",
@@ -106,15 +106,15 @@ export default function Portfolio() {
                 <a href="#" className="text-sm hover:text-muted-foreground transition-colors">
                   Home
                 </a>
-                <a href="#work" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="#work" className="text-sm hover:text-muted-foreground transition-colors">
                   Work
-                </a>
-                <a href="#about" className="text-sm hover:text-muted-foreground transition-colors">
+                </Link>
+                <Link href="#about" className="text-sm hover:text-muted-foreground transition-colors">
                   About
-                </a>
-                <a href="#contact" className="text-sm hover:text-muted-foreground transition-colors">
+                </Link>
+                <Link href="#contact" className="text-sm hover:text-muted-foreground transition-colors">
                   Contact
-                </a>
+                </Link>
               </div>
               <a 
                 href="mailto:bevel.graphics1@gmail.com" 
@@ -129,7 +129,6 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section
-        id="work"
         className={`relative min-h-screen flex flex-col justify-end pb-20 px-6 lg:px-12 transition-all duration-1000 delay-500 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
@@ -162,7 +161,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-12 px-6 lg:px-12">
+      <section id="work" className="py-12 px-6 lg:px-12 scroll-mt-32">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (

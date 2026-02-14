@@ -10,24 +10,25 @@ const projects = [
   {
     id: "1",
     thumbnail: "/images/purple.png",
-    title: "Anuket",
+    title: "Julietta H6",
     subtitle: "Personal Project",
-    description: "'Anuket' is the ancient Egyptian goddess of the Nile. This was a personal project to display my 3D environment/generalist abilities. Most of the models are from BigMediumSmall or Quixel, which allowed me to focus on scene assembly and other aspects. You can watch the breakdown video above.",
-    tools: ["Blender", "Houdini", "Geo-Scatter", "Gaea", "Liquigen", "After-Effects", "Photoshop"],
-    year: "2024",
+    description: "The Julietta H6 was created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
+    tools: ["Blender", "Photoshop"],
+    year: "2026",
     type: "Environment Design",
     images: [
-      { type: "wireframe", label: "Wireframe View" },
-      { type: "clay", label: "Clay Render" },
+      { type: "wireframe", label: "Wireframe View", wireframe: "/images/purple.png" },
+      { type: "clay", label: "Clay Render", clay: "/images/purple.png"},
       { type: "video", label: "Breakdown Video" }
     ]
   },
   {
     id: "2",
-    title: "Cyberpunk District",
+    thumbnail: "/images/steer1.jpg",
+    title: "R8 Steering Wheel",
     subtitle: "Personal Project",
     description: "A futuristic cityscape featuring neon-lit streets, atmospheric fog, and detailed architectural elements. The project explores advanced lighting techniques and environment storytelling through a dystopian lens.",
-    tools: ["Blender", "Unreal Engine", "Substance Painter"],
+    tools: ["Blender", "Affinity Photo"],
     year: "2026",
     type: "Environment Design",
     images: [
@@ -38,6 +39,7 @@ const projects = [
   },
   {
     id: "3",
+    thumbnail: "/images/steer1.jpg",
     title: "Character Design",
     subtitle: "Personal Project",
     description: "High-detail sci-fi warrior character sculpt with advanced texturing, rigging, and material work. The design focuses on combining organic forms with hard-surface armor elements.",
@@ -52,6 +54,7 @@ const projects = [
   },
   {
     id: "4",
+    thumbnail: "/images/portrait002.png",
     title: "Product Visualization",
     subtitle: "Commercial Project",
     description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
@@ -129,7 +132,7 @@ export default function ProjectPage() {
                 href="/"
                 className="text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors"
               >
-                Your Name
+                Bevel Graphics
               </Link>
               <div className="flex items-center gap-8">
                 <Link href="/" className="text-sm hover:text-muted-foreground transition-colors">
@@ -156,20 +159,24 @@ export default function ProjectPage() {
         </div>
       </nav>
 
+ <div className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${project.thumbnail})`, filter: 'brightness(0.5)' }}/>
+        {/* Gradient Overlay - same strong fade at top and bottom */}
+      <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
+        
+
       {/* Hero with Background */}
       <section className="relative min-h-[60vh] flex flex-col justify-end pt-32 pb-12 px-6 lg:px-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
-          <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
-            <img src={project.thumbnail} alt={project.title} className="w-1/3 aspect-video object-cover rounded-lg border border-border shadow-lg" /> 
-          </div>
+           {/* aseta doua de refacut 
+                   <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />*/}
+
         <div className="max-w-7xl mx-auto relative z-10 w-full space-y-6">
           <Link 
             href="/"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
           >
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-            BACK TO CASES
+            BACK TO HOME
           </Link>
           
           <div className="flex items-end justify-between gap-8">
@@ -199,6 +206,10 @@ export default function ProjectPage() {
                 key={index}
                 className="group relative aspect-video bg-muted/20 border border-border overflow-hidden cursor-pointer hover:border-foreground/30 transition-all duration-500"
               >
+                      {/* DE REFACUT */}
+                 <img src={image.wireframe} alt="" />
+                 <img src={image.clay} alt="" />
+                      {/* DE REFACUT */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-2">
                     <div className="text-4xl font-bold text-foreground/10">

@@ -29,7 +29,7 @@ export function NoiseOverlay() {
         data[i] = value     // red
         data[i + 1] = value // green
         data[i + 2] = value // blue
-        data[i + 3] = 65   // alpha (more visible)
+        data[i + 3] = 45   // alpha (more visible)
       }
 
       ctx.putImageData(imageData, 0, 0)
