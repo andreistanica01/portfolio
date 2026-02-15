@@ -126,6 +126,26 @@ export default function ProjectPage() {
   const [displayIndex, setDisplayIndex] = useState<number | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
   const [animDirection, setAnimDirection] = useState(0)
+  const [isExiting, setIsExiting] = useState(false)
+
+  const closeModal = () => {
+    setIsExiting(true)
+    setTimeout(() => {
+      setSelectedImage(null)
+      setIsExiting(false)
+    }, 500)
+  }
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [selectedImage])
 
   useEffect(() => {
     if (!selectedImage) return
@@ -148,14 +168,14 @@ export default function ProjectPage() {
       setDisplayIndex(newIndex)
       setSelectedImage({ type: project.images[newIndex].type, image: project.images[newIndex], index: newIndex })
       setIsAnimating(false)
-    }, 250)
+    }, 260)
   }
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (!selectedImage) return
       if (e.key === "Escape") {
-        setSelectedImage(null)
+        closeModal()
         return
       }
       if (e.key === "ArrowLeft") {
@@ -409,7 +429,7 @@ export default function ProjectPage() {
       {/* Image Viewer Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 modal-backdrop-enter"
+          className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 modal-backdrop-enter transition-opacity duration-500 ${isExiting ? 'opacity-0' : 'opacity-100'}`}
           onClick={(e) => {
             const rect = modalContentRef.current?.getBoundingClientRect()
             if (!rect) return
@@ -423,13 +443,13 @@ export default function ProjectPage() {
             const distance = Math.max(dx, dy)
 
             if (distance > 0) {
-              setSelectedImage(null)
+              closeModal()
             }
           }}
         >
           <div
             ref={modalContentRef}
-            className="relative w-[85vw] h-[85vh] flex items-center justify-center modal-content-enter rounded-lg overflow-hidden"
+            className={`relative w-[85vw] h-[85vh] flex items-center justify-center modal-content-enter rounded-lg overflow-hidden transition-opacity duration-500 ${isExiting ? 'opacity-0' : 'opacity-100'}`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Left / Right arrows inside modal */}
@@ -453,7 +473,7 @@ export default function ProjectPage() {
             )}
             {/* Content */}
             {displayIndex !== null && project.images[displayIndex].type === "video" ? (
-              <div className={`w-full h-full flex items-center justify-center bg-black rounded-lg ${isAnimating ? 'opacity-0 transition-opacity duration-300' : 'opacity-100 transition-opacity duration-300'}`}>
+              <div className={`w-full h-full flex items-center justify-center bg-black rounded-lg ${isAnimating ? 'opacity-0 transition-opacity duration-500' : 'opacity-100 transition-opacity duration-500'}`}>
                 <div className="text-center space-y-4">
                   <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center mx-auto">
                     <Play className="h-8 w-8 fill-white text-white" />
@@ -468,7 +488,7 @@ export default function ProjectPage() {
                   src={(project.images[displayIndex] as any).image}
                   alt={(project.images[displayIndex] as any).label}
                   key={displayIndex}
-                  className={`w-full h-full object-contain rounded-lg transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+                  className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
                 />
               )
             )}
