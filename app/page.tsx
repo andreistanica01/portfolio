@@ -14,43 +14,42 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      thumbnail: "/images/purple.png",
+      thumbnail: "/images/Project_Images/purple3.webp",
       title: "Julietta H6",
-      subtitle: "Ancient Egyptian Temple",
-      description: "The Julietta H6 was created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
-      tools: ["Blender","Photoshop"],
+      subtitle: "Personal Project",
+      description: "The Julietta H6 is created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
+      tools: ["Blender","Affinity Photo"],
       year: "2026",
       type: "Automotive"
     },
     {
       id: 2,
-      thumbnail: "/images/steer1.jpg",
+      thumbnail: "/images/Project_Images/steering1.webp",
       title: "R8 Steering Wheel",
-      subtitle: "Urban Night Scene",
-      description: "Futuristic cityscape with neon-lit streets, atmospheric fog, and detailed architectural elements.",
+      subtitle: "Personal Project",
+      description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result. The materials and lighting were carefully set to highlight textures and metallic finishes for a premium automotive presentation.",
       tools: ["Blender", "Affinity Photo"],
       year: "2026",
       type: "Automotive Interior Part"
     },
     {
       id: 3,
-      thumbnail: "/images/purple.png",
       title: "Ocean Drive",
-      subtitle: "Sci-Fi Warrior",
-      description: "High-detail character sculpt with advanced texturing, rigging, and material work.",
-      tools: ["ZBrush", "Maya", "Substance Painter", "Marmoset"],
+      subtitle: "Available For Purchase",
+      description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+      tools: ["Blender", "Affinity Photo"], 
       year: "2025",
-      type: ""
+      type: "Environment Design"
     },
     {
       id: 4,
-      thumbnail: "/images/portrait002.png",
+      thumbnail: "/images/Project_Images/replica1.webp",
       title: "Maison Margiela Replica",
       subtitle: "Premium Watch",
       description: "Photorealistic product rendering with studio lighting and material refinement.",
-      tools: ["Cinema 4D", "Octane", "Photoshop"],
+      tools: ["Blender", "Affinity Photo"],
       year: "2025",
-      type: "Product Design"
+      type: "Product Visualization"
     },
     {
       id: 5,
@@ -136,7 +135,7 @@ export default function Portfolio() {
         {/* Background Image - extends to cover header */}
         <div 
           className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/purple.png)' }}
+          style={{ backgroundImage: 'url(/images/Project_Images/purple3.webp)' }}
         />
         {/* Gradient Overlay - same strong fade at top and bottom */}
       <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
@@ -244,7 +243,7 @@ export default function Portfolio() {
             <div className="shrink-0">
               <div className="w-32 h-32 rounded-full bg-gradient-to-br from-muted via-muted/50 to-background border-2 border-border overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-muted-foreground" >
-                  <img src='/images/image2.jpeg' alt="Profile Image" className="w-full h-full object-cover" />
+                  <img src='/images/image2.webp' alt="Profile Image" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
@@ -306,12 +305,14 @@ export default function Portfolio() {
             Available for freelance projects and collaborations
           </p>
           <div className="pt-8">
+          <Link href="mailto:bevel.graphics1@gmail.com" >
             <Button 
               size="lg" 
-              className="text-lg px-8 py-6 hover:scale-105 transition-transform"
-            >
+              className="text-lg px-8 py-6 hover:scale-105 transition-transform"       >
+
               Get in touch
             </Button>
+          </Link>
           </div>
         </div>
       </section>

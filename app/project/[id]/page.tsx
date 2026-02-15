@@ -1,60 +1,63 @@
 'use client'
 
-import { useEffect } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import { NoiseOverlay } from "@/components/noise-overlay"
-import { ArrowLeft, Play } from "lucide-react"
+import { ArrowLeft, Play, X } from "lucide-react"
 
 const projects = [
   {
     id: "1",
-    thumbnail: "/images/purple.png",
+    thumbnail: "/images/Project_Images/purple3.webp",
     title: "Julietta H6",
     subtitle: "Personal Project",
     description: "The Julietta H6 was created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
-    tools: ["Blender", "Photoshop"],
+    tools: ["Blender", "Affinity Photo"],
     year: "2026",
-    type: "Environment Design",
+    type: "Automotive",
     images: [
-      { type: "wireframe", label: "Wireframe View", wireframe: "/images/purple.png" },
-      { type: "clay", label: "Clay Render", clay: "/images/purple.png"},
+      { type: "image", label: "Render 1", image: "/images/Project_Images/purple3.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/purple2.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/purple4.webp"},
+      { type: "image", label: "Render 4", image: "/images/Project_Images/purple1.webp"},
       { type: "video", label: "Breakdown Video" }
     ]
   },
   {
     id: "2",
-    thumbnail: "/images/steer1.jpg",
+    thumbnail: "/images/Project_Images/steering1.webp",
     title: "R8 Steering Wheel",
     subtitle: "Personal Project",
-    description: "A futuristic cityscape featuring neon-lit streets, atmospheric fog, and detailed architectural elements. The project explores advanced lighting techniques and environment storytelling through a dystopian lens.",
+    description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result. The materials and lighting were carefully set to highlight textures and metallic finishes for a premium automotive presentation.",
     tools: ["Blender", "Affinity Photo"],
     year: "2026",
-    type: "Environment Design",
+    type: "Automotive Interior Part",
     images: [
-      { type: "wireframe", label: "Wireframe View" },
-      { type: "clay", label: "Clay Render" },
-      { type: "video", label: "Breakdown Video" }
+      { type: "image", label: "Render 1", image: "/images/Project_Images/steering1.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/steering2.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/steering3.webp"},
+      { type: "image", label: "Render 4", image: "/images/Project_Images/steering4.webp"},
     ]
   },
   {
     id: "3",
-    thumbnail: "/images/steer1.jpg",
-    title: "Character Design",
-    subtitle: "Personal Project",
-    description: "High-detail sci-fi warrior character sculpt with advanced texturing, rigging, and material work. The design focuses on combining organic forms with hard-surface armor elements.",
-    tools: ["ZBrush", "Maya", "Substance Painter", "Marmoset"],
+    thumbnail: "/images/Project_Images/steering1.jpg",
+    title: "Ocean Drive",
+    subtitle: "Available For Purchase",
+    description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+    tools: ["Blender", "Affinity Photo"],
     year: "2025",
-    type: "Character Art",
+    type: "Environment Design",
     images: [
-      { type: "wireframe", label: "Wireframe View" },
-      { type: "clay", label: "Clay Render" },
+      { type: "image", label: "Render 1", image: "/images/steer1.jpg" },
+      { type: "image", label: "Render 2", image: "/images/steer1.jpg"},
       { type: "video", label: "Turntable" }
     ]
   },
   {
     id: "4",
-    thumbnail: "/images/portrait002.png",
+    thumbnail: "/images/Project%20Images/replica1.webp",
     title: "Product Visualization",
     subtitle: "Commercial Project",
     description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
@@ -62,8 +65,8 @@ const projects = [
     year: "2025",
     type: "Product Design",
     images: [
-      { type: "wireframe", label: "Wireframe View" },
-      { type: "clay", label: "Clay Render" },
+      { type: "image", label: "Render 1", image: "/images/Project%20Images/replica1.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project%20Images/replica2.webp"},
       { type: "video", label: "Animation" }
     ]
   },
@@ -76,8 +79,8 @@ const projects = [
     year: "2024",
     type: "Creature Design",
     images: [
-      { type: "wireframe", label: "Wireframe View" },
-      { type: "clay", label: "Clay Render" },
+      { type: "image", label: "Render 1", image: "/images/steer1.jpg" },
+      { type: "image", label: "Render 2", image: "/images/steer1.jpg"},
       { type: "video", label: "Turntable" }
     ]
   },
@@ -90,8 +93,8 @@ const projects = [
     year: "2024",
     type: "Architecture",
     images: [
-      { type: "wireframe", label: "Wireframe View" },
-      { type: "clay", label: "Clay Render" },
+      { type: "image", label: "Render 1", image: "/images/image2.webp" },
+      { type: "image", label: "Render 2", image: "/images/image2.webp"},
       { type: "video", label: "Walkthrough" }
     ]
   }
@@ -100,10 +103,60 @@ const projects = [
 export default function ProjectPage() {
   const params = useParams()
   const project = projects.find(p => p.id === params.id)
+  const [selectedImage, setSelectedImage] = useState<{ type: string; image: any; index: number } | null>(null)
+  const [carouselIndex, setCarouselIndex] = useState(0)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [params.id])
+
+  const modalContentRef = useRef<HTMLDivElement | null>(null)
+  const [displayIndex, setDisplayIndex] = useState<number | null>(null)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const [animDirection, setAnimDirection] = useState(0)
+
+  useEffect(() => {
+    if (!selectedImage) return
+
+    // when modal opens/setSelectedImage changes, sync displayIndex
+    setDisplayIndex(selectedImage.index)
+  }, [selectedImage])
+
+  const navigate = (delta: number) => {
+    if (!selectedImage) return
+    const current = selectedImage.index
+    const newIndex = Math.min(Math.max(0, current + delta), project.images.length - 1)
+    if (newIndex === current) return
+
+    setAnimDirection(delta)
+    setIsAnimating(true)
+
+    // animate out, swap image, animate in
+    setTimeout(() => {
+      setDisplayIndex(newIndex)
+      setSelectedImage({ type: project.images[newIndex].type, image: project.images[newIndex], index: newIndex })
+      setIsAnimating(false)
+    }, 180)
+  }
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (!selectedImage) return
+      if (e.key === "Escape") {
+        setSelectedImage(null)
+        return
+      }
+      if (e.key === "ArrowLeft") {
+        navigate(-1)
+      }
+      if (e.key === "ArrowRight") {
+        navigate(1)
+      }
+    }
+
+    window.addEventListener("keydown", handleKey)
+    return () => window.removeEventListener("keydown", handleKey)
+  }, [selectedImage, project.images])
 
   if (!project) {
     return (
@@ -149,10 +202,10 @@ export default function ProjectPage() {
                 </Link>
               </div>
               <a 
-                href="mailto:your.email@example.com" 
+                href="mailto:bevel.graphics1@gmail.com" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                your.email@example.com
+                bevel.graphics1@gmail.com
               </a>
             </div>
           </div>
@@ -197,42 +250,75 @@ export default function ProjectPage() {
         </div>
       </section>
 
-      {/* Project Media Grid */}
+      {/* Project Media Carousel */}
       <section className="py-8 px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-4">
-            {project.images.map((image, index) => (
+          <div className="relative">
+            {/* Carousel Container */}
+            <div className="overflow-hidden">
               <div 
-                key={index}
-                className="group relative aspect-video bg-muted/20 border border-border overflow-hidden cursor-pointer hover:border-foreground/30 transition-all duration-500"
+                className="flex gap-4 transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${carouselIndex * (33.333 + 1.333)}%)` }}
               >
-                      {/* DE REFACUT */}
-                 <img src={image.wireframe} alt="" />
-                 <img src={image.clay} alt="" />
-                      {/* DE REFACUT */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center space-y-2">
-                    <div className="text-4xl font-bold text-foreground/10">
-                      {index + 1}
+                {project.images.map((image, index) => {
+                  const imageSrc = (image as any).image
+                  return (
+                    <div 
+                      key={index}
+                      onClick={() => setSelectedImage({ type: image.type, image: image, index })}
+                      className="group relative flex-shrink-0 w-full md:w-1/3 aspect-video bg-muted/20 border border-border overflow-hidden cursor-pointer hover:border-foreground/30 transition-all duration-500"
+                    >
+                      {imageSrc && (
+                        <img 
+                          src={imageSrc} 
+                          alt={image.label}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      )}
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center space-y-2">
+                          <div className="text-4xl font-bold text-foreground/10">
+                            {index + 1}
+                          </div>
+                          <p className="text-xs text-muted-foreground uppercase tracking-wider">
+                            {image.label}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {image.type === "video" && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full border-2 border-foreground/30 flex items-center justify-center group-hover:scale-110 group-hover:border-foreground/50 transition-all duration-300">
+                            <Play className="h-6 w-6 fill-current" />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                      {image.label}
-                    </p>
-                  </div>
-                </div>
-                
-                {image.type === "video" && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full border-2 border-foreground/30 flex items-center justify-center group-hover:scale-110 group-hover:border-foreground/50 transition-all duration-300">
-                      <Play className="h-6 w-6 fill-current" />
-                    </div>
-                  </div>
-                )}
-
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  )
+                })}
               </div>
-            ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            {project.images.length > 3 && (
+              <>
+                <button
+                  onClick={() => setCarouselIndex(Math.max(0, carouselIndex - 1))}
+                  disabled={carouselIndex === 0}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => setCarouselIndex(Math.min(project.images.length - 3, carouselIndex + 1))}
+                  disabled={carouselIndex >= project.images.length - 3}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer"
+                >
+                  <ArrowLeft className="h-5 w-5 rotate-180" />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -275,6 +361,9 @@ export default function ProjectPage() {
                   href={`/project/${p.id}`}
                   className="group relative aspect-[4/3] bg-muted/20 border border-border overflow-hidden hover:border-foreground/30 transition-all duration-500"
                 >
+                  {p.thumbnail && (
+                    <img src={p.thumbnail} alt={p.title} className="absolute inset-0 w-full h-full object-cover" />
+                  )}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center space-y-2 group-hover:scale-105 transition-transform duration-500">
                       <div className="text-5xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors">
@@ -314,6 +403,76 @@ export default function ProjectPage() {
           </div>
         </div>
       </footer>
+
+      {/* Image Viewer Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 modal-backdrop-enter"
+          onClick={(e) => {
+            const rect = modalContentRef.current?.getBoundingClientRect()
+            if (!rect) return
+            const evt: any = e
+            const x = evt.clientX
+            const y = evt.clientY
+
+            // Close when clicking anywhere outside the modal content
+            const dx = Math.max(rect.left - x, x - rect.right, 0)
+            const dy = Math.max(rect.top - y, y - rect.bottom, 0)
+            const distance = Math.max(dx, dy)
+
+            if (distance > 0) {
+              setSelectedImage(null)
+            }
+          }}
+        >
+          <div
+            ref={modalContentRef}
+            className="relative w-[85vw] h-[85vh] flex items-center justify-center modal-content-enter rounded-lg overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Left / Right arrows inside modal */}
+            {project.images.length > 1 && (
+              <>
+                <button
+                  onClick={() => navigate(-1)}
+                  disabled={displayIndex === null || displayIndex <= 0}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => navigate(1)}
+                  disabled={displayIndex === null || displayIndex >= project.images.length - 1}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
+                >
+                  <ArrowLeft className="h-5 w-5 rotate-180" />
+                </button>
+              </>
+            )}
+            {/* Content */}
+            {displayIndex !== null && project.images[displayIndex].type === "video" ? (
+              <div className={`w-full h-full flex items-center justify-center bg-black rounded-lg ${isAnimating ? 'opacity-0 transition-opacity duration-200' : 'opacity-100 transition-opacity duration-200'}`}>
+                <div className="text-center space-y-4">
+                  <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center mx-auto">
+                    <Play className="h-8 w-8 fill-white text-white" />
+                  </div>
+                  <p className="text-white text-lg font-semibold">Video Player</p>
+                  <p className="text-white/60 text-sm">Video playback feature coming soon</p>
+                </div>
+              </div>
+            ) : (
+              displayIndex !== null && (
+                <img
+                  src={(project.images[displayIndex] as any).image}
+                  alt={(project.images[displayIndex] as any).label}
+                  key={displayIndex}
+                  className={`w-full h-full object-contain rounded-lg transition-opacity duration-200 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+                />
+              )
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

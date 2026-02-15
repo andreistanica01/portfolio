@@ -123,3 +123,33 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes modalBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalContentEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  .modal-backdrop-enter {
+    animation: modalBackdropFadeIn 0.3s ease-out;
+  }
+  
+  .modal-content-enter {
+    animation: modalContentEnter 0.4s ease-out;
+  }
+}

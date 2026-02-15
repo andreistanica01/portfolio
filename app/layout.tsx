@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: '3D Artist Portfolio | Modern 3D Modeling Showcase',
-  description: 'Professional 3D modeling portfolio showcasing creative projects and visual artistry in modern design',
+  title: 'Bevel Graphics - 3D Modeling Portfolio',
+  description: '3D artist specializing in automotive modeling, hard surface design, and photorealistic product rendering for marketing and commercial visualization.',
   icons: {
     icon: [
       {
