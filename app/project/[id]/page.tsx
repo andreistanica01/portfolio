@@ -18,10 +18,15 @@ const projects = [
     type: "Automotive",
     images: [
       { type: "image", label: "Render 1", image: "/images/Project_Images/purple3.webp" },
-      { type: "image", label: "Render 2", image: "/images/Project_Images/purple2.webp"},
-      { type: "image", label: "Render 3", image: "/images/Project_Images/purple4.webp"},
-      { type: "image", label: "Render 4", image: "/images/Project_Images/purple1.webp"},
-      { type: "video", label: "Breakdown Video" }
+      { type: "image", label: "Render 2", image: "/images/Project_Images/green5.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/purple2.webp"},
+      { type: "image", label: "Render 4", image: "/images/Project_Images/green4.webp"},
+      { type: "image", label: "Render 5", image: "/images/Project_Images/purple1.webp"},
+      { type: "image", label: "Render 6", image: "/images/Project_Images/green1.webp"},
+      { type: "image", label: "Render 7", image: "/images/Project_Images/green3.webp"},
+      { type: "image", label: "Render 8", image: "/images/Project_Images/green2.webp"},
+      { type: "image", label: "Render 9", image: "/images/Project_Images/purple4.webp"},
+      
     ]
   },
   {
@@ -32,7 +37,7 @@ const projects = [
     description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result. The materials and lighting were carefully set to highlight textures and metallic finishes for a premium automotive presentation.",
     tools: ["Blender", "Affinity Photo"],
     year: "2026",
-    type: "Automotive Interior Part",
+    type: "Automotive Interior Part / Product Visualization",
     images: [
       { type: "image", label: "Render 1", image: "/images/Project_Images/steering1.webp" },
       { type: "image", label: "Render 2", image: "/images/Project_Images/steering2.webp"},
@@ -42,60 +47,67 @@ const projects = [
   },
   {
     id: "3",
-    thumbnail: "/images/Project_Images/steering1.jpg",
-    title: "Ocean Drive",
-    subtitle: "Available For Purchase",
-    description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+    thumbnail: "/images/Project_Images/nespresso1.webp",
+    title: "Nespresso Vertuo Blue",
+    subtitle: "Personal Project",
+    description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
     tools: ["Blender", "Affinity Photo"],
     year: "2025",
-    type: "Environment Design",
+    type: "Product Visualization",
     images: [
-      { type: "image", label: "Render 1", image: "/images/steer1.jpg" },
-      { type: "image", label: "Render 2", image: "/images/steer1.jpg"},
-      { type: "video", label: "Turntable" }
+        { type: "image", label: "Render 1", image: "/images/Project_Images/nespresso1.webp"},
+        { type: "image", label: "Render 2", image: "/images/Project_Images/nespresso3.webp"},
+        { type: "image", label: "Render 3", image: "/images/Project_Images/nespresso2.webp"},
     ]
   },
   {
     id: "4",
-    thumbnail: "/images/Project%20Images/replica1.webp",
-    title: "Product Visualization",
-    subtitle: "Commercial Project",
+    thumbnail: "/images/Project_Images/replica2.webp",
+    title: "Maison Margiela - Replica Perfume",
+    subtitle: "Personal Project",
     description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
-    tools: ["Cinema 4D", "Octane", "Photoshop"],
+    tools: ["Blender", "Affinity Photo"],
     year: "2025",
-    type: "Product Design",
+    type: "Product Visualization",
     images: [
-      { type: "image", label: "Render 1", image: "/images/Project%20Images/replica1.webp" },
-      { type: "image", label: "Render 2", image: "/images/Project%20Images/replica2.webp"},
-      { type: "video", label: "Animation" }
+      { type: "image", label: "Render 1", image: "/images/Project_Images/replica1.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/replica2.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/replica3.webp"},
     ]
   },
   {
     id: "5",
-    title: "Organic Creature",
+    thumbnail: "/images/Project_Images/TableRender004.png",
+    title: "Nespresso Vertuo 6 Colors",
     subtitle: "Personal Project",
-    description: "Detailed creature design with organic modeling, fur simulation, and realistic shading. The project explores anatomy, surface detail, and believable creature design.",
-    tools: ["ZBrush", "Maya", "Houdini", "V-Ray"],
-    year: "2024",
+    description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2025",
     type: "Creature Design",
     images: [
-      { type: "image", label: "Render 1", image: "/images/steer1.jpg" },
-      { type: "image", label: "Render 2", image: "/images/steer1.jpg"},
-      { type: "video", label: "Turntable" }
+      { type: "image", label: "Render 1", image: "/images/Project_Images/VerticalShot013.png" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/VerticalShot011.png"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/TableRender005.png"},
+      { type: "image", label: "Render 4", image: "/images/Project_Images/TableRender004.png"},
     ]
   },
   {
     id: "6",
-    title: "Architectural Viz",
-    subtitle: "Commercial Project",
-    description: "Contemporary interior space with photorealistic lighting, materials, and composition. The project demonstrates architectural visualization techniques for real estate marketing.",
-    tools: ["Blender", "V-Ray", "Photoshop"],
-    year: "2024",
+    thumbnail: "/images/Project_Images/oceandrive2.webp",
+    title: "Ocean Drive - Miami Street Scene",
+    subtitle: "Personal Project",
+    description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2025",
     type: "Architecture",
     images: [
-      { type: "image", label: "Render 1", image: "/images/image2.webp" },
-      { type: "image", label: "Render 2", image: "/images/image2.webp"},
-      { type: "video", label: "Walkthrough" }
+      { type: "image", label: "Render 1", image: "/images/Project_Images/oceandrive1.webp"},
+      { type: "image", label: "Render 2", image: "/images/Project_Images/oceandrive2.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/oceandrive3.webp"},
+      { type: "image", label: "Render 4", image: "/images/Project_Images/oceandrive4.webp"},
+      { type: "image", label: "Render 5", image: "/images/Project_Images/oceandrive5.webp"},
+      { type: "image", label: "Render 6", image: "/images/Project_Images/oceandrive6.webp"},
+      { type: "image", label: "Render 7", image: "/images/Project_Images/oceandrive7.webp"},
     ]
   }
 ]
@@ -136,7 +148,7 @@ export default function ProjectPage() {
       setDisplayIndex(newIndex)
       setSelectedImage({ type: project.images[newIndex].type, image: project.images[newIndex], index: newIndex })
       setIsAnimating(false)
-    }, 180)
+    }, 250)
   }
 
   useEffect(() => {
@@ -275,17 +287,7 @@ export default function ProjectPage() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       )}
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center space-y-2">
-                          <div className="text-4xl font-bold text-foreground/10">
-                            {index + 1}
-                          </div>
-                          <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                            {image.label}
-                          </p>
-                        </div>
-                      </div>
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors" />
                       
                       {image.type === "video" && (
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -451,7 +453,7 @@ export default function ProjectPage() {
             )}
             {/* Content */}
             {displayIndex !== null && project.images[displayIndex].type === "video" ? (
-              <div className={`w-full h-full flex items-center justify-center bg-black rounded-lg ${isAnimating ? 'opacity-0 transition-opacity duration-200' : 'opacity-100 transition-opacity duration-200'}`}>
+              <div className={`w-full h-full flex items-center justify-center bg-black rounded-lg ${isAnimating ? 'opacity-0 transition-opacity duration-300' : 'opacity-100 transition-opacity duration-300'}`}>
                 <div className="text-center space-y-4">
                   <div className="w-20 h-20 rounded-full border-2 border-white flex items-center justify-center mx-auto">
                     <Play className="h-8 w-8 fill-white text-white" />
@@ -466,7 +468,7 @@ export default function ProjectPage() {
                   src={(project.images[displayIndex] as any).image}
                   alt={(project.images[displayIndex] as any).label}
                   key={displayIndex}
-                  className={`w-full h-full object-contain rounded-lg transition-opacity duration-200 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
+                  className={`w-full h-full object-contain rounded-lg transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
                 />
               )
             )}

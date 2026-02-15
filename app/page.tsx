@@ -30,16 +30,17 @@ export default function Portfolio() {
       description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result. The materials and lighting were carefully set to highlight textures and metallic finishes for a premium automotive presentation.",
       tools: ["Blender", "Affinity Photo"],
       year: "2026",
-      type: "Automotive Interior Part"
+      type: "Automotive Interior Part / Product Visualization",
     },
     {
       id: 3,
-      title: "Ocean Drive",
-      subtitle: "Available For Purchase",
-      description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+      thumbnail: "/images/Project_Images/nespresso1.webp",
+      title: "Nespresso Vertuo Blue",
+      subtitle: "Personal Project",
+      description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
       tools: ["Blender", "Affinity Photo"], 
       year: "2025",
-      type: "Environment Design"
+      type: "Product Visualization"
     },
     {
       id: 4,
@@ -53,21 +54,22 @@ export default function Portfolio() {
     },
     {
       id: 5,
-      thumbnail: "/images/purple.png",
-      title: "Organic Creature",
-      subtitle: "Fantasy Beast",
-      description: "Detailed creature design with organic modeling, fur simulation, and realistic shading.",
-      tools: ["ZBrush", "Maya", "Houdini", "V-Ray"],
+      thumbnail: "/images/Project_Images/VerticalShot011.png",
+      title: "Nespresso Vertuo 6 Colors",
+      subtitle: "Personal Project",
+      description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
+      tools: ["Blender", "Affinity Photo"],
       year: "2024",
       type: "Creature Design"
     },
     {
       id: 6,
-      title: "Architectural Viz",
-      subtitle: "Modern Interior",
-      description: "Contemporary interior space with photorealistic lighting, materials, and composition.",
-      tools: ["Blender", "V-Ray", "Photoshop"],
-      year: "2024",
+      thumbnail: "/images/Project_Images/oceandrive1.webp",
+      title: "Ocean Drive - Miami Street Scene",
+      subtitle: "Personal Project",
+      description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+      tools: ["Blender", "Affinity Photo"],
+      year: "2025",
       type: "Architecture"
     }
   ]
