@@ -117,9 +117,14 @@ export default function ProjectPage() {
   const project = projects.find(p => p.id === params.id)
   const [selectedImage, setSelectedImage] = useState<{ type: string; image: any; index: number } | null>(null)
   const [carouselIndex, setCarouselIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [params.id])
 
   const modalContentRef = useRef<HTMLDivElement | null>(null)
@@ -155,7 +160,7 @@ export default function ProjectPage() {
   }, [selectedImage])
 
   const navigate = (delta: number) => {
-    if (!selectedImage) return
+    if (!selectedImage || !project) return
     const current = selectedImage.index
     const newIndex = Math.min(Math.max(0, current + delta), project.images.length - 1)
     if (newIndex === current) return
@@ -172,6 +177,7 @@ export default function ProjectPage() {
   }
 
   useEffect(() => {
+    if (!project) return
     const handleKey = (e: KeyboardEvent) => {
       if (!selectedImage) return
       if (e.key === "Escape") {
@@ -188,7 +194,7 @@ export default function ProjectPage() {
 
     window.addEventListener("keydown", handleKey)
     return () => window.removeEventListener("keydown", handleKey)
-  }, [selectedImage, project.images])
+  }, [selectedImage, project])
 
   if (!project) {
     return (
@@ -211,31 +217,31 @@ export default function ProjectPage() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40">
         <div className="border-b border-border/50 bg-background/80 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
-            <div className="flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
               <Link 
                 href="/"
-                className="text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors"
+                className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors"
               >
                 Bevel Graphics
               </Link>
-              <div className="flex items-center gap-8">
-                <Link href="/" className="text-sm hover:text-muted-foreground transition-colors">
+              <div className="flex items-center gap-4 md:gap-8 flex-wrap">
+                <Link href="/" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Home
                 </Link>
-                <Link href="/#work" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="/#work" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Work
                 </Link>
-                <Link href="/#about" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="/#about" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   About
                 </Link>
-                <Link href="/#contact" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="/#contact" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Contact
                 </Link>
               </div>
               <a 
                 href="mailto:bevel.graphics1@gmail.com" 
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all md:break-normal"
               >
                 bevel.graphics1@gmail.com
               </a>
@@ -250,31 +256,31 @@ export default function ProjectPage() {
         
 
       {/* Hero with Background */}
-      <section className="relative min-h-[60vh] flex flex-col justify-end pt-32 pb-12 px-6 lg:px-12">
+      <section className="relative min-h-[50vh] md:min-h-[60vh] flex flex-col justify-end pt-24 md:pt-32 pb-8 md:pb-12 px-4 md:px-6 lg:px-12">
            {/* aseta doua de refacut 
                    <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />*/}
 
-        <div className="max-w-7xl mx-auto relative z-10 w-full space-y-6">
+        <div className="max-w-7xl mx-auto relative z-10 w-full space-y-4 md:space-y-6">
           <Link 
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+            className="inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors group"
           >
-            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft className="h-3 w-3 md:h-4 md:w-4 group-hover:-translate-x-1 transition-transform" />
             BACK TO HOME
           </Link>
           
-          <div className="flex items-end justify-between gap-8">
-            <div className="space-y-2">
-              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 md:gap-8">
+            <div className="space-y-1 md:space-y-2">
+              <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter">
                 {project.title}
               </h1>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base md:text-lg text-muted-foreground">
                 {project.subtitle}
               </p>
             </div>
-            <div className="text-right">
-              <p className="text-4xl font-light text-muted-foreground">
+            <div className="text-left md:text-right">
+              <p className="text-2xl md:text-4xl font-light text-muted-foreground">
                 {project.year}
               </p>
             </div>
@@ -283,14 +289,14 @@ export default function ProjectPage() {
       </section>
 
       {/* Project Media Carousel */}
-      <section className="py-8 px-6 lg:px-12">
+      <section className="py-6 md:py-8 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="relative">
             {/* Carousel Container */}
             <div className="overflow-hidden">
               <div 
-                className="flex gap-4 transition-transform duration-300 ease-out"
-                style={{ transform: `translateX(-${carouselIndex * (33.333 + 1.333)}%)` }}
+                className="flex gap-3 md:gap-4 transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${carouselIndex * (isMobile ? 100 : 33.333)}%)` }}
               >
                 {project.images.map((image, index) => {
                   const imageSrc = (image as any).image
@@ -311,8 +317,8 @@ export default function ProjectPage() {
                       
                       {image.type === "video" && (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-full border-2 border-foreground/30 flex items-center justify-center group-hover:scale-110 group-hover:border-foreground/50 transition-all duration-300">
-                            <Play className="h-6 w-6 fill-current" />
+                          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-foreground/30 flex items-center justify-center group-hover:scale-110 group-hover:border-foreground/50 transition-all duration-300">
+                            <Play className="h-4 w-4 md:h-6 md:w-6 fill-current" />
                           </div>
                         </div>
                       )}
@@ -323,21 +329,21 @@ export default function ProjectPage() {
             </div>
 
             {/* Navigation Arrows */}
-            {project.images.length > 3 && (
+            {project.images.length > (isMobile ? 1 : 3) && (
               <>
                 <button
                   onClick={() => setCarouselIndex(Math.max(0, carouselIndex - 1))}
                   disabled={carouselIndex === 0}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 lg:-translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer bg-background/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
                 >
-                  <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
                 </button>
                 <button
-                  onClick={() => setCarouselIndex(Math.min(project.images.length - 3, carouselIndex + 1))}
-                  disabled={carouselIndex >= project.images.length - 3}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer"
+                  onClick={() => setCarouselIndex(Math.min(project.images.length - (isMobile ? 1 : 3), carouselIndex + 1))}
+                  disabled={carouselIndex >= project.images.length - (isMobile ? 1 : 3)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 lg:translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer bg-background/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
                 >
-                  <ArrowLeft className="h-5 w-5 rotate-180" />
+                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 rotate-180" />
                 </button>
               </>
             )}
@@ -346,19 +352,19 @@ export default function ProjectPage() {
       </section>
 
       {/* Project Details */}
-      <section className="py-16 px-6 lg:px-12">
+      <section className="py-12 md:py-16 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-[2fr,1fr] gap-12">
-            <div className="space-y-6">
-              <p className="text-lg leading-relaxed text-muted-foreground">
+          <div className="grid md:grid-cols-[2fr,1fr] gap-8 md:gap-12">
+            <div className="space-y-4 md:space-y-6">
+              <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
                 {project.description}
               </p>
             </div>
             
             <div className="space-y-4">
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 {project.tools.map((tool, index) => (
-                  <p key={index} className="text-sm font-mono">
+                  <p key={index} className="text-xs md:text-sm font-mono">
                     {tool}
                   </p>
                 ))}
@@ -369,11 +375,11 @@ export default function ProjectPage() {
       </section>
 
       {/* More Projects */}
-      <section className="py-16 px-6 lg:px-12 border-t border-border">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <h2 className="text-2xl font-bold tracking-tight">More Projects</h2>
+      <section className="py-12 md:py-16 px-4 md:px-6 lg:px-12 border-t border-border">
+        <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight">More Projects</h2>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {projects
               .filter(p => p.id !== project.id)
               .slice(0, 3)
@@ -388,16 +394,16 @@ export default function ProjectPage() {
                   )}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center space-y-2 group-hover:scale-105 transition-transform duration-500">
-                      <div className="text-5xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors">
+                      <div className="text-4xl md:text-5xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors">
                         {p.title.charAt(0)}
                       </div>
                     </div>
                   </div>
                   
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-background/90 to-transparent">
+                  <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-background/90 to-transparent">
                     <div className="space-y-1">
-                      <h3 className="text-lg font-bold">{p.title}</h3>
-                      <p className="text-sm text-muted-foreground">{p.type}</p>
+                      <h3 className="text-base md:text-lg font-bold">{p.title}</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground">{p.type}</p>
                     </div>
                   </div>
                 </Link>
@@ -407,19 +413,19 @@ export default function ProjectPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8 px-6 lg:px-12">
+      <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs md:text-sm text-muted-foreground">
             © 2026 All rights reserved
           </p>
-          <div className="flex items-center gap-8">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="flex items-center gap-6 md:gap-8">
+            <a href="#" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               Instagram
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               Behance
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               ArtStation
             </a>
           </div>
@@ -449,25 +455,33 @@ export default function ProjectPage() {
         >
           <div
             ref={modalContentRef}
-            className={`relative w-[85vw] h-[85vh] flex items-center justify-center modal-content-enter rounded-lg overflow-hidden transition-opacity duration-500 ${isExiting ? 'opacity-0' : 'opacity-100'}`}
+            className={`relative w-[95vw] md:w-[85vw] h-[85vh] flex items-center justify-center modal-content-enter rounded-lg overflow-hidden transition-opacity duration-500 ${isExiting ? 'opacity-0' : 'opacity-100'}`}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-2 md:top-4 right-2 md:right-4 p-1.5 md:p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-30 cursor-pointer"
+            >
+              <X className="h-4 w-4 md:h-5 md:w-5" />
+            </button>
+            
             {/* Left / Right arrows inside modal */}
             {project.images.length > 1 && (
               <>
                 <button
                   onClick={() => navigate(-1)}
                   disabled={displayIndex === null || displayIndex <= 0}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
+                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
                 >
-                  <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
                 </button>
                 <button
                   onClick={() => navigate(1)}
                   disabled={displayIndex === null || displayIndex >= project.images.length - 1}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
+                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
                 >
-                  <ArrowLeft className="h-5 w-5 rotate-180" />
+                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 rotate-180" />
                 </button>
               </>
             )}

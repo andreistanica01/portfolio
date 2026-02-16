@@ -85,11 +85,11 @@ export default function Portfolio() {
           isLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       >
-        <div className="text-center space-y-6">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter animate-pulse">
+        <div className="text-center space-y-4 md:space-y-6">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter animate-pulse">
             Bevel Graphics
           </h1>
-          <div className="h-1 w-32 bg-foreground mx-auto animate-pulse" />
+          <div className="h-1 w-24 md:w-32 bg-foreground mx-auto animate-pulse" />
         </div>
       </div>
 
@@ -98,28 +98,28 @@ export default function Portfolio() {
         isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
       }`}>
         <div className="border-b border-border/20 bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
-            <div className="flex items-center justify-between">
-              <h1 className="text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+              <h1 className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
                 Bevel Graphics
               </h1>
-              <div className="flex items-center gap-8">
-                <a href="#" className="text-sm hover:text-muted-foreground transition-colors">
+              <div className="flex items-center gap-4 md:gap-8 flex-wrap">
+                <a href="#" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Home
                 </a>
-                <Link href="#work" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="#work" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Work
                 </Link>
-                <Link href="#about" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="#about" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   About
                 </Link>
-                <Link href="#contact" className="text-sm hover:text-muted-foreground transition-colors">
+                <Link href="#contact" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Contact
                 </Link>
               </div>
               <a 
                 href="mailto:bevel.graphics1@gmail.com" 
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all md:break-normal"
               >
                 bevel.graphics1@gmail.com
               </a>
@@ -130,7 +130,7 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section
-        className={`relative min-h-screen flex flex-col justify-end pb-20 px-6 lg:px-12 transition-all duration-1000 delay-500 ${
+        className={`relative min-h-screen flex flex-col justify-end pb-12 md:pb-20 px-4 md:px-6 lg:px-12 transition-all duration-1000 delay-500 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -142,18 +142,18 @@ export default function Portfolio() {
         {/* Gradient Overlay - same strong fade at top and bottom */}
       <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
         
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-end justify-between gap-8">
-            <div className="space-y-4">
-              <h2 className="text-7xl md:text-9xl font-bold tracking-tight">
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
+            <div className="space-y-2 md:space-y-4">
+              <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight">
                 Portfolio
               </h2>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-base md:text-xl text-muted-foreground">
                 Featured Projects
               </p>
             </div>
-            <div className="text-right">
-              <p className="text-4xl font-light text-muted-foreground">
+            <div className="text-left md:text-right">
+              <p className="text-2xl md:text-4xl font-light text-muted-foreground">
                 2026
               </p>
             </div>
@@ -162,9 +162,9 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Grid */}
-      <section id="work" className="py-12 px-6 lg:px-12 scroll-mt-32">
+      <section id="work" className="py-8 md:py-12 px-4 md:px-6 lg:px-12 scroll-mt-32">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {projects.map((project, index) => (
               <Link
                 href={`/project/${project.id}`}
@@ -178,20 +178,20 @@ export default function Portfolio() {
                 <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-muted/20 to-background/50 border border-border group-hover:border-foreground/30 transition-all duration-500">
                 <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
                   {/* Content Overlay */}
-                  <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 bg-background/90 backdrop-blur-sm">
+                  <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 bg-background/90 backdrop-blur-sm">
                     <div className="space-y-2">
                       <p className="text-xs text-muted-foreground uppercase tracking-wider">
                         {project.type}
                       </p>
-                      <h3 className="text-2xl font-bold">
+                      <h3 className="text-lg md:text-2xl font-bold">
                         {project.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs md:text-sm text-muted-foreground">
                         {project.subtitle}
                       </p>
                     </div>
                     <div className="space-y-3">
-                      <p className="text-sm leading-relaxed line-clamp-3">
+                      <p className="text-xs md:text-sm leading-relaxed line-clamp-3">
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
@@ -215,14 +215,14 @@ export default function Portfolio() {
                   {/* Default State */}
                   <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-500">
                     <div className="text-center">
-                      <div className="text-6xl font-bold text-foreground/5 group-hover:text-foreground/20 transition-colors duration-500">
+                      <div className="text-4xl md:text-6xl font-bold text-foreground/5 group-hover:text-foreground/20 transition-colors duration-500">
                         {project.title.charAt(0)}
                       </div>
                     </div>
                   </div>
                   
                   {/* Year Badge */}
-                  <div className="absolute top-4 right-4 text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                  <div className="absolute top-3 right-3 md:top-4 md:right-4 text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-500">
                     {project.year}
                   </div>
                 </div>
@@ -238,22 +238,22 @@ export default function Portfolio() {
       {/* About Section */}
       <section 
         id="about" 
-        className="py-32 px-6 lg:px-12 bg-muted/10"
+        className="py-16 md:py-32 px-4 md:px-6 lg:px-12 bg-muted/10"
       >
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
             <div className="shrink-0">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-muted via-muted/50 to-background border-2 border-border overflow-hidden">
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-muted via-muted/50 to-background border-2 border-border overflow-hidden">
                 <div className="w-full h-full flex items-center justify-center text-5xl font-bold text-muted-foreground" >
                   <img src='/images/image2.webp' alt="Profile Image" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
-            <div className="space-y-4 flex-1">
-              <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+            <div className="space-y-3 md:space-y-4 flex-1">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 About
               </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
               Dedicated 3D artist with nearly 2 years of experience in Blender, specializing in hard-surface modeling and product visualization.
               I focus on blueprint-based modeling accuracy, ensuring precise proportions and clean topology in every project. 
               With my strong attention to detail, i create high-quality, production-ready assets enhanced by realistic materials and professional lighting setups. 
@@ -262,29 +262,29 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 pt-8">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
             <div className="space-y-3">
-              <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
+              <h3 className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
                 Modeling
               </h3>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-2 text-xs md:text-sm">
                 <p>Blender</p>
               </div>
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
+              <h3 className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
                 Rendering
               </h3>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-2 text-xs md:text-sm">
                 <p>Blender Cycles</p>
                 <p>Unreal Engine</p>
               </div>
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
+              <h3 className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
                 Post Production
               </h3>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-2 text-xs md:text-sm">
                 <p>Photoshop</p>
                 <p>DaVinci Resolve</p>
                 <p>Affinity</p>
@@ -297,20 +297,20 @@ export default function Portfolio() {
       {/* Contact Section */}
       <section 
         id="contact"
-        className="py-32 px-6 lg:px-12"
+        className="py-16 md:py-32 px-4 md:px-6 lg:px-12"
       >
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+        <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             {'Let\'s work together'}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Available for freelance projects and collaborations
           </p>
-          <div className="pt-8">
+          <div className="pt-4 md:pt-8">
           <Link href="mailto:bevel.graphics1@gmail.com" >
             <Button 
               size="lg" 
-              className="text-lg px-8 py-6 hover:scale-105 transition-transform"       >
+              className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 hover:scale-105 transition-transform"       >
 
               Get in touch
             </Button>
@@ -320,16 +320,16 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8 px-6 lg:px-12">
+      <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs md:text-sm text-muted-foreground">
             © 2026 All rights reserved
           </p>
-          <div className="flex items-center gap-8">
-            <a href="https://www.instagram.com/bevel.graphics/" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="flex items-center gap-6 md:gap-8">
+            <a href="https://www.instagram.com/bevel.graphics/" target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               Instagram
             </a>
-            <a href="https://www.artstation.com/bevelgraphics" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.artstation.com/bevelgraphics" target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               ArtStation
             </a>
           </div>
