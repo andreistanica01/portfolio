@@ -77,7 +77,7 @@ const projects = [
   },
   {
     id: "5",
-    thumbnail: "/images/Project_Images/TableRender004.png",
+    thumbnail: "/images/Project_Images/VerticalShot011.png",
     title: "Nespresso Vertuo 6 Colors",
     subtitle: "Personal Project",
     description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
