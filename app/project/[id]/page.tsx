@@ -10,6 +10,7 @@ const projects = [
   {
     id: "1",
     thumbnail: "/images/Project_Images/purple3.webp",
+    thumbnail_main: "/images/Project_Images/purple3.webp",
     title: "Julietta H6",
     subtitle: "Personal Project",
     description: "The Julietta H6 was created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
@@ -32,6 +33,7 @@ const projects = [
   {
     id: "2",
     thumbnail: "/images/Project_Images/steering1.webp",
+    thumbnail_main: "/images/Project_Images/steering1.webp",
     title: "R8 Steering Wheel",
     subtitle: "Personal Project",
     description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result. The materials and lighting were carefully set to highlight textures and metallic finishes for a premium automotive presentation.",
@@ -48,6 +50,7 @@ const projects = [
   {
     id: "3",
     thumbnail: "/images/Project_Images/nespresso1.webp",
+    thumbnail_main: "/images/Project_Images/nespresso1.webp",
     title: "Nespresso Vertuo Blue",
     subtitle: "Personal Project",
     description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
@@ -63,6 +66,7 @@ const projects = [
   {
     id: "4",
     thumbnail: "/images/Project_Images/replica2.webp",
+    thumbnail_main: "/images/Project_Images/replica1.webp",
     title: "Maison Margiela - Replica Perfume",
     subtitle: "Personal Project",
     description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
@@ -77,7 +81,8 @@ const projects = [
   },
   {
     id: "5",
-    thumbnail: "/images/Project_Images/VerticalShot011.png",
+    thumbnail: "/images/Project_Images/VerticalShot011.webp",
+    thumbnail_main: "/images/Project_Images/VerticalShot011.webp",
     title: "Nespresso Vertuo 6 Colors",
     subtitle: "Personal Project",
     description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
@@ -85,15 +90,16 @@ const projects = [
     year: "2025",
     type: "Creature Design",
     images: [
-      { type: "image", label: "Render 1", image: "/images/Project_Images/VerticalShot013.png" },
-      { type: "image", label: "Render 2", image: "/images/Project_Images/VerticalShot011.png"},
-      { type: "image", label: "Render 3", image: "/images/Project_Images/TableRender005.png"},
-      { type: "image", label: "Render 4", image: "/images/Project_Images/TableRender004.png"},
+      { type: "image", label: "Render 1", image: "/images/Project_Images/VerticalShot013.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/VerticalShot011.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/TableRender005.webp"},
+      { type: "image", label: "Render 4", image: "/images/Project_Images/TableRender004.webp"},
     ]
   },
   {
     id: "6",
     thumbnail: "/images/Project_Images/oceandrive2.webp",
+    thumbnail_main: "/images/Project_Images/oceandrive1.webp",
     title: "Ocean Drive - Miami Street Scene",
     subtitle: "Personal Project",
     description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
@@ -390,7 +396,7 @@ export default function ProjectPage() {
                   className="group relative aspect-[4/3] bg-muted/20 border border-border overflow-hidden hover:border-foreground/30 transition-all duration-500"
                 >
                   {p.thumbnail && (
-                    <img src={p.thumbnail} alt={p.title} className="absolute inset-0 w-full h-full object-cover" />
+                    <img src={p.thumbnail_main} alt={p.title} className="absolute inset-0 w-full h-full object-cover" />
                   )}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center space-y-2 group-hover:scale-105 transition-transform duration-500">
