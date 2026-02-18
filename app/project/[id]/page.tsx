@@ -394,9 +394,6 @@ export default function ProjectPage() {
                   )}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center space-y-2 group-hover:scale-105 transition-transform duration-500">
-                      <div className="text-4xl md:text-5xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors">
-                        {p.title.charAt(0)}
-                      </div>
                     </div>
                   </div>
                   
