@@ -422,14 +422,11 @@ export default function ProjectPage() {
             © 2026 All rights reserved
           </p>
           <div className="flex items-center gap-6 md:gap-8">
-            <a href="#" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.instagram.com/bevel.graphics/" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               Instagram
             </a>
-            <a href="#" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.behance.net/bevelgraphics1" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               Behance
-            </a>
-            <a href="#" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
-              ArtStation
             </a>
           </div>
         </div>

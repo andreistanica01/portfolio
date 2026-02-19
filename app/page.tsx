@@ -322,7 +322,7 @@ export default function Portfolio() {
               Instagram
             </a>
             <a href="https://www.artstation.com/bevelgraphics" target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
-              ArtStation
+             Behance
             </a>
           </div>
         </div>
