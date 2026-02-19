@@ -212,14 +212,6 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  {/* Default State */}
-                  <div className="absolute inset-0 flex items-center justify-center group-hover:opacity-0 transition-opacity duration-500">
-                    <div className="text-center">
-                      <div className="text-4xl md:text-6xl font-bold text-foreground/5 group-hover:text-foreground/20 transition-colors duration-500">
-                        {project.title.charAt(0)}
-                      </div>
-                    </div>
-                  </div>
                   
                   {/* Year Badge */}
                   <div className="absolute top-3 right-3 md:top-4 md:right-4 text-xs text-muted-foreground group-hover:text-foreground transition-colors duration-500">
