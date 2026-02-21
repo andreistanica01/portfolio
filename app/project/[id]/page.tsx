@@ -222,7 +222,7 @@ export default function ProjectPage() {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40">
-        <div className="border-b border-border/50 bg-background/80 backdrop-blur-md">
+        <div className="border-b border-border/50 bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
               <Link 
