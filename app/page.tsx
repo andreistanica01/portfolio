@@ -12,8 +12,18 @@ export default function Portfolio() {
   }, [])
 
   const projects = [
-    {
+      {
       id: 1,
+      thumbnail: "/images/Project_Images/living1.webp",
+      title: "Contemporary Apartment - ArchViz",
+      subtitle: "Personal Project",
+      description: "This project was created using blueprints and CAD files, with every object modeled and scaled according to real-world references. The main focus of the project was achieving a realistic and accurate architectural visualization.",
+      tools: ["Blender","Affinity Photo"],
+      year: "2026",
+      type: "Architectural Visualization"
+    },
+    {
+      id: 2,
       thumbnail: "/images/Project_Images/purple3.webp",
       title: "Julietta H6",
       subtitle: "Personal Project",
@@ -23,7 +33,7 @@ export default function Portfolio() {
       type: "Automotive"
     },
     {
-      id: 2,
+      id: 3,
       thumbnail: "/images/Project_Images/steering1.webp",
       title: "R8 Steering Wheel",
       subtitle: "Personal Project",
@@ -33,7 +43,7 @@ export default function Portfolio() {
       type: "Automotive Interior Part / Product Visualization",
     },
     {
-      id: 3,
+      id: 4,
       thumbnail: "/images/Project_Images/nespresso1.webp",
       title: "Nespresso Vertuo Blue",
       subtitle: "Personal Project",
@@ -43,7 +53,7 @@ export default function Portfolio() {
       type: "Product Visualization"
     },
     {
-      id: 4,
+      id: 5,
       thumbnail: "/images/Project_Images/replica1.webp",
       title: "Maison Margiela Replica",
       subtitle: "Premium Watch",
@@ -53,7 +63,7 @@ export default function Portfolio() {
       type: "Product Visualization"
     },
     {
-      id: 5,
+      id: 6,
       thumbnail: "/images/Project_Images/VerticalShot011.webp",
       title: "Nespresso Vertuo 6 Colors",
       subtitle: "Personal Project",
@@ -63,7 +73,7 @@ export default function Portfolio() {
       type: "Creature Design"
     },
     {
-      id: 6,
+      id: 7,
       thumbnail: "/images/Project_Images/oceandrive1.webp",
       title: "Ocean Drive - Miami Street Scene",
       subtitle: "Personal Project",

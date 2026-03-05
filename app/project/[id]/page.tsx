@@ -7,8 +7,25 @@ import { NoiseOverlay } from "@/components/noise-overlay"
 import { ArrowLeft, Play, X } from "lucide-react"
 
 const projects = [
-  {
+    {
     id: "1",
+    thumbnail: "/images/Project_Images/bedroom1.webp",
+    thumbnail_main: "/images/Project_Images/living1.webp",
+    title: "Contemporary Apartment - ArchViz",
+    subtitle: "Personal Project",
+    description: "This project was created using blueprints and CAD files, with every object modeled and scaled according to real-world references. The main focus of the project was achieving a realistic and accurate architectural visualization.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2026",
+    type: "Architectural Visualization",
+    images: [
+      { type: "image", label: "Render 1", image: "/images/Project_Images/living1.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/bedroom1.webp"},
+      { type: "image", label: "Render 3", image: "/images/Project_Images/kitchen1.webp"},
+      
+    ]
+  },
+  {
+    id: "2",
     thumbnail: "/images/Project_Images/purple3.webp",
     thumbnail_main: "/images/Project_Images/purple3.webp",
     title: "Julietta H6",
@@ -31,7 +48,7 @@ const projects = [
     ]
   },
   {
-    id: "2",
+    id: "3",
     thumbnail: "/images/Project_Images/steering1.webp",
     thumbnail_main: "/images/Project_Images/steering1.webp",
     title: "R8 Steering Wheel",
@@ -48,7 +65,7 @@ const projects = [
     ]
   },
   {
-    id: "3",
+    id: "4",
     thumbnail: "/images/Project_Images/nespresso1.webp",
     thumbnail_main: "/images/Project_Images/nespresso1.webp",
     title: "Nespresso Vertuo Blue",
@@ -64,7 +81,7 @@ const projects = [
     ]
   },
   {
-    id: "4",
+    id: "5",
     thumbnail: "/images/Project_Images/replica2.webp",
     thumbnail_main: "/images/Project_Images/replica1.webp",
     title: "Maison Margiela - Replica Perfume",
@@ -80,7 +97,7 @@ const projects = [
     ]
   },
   {
-    id: "5",
+    id: "6",
     thumbnail: "/images/Project_Images/VerticalShot011.webp",
     thumbnail_main: "/images/Project_Images/VerticalShot011.webp",
     title: "Nespresso Vertuo 6 Colors",
@@ -97,7 +114,7 @@ const projects = [
     ]
   },
   {
-    id: "6",
+    id: "7",
     thumbnail: "/images/Project_Images/oceandrive2.webp",
     thumbnail_main: "/images/Project_Images/oceandrive1.webp",
     title: "Ocean Drive - Miami Street Scene",
