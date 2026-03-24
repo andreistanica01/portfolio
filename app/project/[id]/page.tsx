@@ -286,9 +286,9 @@ export default function ProjectPage() {
         </div>
       </nav>
 
- <div className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${project.thumbnail})`, filter: 'brightness(0.5)' }}/>
+ <div className="absolute -top-24 left-0 right-0 bg-cover bg-center bg-no-repeat pointer-events-none" style={{ backgroundImage: `url(${project.thumbnail})`, filter: 'brightness(0.5)', height: 'calc(100% + 96px)' }}/>
         {/* Gradient Overlay - same strong fade at top and bottom */}
-      <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
+      <div className="absolute -top-24 left-0 right-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" style={{ height: 'calc(100% + 96px)' }} />
         
 
       {/* Hero with Background */}
