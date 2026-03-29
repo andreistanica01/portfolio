@@ -286,17 +286,13 @@ export default function ProjectPage() {
         </div>
       </nav>
 
- <div className="absolute -top-24 left-0 right-0 bg-cover bg-center bg-no-repeat pointer-events-none" style={{ backgroundImage: `url(${project.thumbnail})`, filter: 'brightness(0.5)', height: 'calc(100% + 96px)' }}/>
-        {/* Gradient Overlay - same strong fade at top and bottom ssss*/}
-      <div className="absolute -top-24 left-0 right-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" style={{ height: 'calc(100% + 96px)' }} />
+      <section className="relative isolate min-h-[50vh] md:min-h-[60vh] flex flex-col justify-end pt-24 md:pt-32 pb-8 md:pb-12 px-4 md:px-6 lg:px-12">
+        <div
+          className="absolute -top-24 left-0 right-0 bottom-0 z-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{ backgroundImage: `url(${project.thumbnail})`, filter: "brightness(0.5)" }}
+        />
+        <div className="absolute -top-24 left-0 right-0 bottom-0 z-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" />
         
-
-
-      {/* Hero with Background */}
-      <section className="relative min-h-[50vh] md:min-h-[60vh] flex flex-col justify-end pt-24 md:pt-32 pb-8 md:pb-12 px-4 md:px-6 lg:px-12">
-           {/* aseta doua de refacut 
-                   <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />*/}
 
         <div className="max-w-7xl mx-auto relative z-10 w-full space-y-4 md:space-y-6">
           <Link 
