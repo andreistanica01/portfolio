@@ -9,7 +9,7 @@ import { ArrowLeft, Play, X } from "lucide-react"
 const projects = [
       {
     id: "1",
-    thumbnail: "/images/Project_Images/exteriornight1.webp",
+    thumbnail: "/images/Project_Images/bg.webp",
     thumbnail_main: "/images/Project_Images/exteriorday1.webp",
     title: "Modern House Exterior - ArchViz",
     subtitle: "Personal Project",
