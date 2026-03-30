@@ -10,8 +10,8 @@ const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Bevel Graphics - 3D Modeling Portfolio',
-  description: '3D artist specializing in automotive modeling, hard surface design, and photorealistic product rendering for marketing and commercial visualization.',
+  title: 'Bevel Graphics - ArchViz Modeling Portfolio',
+  description: '3D artist skilled in Architectural Modeling, blueprint-based accuracy, hard-surface modeling, clean topology, realistic materials, lighting, and photorealistic rendering.',
   icons: {
     icon: [
       {
