@@ -177,7 +177,7 @@ export default function Portfolio() {
         {/* Background Image - extends to cover header */}
         <div 
           className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/Project_Images/bg.webp)' }}
+          style={{ backgroundImage: 'url(/images/Project_Images/exteriorsunset2.webp)' }}
         />
         {/* Gradient Overlay - same strong fade at top and bottom */}
       <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />
