@@ -7,14 +7,30 @@ import { NoiseOverlay } from "@/components/noise-overlay"
 import { ArrowLeft, Play, X } from "lucide-react"
 
 const projects = [
-      {
+        {
     id: "1",
+    thumbnail: "/images/Project_Images/exteriorsunset2.webp",
+    thumbnail_main: "/images/Project_Images/exteriorday2.webp",
+    title: "Modern Villa – ArchViz",
+    subtitle: "Personal Project",
+    description: "Modern luxury villa exterior visualization created in Blender, featuring realistic materials, warm wood cladding, dark façade panels, glass openings, landscaping, pool reflections, and architectural lighting. The project includes day, sunset, and night renders to show different moods for real estate and archviz presentation.",
+    tools: ["Blender", "Affinity Photo", "Autodesk AutoCAD"],
+    year: "2026",
+    type: "Exterior Architectural Visualization",
+    images: [
+      { type: "image", label: "Render 1", image: "/images/Project_Images/exteriorsunset2.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/exteriorday2.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/exteriornight2.webp" },
+      ]
+  },
+      {
+    id: "2",
     thumbnail: "/images/Project_Images/bg.webp",
     thumbnail_main: "/images/Project_Images/exteriorday1.webp",
     title: "Modern House Exterior - ArchViz",
     subtitle: "Personal Project",
     description: "A modern house exterior visualized in Blender, featuring clean architecture, large glass openings, and a warm, natural material palette. The scene focuses on realistic lighting and atmosphere, capturing the space in both daytime and nighttime conditions to highlight mood and detail.",
-    tools: ["Blender", "Affinity Photo"],
+  tools: ["Blender", "Affinity Photo", "Autodesk AutoCAD"],
     year: "2026",
     type: "Exterior Architectural Visualization",
     images: [
@@ -23,7 +39,7 @@ const projects = [
       ]
   },
     {
-    id: "2",
+    id: "3",
     thumbnail: "/images/Project_Images/bedroom2.webp",
     thumbnail_main: "/images/Project_Images/bedroom2.webp",
     title: "Mediterranean Stone Bedroom - ArchViz",
@@ -37,7 +53,7 @@ const projects = [
       ]
   },
     {
-    id: "3",
+    id: "4",
     thumbnail: "/images/Project_Images/bedroom1.webp",
     thumbnail_main: "/images/Project_Images/living1.webp",
     title: "Contemporary Apartment - ArchViz",
@@ -53,7 +69,7 @@ const projects = [
        ]
   },
   {
-    id: "4",
+    id: "5",
     thumbnail: "/images/Project_Images/purple3.webp",
     thumbnail_main: "/images/Project_Images/purple3.webp",
     title: "Julietta H6",
@@ -76,7 +92,7 @@ const projects = [
     ]
   },
   {
-    id: "5",
+    id: "6",
     thumbnail: "/images/Project_Images/steering1.webp",
     thumbnail_main: "/images/Project_Images/steering1.webp",
     title: "R8 Steering Wheel",
@@ -93,7 +109,7 @@ const projects = [
     ]
   },
   {
-    id: "6",
+    id: "7",
     thumbnail: "/images/Project_Images/nespresso1.webp",
     thumbnail_main: "/images/Project_Images/nespresso1.webp",
     title: "Nespresso Vertuo Blue",
@@ -109,7 +125,7 @@ const projects = [
     ]
   },
   {
-    id: "7",
+    id: "8",
     thumbnail: "/images/Project_Images/replica2.webp",
     thumbnail_main: "/images/Project_Images/replica1.webp",
     title: "Maison Margiela - Replica Perfume",
@@ -125,7 +141,7 @@ const projects = [
     ]
   },
   {
-    id: "8",
+    id: "9",
     thumbnail: "/images/Project_Images/VerticalShot011.webp",
     thumbnail_main: "/images/Project_Images/VerticalShot011.webp",
     title: "Nespresso Vertuo 6 Colors",
@@ -142,7 +158,7 @@ const projects = [
     ]
   },
   {
-    id: "9",
+    id: "10",
     thumbnail: "/images/Project_Images/oceandrive2.webp",
     thumbnail_main: "/images/Project_Images/oceandrive1.webp",
     title: "Ocean Drive - Miami Street Scene",
