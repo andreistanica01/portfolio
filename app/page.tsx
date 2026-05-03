@@ -12,7 +12,7 @@ import {
   SERVICES_SECTION,
   ABOUT_SECTION,
   CONTACT_SECTION,
-  ARCHVIZ_PROJECTS,
+  ALL_PROJECTS,
   BLOG_CONTENT,
 } from "@/lib/content"
 import { BLOG_ARTICLES } from "@/lib/blog-data"
@@ -24,8 +24,8 @@ export default function Portfolio() {
     setIsLoaded(true)
   }, [])
 
-  // Use archviz-only projects from constants
-  const projects = ARCHVIZ_PROJECTS
+  // Use all projects from constants
+  const projects = ALL_PROJECTS
 
   // Get first 3 blog articles for preview
   const previewArticles = BLOG_ARTICLES.slice(0, 3)

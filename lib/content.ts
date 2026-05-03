@@ -89,13 +89,13 @@ export const FOOTER_CONTENT = {
 }
 
 // =============================================================================
-// ARCHVIZ PROJECTS - Filtered to show only architectural visualization work
+// ALL PROJECTS
 // =============================================================================
 
-export const ARCHVIZ_PROJECTS = [
+export const ALL_PROJECTS = [
   {
     id: 1,
-    thumbnail: "/images/Project_Images/exteriornight2.webp",
+    thumbnail: "/images/Project_Images/exteriorsunset2.webp",
     title: "Modern Villa",
     subtitle: "Personal Project",
     description: "Modern luxury villa exterior visualization created in Blender, featuring realistic materials, warm wood cladding, dark facade panels, glass openings, landscaping, pool reflections, and architectural lighting. The project includes day, sunset, and night renders to show different moods for real estate and archviz presentation.",
@@ -105,7 +105,7 @@ export const ARCHVIZ_PROJECTS = [
   },
   {
     id: 2,
-    thumbnail: "/images/Project_Images/exteriornight1.webp",
+    thumbnail: "/images/Project_Images/bg.webp",
     title: "Modern House Exterior",
     subtitle: "Personal Project",
     description: "A modern house exterior visualized in Blender, featuring clean architecture, large glass openings, and a warm, natural material palette. The scene focuses on realistic lighting and atmosphere, capturing the space in both daytime and nighttime conditions to highlight mood and detail.",
@@ -125,13 +125,73 @@ export const ARCHVIZ_PROJECTS = [
   },
   {
     id: 4,
-    thumbnail: "/images/Project_Images/living1.webp",
+    thumbnail: "/images/Project_Images/bedroom1.webp",
     title: "Contemporary Apartment",
     subtitle: "Personal Project",
     description: "This project was created using blueprints and CAD files, with every object modeled and scaled according to real-world references. The main focus of the project was achieving a realistic and accurate architectural visualization.",
     tools: ["Blender", "Affinity Photo"],
     year: "2026",
     type: "Interior Architectural Visualization",
+  },
+  {
+    id: 5,
+    thumbnail: "/images/Project_Images/purple3.webp",
+    title: "Julietta H6",
+    subtitle: "Personal Project",
+    description: "The Julietta H6 was created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2026",
+    type: "Automotive",
+  },
+  {
+    id: 6,
+    thumbnail: "/images/Project_Images/steering1.webp",
+    title: "R8 Steering Wheel",
+    subtitle: "Personal Project",
+    description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2026",
+    type: "Automotive Interior Part / Product Visualization",
+  },
+  {
+    id: 7,
+    thumbnail: "/images/Project_Images/nespresso1.webp",
+    title: "Nespresso Vertuo Blue",
+    subtitle: "Personal Project",
+    description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2025",
+    type: "Product Visualization",
+  },
+  {
+    id: 8,
+    thumbnail: "/images/Project_Images/replica2.webp",
+    title: "Maison Margiela - Replica Perfume",
+    subtitle: "Personal Project",
+    description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2025",
+    type: "Product Visualization",
+  },
+  {
+    id: 9,
+    thumbnail: "/images/Project_Images/VerticalShot011.webp",
+    title: "Nespresso Vertuo 6 Colors",
+    subtitle: "Personal Project",
+    description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2025",
+    type: "Product Visualization",
+  },
+  {
+    id: 10,
+    thumbnail: "/images/Project_Images/oceandrive2.webp",
+    title: "Ocean Drive - Miami Street Scene",
+    subtitle: "Personal Project",
+    description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
+    tools: ["Blender", "Affinity Photo"],
+    year: "2025",
+    type: "Architecture",
   },
 ]
 

@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { FORM_FIELDS, FORM_MESSAGES, FORM_CONFIG } from "@/lib/form-constants"
+import { FORM_FIELDS, FORM_MESSAGES, FORM_CONFIG, FORM_SECTIONS } from "@/lib/form-constants"
 import { WORK_TOGETHER_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { CheckCircle2, AlertCircle } from "lucide-react"
 
