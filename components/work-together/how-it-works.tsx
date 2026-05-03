@@ -14,13 +14,13 @@ export function HowItWorks() {
         <div className="hidden lg:block">
           {/* Continuous connector line behind nodes */}
           <div className="relative mb-10">
-            <div className="absolute top-5 left-[calc(100%/8)] right-[calc(100%/8)] h-px bg-border" />
+            <div className="absolute top-7 left-[calc(100%/8)] right-[calc(100%/8)] h-px bg-border" />
             <div className="grid grid-cols-4 gap-0">
               {howItWorks.steps.map((step, index) => (
                 <div key={index} className="flex flex-col items-center">
                   {/* Node */}
-                  <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full border border-border bg-background">
-                    <span className="text-xs font-bold text-muted-foreground tabular-nums">
+                  <div className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full border border-border bg-background">
+                    <span className="text-lg font-bold tabular-nums">
                       {step.number}
                     </span>
                   </div>
@@ -48,8 +48,8 @@ export function HowItWorks() {
             <div key={index} className="flex gap-6">
               {/* Left: node + vertical line */}
               <div className="flex flex-col items-center">
-                <div className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background shrink-0 z-10">
-                  <span className="text-xs font-bold text-muted-foreground tabular-nums">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full border border-border bg-background shrink-0 z-10">
+                  <span className="text-base font-bold tabular-nums">
                     {step.number}
                   </span>
                 </div>

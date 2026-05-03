@@ -5,13 +5,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { FORM_FIELDS, FORM_MESSAGES, FORM_CONFIG, FORM_SECTIONS } from "@/lib/form-constants"
 import { WORK_TOGETHER_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { CheckCircle2, AlertCircle } from "lucide-react"
@@ -24,11 +17,6 @@ export function ProjectForm() {
     name: "",
     email: "",
     phone: "",
-    projectType: "",
-    buildingType: "",
-    numberOfImages: "",
-    timeline: "",
-    budget: "",
     description: "",
   })
 
@@ -56,11 +44,6 @@ export function ProjectForm() {
           name: "",
           email: "",
           phone: "",
-          projectType: "",
-          buildingType: "",
-          numberOfImages: "",
-          timeline: "",
-          budget: "",
           description: "",
         })
       } else {
@@ -139,123 +122,6 @@ export function ProjectForm() {
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
-          </div>
-        </div>
-      </div>
-
-      {/* Project Details */}
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-lg font-bold">{FORM_SECTIONS.project.title}</h3>
-          <p className="text-sm text-muted-foreground">{FORM_SECTIONS.project.description}</p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <Label>
-              {FORM_FIELDS.projectType.label} <span className="text-destructive">*</span>
-            </Label>
-            <Select
-              value={formData.projectType}
-              onValueChange={(value) => setFormData({ ...formData, projectType: value })}
-              required
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={FORM_FIELDS.projectType.placeholder} />
-              </SelectTrigger>
-              <SelectContent>
-                {FORM_FIELDS.projectType.options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label>
-              {FORM_FIELDS.buildingType.label} <span className="text-destructive">*</span>
-            </Label>
-            <Select
-              value={formData.buildingType}
-              onValueChange={(value) => setFormData({ ...formData, buildingType: value })}
-              required
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={FORM_FIELDS.buildingType.placeholder} />
-              </SelectTrigger>
-              <SelectContent>
-                {FORM_FIELDS.buildingType.options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label>
-              {FORM_FIELDS.numberOfImages.label} <span className="text-destructive">*</span>
-            </Label>
-            <Select
-              value={formData.numberOfImages}
-              onValueChange={(value) => setFormData({ ...formData, numberOfImages: value })}
-              required
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={FORM_FIELDS.numberOfImages.placeholder} />
-              </SelectTrigger>
-              <SelectContent>
-                {FORM_FIELDS.numberOfImages.options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label>
-              {FORM_FIELDS.timeline.label} <span className="text-destructive">*</span>
-            </Label>
-            <Select
-              value={formData.timeline}
-              onValueChange={(value) => setFormData({ ...formData, timeline: value })}
-              required
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={FORM_FIELDS.timeline.placeholder} />
-              </SelectTrigger>
-              <SelectContent>
-                {FORM_FIELDS.timeline.options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2 md:col-span-2">
-            <Label>{FORM_FIELDS.budget.label}</Label>
-            <Select
-              value={formData.budget}
-              onValueChange={(value) => setFormData({ ...formData, budget: value })}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={FORM_FIELDS.budget.placeholder} />
-              </SelectTrigger>
-              <SelectContent>
-                {FORM_FIELDS.budget.options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
           </div>
         </div>
       </div>
