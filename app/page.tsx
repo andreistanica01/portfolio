@@ -74,16 +74,12 @@ export default function Portfolio() {
                 <Link href="#about" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   {NAV_LINKS.about}
                 </Link>
-                <Link href="/work-together" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  {NAV_LINKS.workTogether}
-                </Link>
               </div>
-              <a 
-                href={`mailto:${SITE_CONFIG.email}`}
-                className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all md:break-normal"
-              >
-                {SITE_CONFIG.email}
-              </a>
+              <Link href="/work-together">
+                <Button variant="default" size="sm" className="text-xs md:text-sm">
+                  {NAV_LINKS.workTogether}
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
