@@ -183,16 +183,6 @@ export const ALL_PROJECTS = [
     year: "2025",
     type: "Product Visualization",
   },
-  {
-    id: 10,
-    thumbnail: "/images/Project_Images/oceandrive2.webp",
-    title: "Ocean Drive - Miami Street Scene",
-    subtitle: "Personal Project",
-    description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
-    tools: ["Blender", "Affinity Photo"],
-    year: "2025",
-    type: "Architecture",
-  },
 ]
 
 // =============================================================================

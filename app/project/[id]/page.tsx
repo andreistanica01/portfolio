@@ -157,26 +157,7 @@ const projects = [
       { type: "image", label: "Render 4", image: "/images/Project_Images/TableRender004.webp"},
     ]
   },
-  {
-    id: "10",
-    thumbnail: "/images/Project_Images/oceandrive2.webp",
-    thumbnail_main: "/images/Project_Images/oceandrive1.webp",
-    title: "Ocean Drive - Miami Street Scene",
-    subtitle: "Personal Project",
-    description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
-    tools: ["Blender", "Affinity Photo"],
-    year: "2025",
-    type: "Architecture",
-    images: [
-      { type: "image", label: "Render 1", image: "/images/Project_Images/oceandrive1.webp"},
-      { type: "image", label: "Render 2", image: "/images/Project_Images/oceandrive2.webp"},
-      { type: "image", label: "Render 3", image: "/images/Project_Images/oceandrive3.webp"},
-      { type: "image", label: "Render 4", image: "/images/Project_Images/oceandrive4.webp"},
-      { type: "image", label: "Render 5", image: "/images/Project_Images/oceandrive5.webp"},
-      { type: "image", label: "Render 6", image: "/images/Project_Images/oceandrive6.webp"},
-      { type: "image", label: "Render 7", image: "/images/Project_Images/oceandrive7.webp"},
-    ]
-  }
+
 ]
 
 export default function ProjectPage() {
