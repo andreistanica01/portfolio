@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NoiseOverlay } from "@/components/noise-overlay"
 import { ArticleCard } from "@/components/blog/article-card"
@@ -76,8 +77,9 @@ export default function Portfolio() {
                 </Link>
               </div>
               <Link href="/work-together">
-                <Button variant="default" size="sm" className="text-xs md:text-sm">
+                <Button variant="default" size="sm" className="text-xs md:text-sm gap-1.5 group">
                   {NAV_LINKS.workTogether}
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Button>
               </Link>
             </div>
@@ -227,8 +229,9 @@ export default function Portfolio() {
 
           <div className="mt-12 text-center">
             <Link href="/work-together">
-              <Button size="lg" className="px-8">
+              <Button size="lg" className="px-8 gap-2 group">
                 Start a Project
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>
             </Link>
           </div>
@@ -334,22 +337,14 @@ export default function Portfolio() {
           <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
             {CONTACT_SECTION.subtitle}
           </p>
-          <div className="pt-4 md:pt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="pt-4 md:pt-8 flex justify-center">
             <Link href="/work-together">
               <Button 
                 size="lg" 
-                className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 hover:scale-105 transition-transform"
+                className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 gap-2 group"
               >
                 Start a Project
-              </Button>
-            </Link>
-            <Link href={`mailto:${SITE_CONFIG.email}`}>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 hover:scale-105 transition-transform"
-              >
-                {CONTACT_SECTION.cta}
+                <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>
             </Link>
           </div>

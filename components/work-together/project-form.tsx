@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import {
   Select,
@@ -13,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { FORM_FIELDS, FORM_MESSAGES, FORM_SECTIONS, FORM_CONFIG } from "@/lib/form-constants"
+import { FORM_FIELDS, FORM_MESSAGES, FORM_CONFIG } from "@/lib/form-constants"
 import { WORK_TOGETHER_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { CheckCircle2, AlertCircle } from "lucide-react"
 
@@ -25,17 +24,12 @@ export function ProjectForm() {
     name: "",
     email: "",
     phone: "",
-    company: "",
     projectType: "",
     buildingType: "",
     numberOfImages: "",
     timeline: "",
     budget: "",
-    fileLinks: "",
     description: "",
-    hasCAD: false,
-    hasReferences: false,
-    needsAnimation: false,
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,17 +56,12 @@ export function ProjectForm() {
           name: "",
           email: "",
           phone: "",
-          company: "",
           projectType: "",
           buildingType: "",
           numberOfImages: "",
           timeline: "",
           budget: "",
-          fileLinks: "",
           description: "",
-          hasCAD: false,
-          hasReferences: false,
-          needsAnimation: false,
         })
       } else {
         setStatus("error")
@@ -149,17 +138,6 @@ export function ProjectForm() {
               placeholder={FORM_FIELDS.phone.placeholder}
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="company">{FORM_FIELDS.company.label}</Label>
-            <Input
-              id="company"
-              name="company"
-              placeholder={FORM_FIELDS.company.placeholder}
-              value={formData.company}
-              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             />
           </div>
         </div>
@@ -282,68 +260,6 @@ export function ProjectForm() {
         </div>
       </div>
 
-      {/* Project Files */}
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-lg font-bold">{FORM_SECTIONS.files.title}</h3>
-          <p className="text-sm text-muted-foreground">{FORM_SECTIONS.files.description}</p>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="fileLinks">{FORM_FIELDS.fileLinks.label}</Label>
-          <Textarea
-            id="fileLinks"
-            name="fileLinks"
-            placeholder={FORM_FIELDS.fileLinks.placeholder}
-            value={formData.fileLinks}
-            onChange={(e) => setFormData({ ...formData, fileLinks: e.target.value })}
-            className="min-h-[100px]"
-          />
-          <p className="text-xs text-muted-foreground">{FORM_FIELDS.fileLinks.helpText}</p>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="hasCAD"
-              checked={formData.hasCAD}
-              onCheckedChange={(checked) =>
-                setFormData({ ...formData, hasCAD: checked === true })
-              }
-            />
-            <Label htmlFor="hasCAD" className="font-normal cursor-pointer">
-              {FORM_FIELDS.hasCAD.label}
-            </Label>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="hasReferences"
-              checked={formData.hasReferences}
-              onCheckedChange={(checked) =>
-                setFormData({ ...formData, hasReferences: checked === true })
-              }
-            />
-            <Label htmlFor="hasReferences" className="font-normal cursor-pointer">
-              {FORM_FIELDS.hasReferences.label}
-            </Label>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="needsAnimation"
-              checked={formData.needsAnimation}
-              onCheckedChange={(checked) =>
-                setFormData({ ...formData, needsAnimation: checked === true })
-              }
-            />
-            <Label htmlFor="needsAnimation" className="font-normal cursor-pointer">
-              {FORM_FIELDS.needsAnimation.label}
-            </Label>
-          </div>
-        </div>
-      </div>
-
       {/* Additional Information */}
       <div className="space-y-6">
         <div>
@@ -361,7 +277,7 @@ export function ProjectForm() {
             placeholder={FORM_FIELDS.description.placeholder}
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            className="min-h-[200px]"
+            className="min-h-[100px]"
             required
           />
         </div>
