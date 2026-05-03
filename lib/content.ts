@@ -38,19 +38,19 @@ export const SERVICES_SECTION = {
       id: "interior",
       title: "Interior Visualization",
       description: "Photorealistic interior renders that bring your spaces to life. From residential to commercial, I create detailed visualizations with accurate lighting, materials, and atmosphere.",
-      features: ["Residential Interiors", "Commercial Spaces", "Furniture & Decor", "Lighting Studies"],
+      features: ["Residential Interiors", "Commercial Spaces", "Lighting Studies"],
     },
     {
       id: "exterior",
       title: "Exterior Visualization",
       description: "Professional exterior architectural renders showcasing your building designs. Day, sunset, and night scenes with realistic landscaping and environmental context.",
-      features: ["Building Facades", "Landscaping", "Day/Night Renders", "Aerial Views"],
+      features: ["Building Facades", "Day/Night Renders", "Aerial Views"],
     },
     {
       id: "floorplans",
       title: "3D Floor Plans",
       description: "Clear, elegant 3D floor plans that help clients understand spatial layouts. Perfect for real estate marketing and architectural presentations.",
-      features: ["Furnished Plans", "Top-Down Views", "Section Views", "Marketing Ready"],
+      features: ["Furnished Plans", "Top-Down Views", "Marketing Ready"],
     },
   ],
 }

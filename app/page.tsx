@@ -209,11 +209,14 @@ export default function Portfolio() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {service.description}
                   </p>
-                  <ul className="space-y-2 pt-4 border-t border-border">
+                  <ul className="pt-4 border-t border-border">
                     {service.features.map((feature, index) => (
-                      <li key={index} className="text-xs text-muted-foreground flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-foreground" />
-                        {feature}
+                      <li
+                        key={index}
+                        className="flex items-center justify-between py-2.5 border-b border-border/50 last:border-b-0"
+                      >
+                        <span className="text-xs font-medium tracking-wide uppercase">{feature}</span>
+                        <span className="text-xs text-muted-foreground tabular-nums">0{index + 1}</span>
                       </li>
                     ))}
                   </ul>
