@@ -3,6 +3,18 @@ import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { NoiseOverlay } from "@/components/noise-overlay"
+import { ArticleCard } from "@/components/blog/article-card"
+import {
+  SITE_CONFIG,
+  NAV_LINKS,
+  HERO_CONTENT,
+  SERVICES_SECTION,
+  ABOUT_SECTION,
+  CONTACT_SECTION,
+  ARCHVIZ_PROJECTS,
+  BLOG_CONTENT,
+} from "@/lib/content"
+import { BLOG_ARTICLES } from "@/lib/blog-data"
 
 export default function Portfolio() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -11,108 +23,11 @@ export default function Portfolio() {
     setIsLoaded(true)
   }, [])
 
-  const projects = [    
-    {
-      id: 1,
-      thumbnail: "/images/Project_Images/exteriornight2.webp",
-      title: "Modern Villa – ArchViz",
-      subtitle: "Personal Project",
-      description: "Modern luxury villa exterior visualization created in Blender, featuring realistic materials, warm wood cladding, dark façade panels, glass openings, landscaping, pool reflections, and architectural lighting. The project includes day, sunset, and night renders to show different moods for real estate and archviz presentation.",
-      tools: ["Blender","Affinity Photo", "Autodesk AutoCAD"],
-      year: "2026",
-      type: "Exterior Architectural Visualization"
-    },
-           {
-      id: 2,
-      thumbnail: "/images/Project_Images/exteriornight1.webp",
-      title: "Modern House Exterior - ArchViz",
-      subtitle: "Personal Project",
-      description: "A modern house exterior visualized in Blender, featuring clean architecture, large glass openings, and a warm, natural material palette. The scene focuses on realistic lighting and atmosphere, capturing the space in both daytime and nighttime conditions to highlight mood and detail.",
-      tools: ["Blender","Affinity Photo", "Autodesk AutoCAD"],
-      year: "2026",
-      type: "Exterior Architectural Visualization"
-    },
-          {
-      id: 3,
-      thumbnail: "/images/Project_Images/bedroom2.webp",
-      title: "Mediterranean Stone Bedroom - ArchViz",
-      subtitle: "Personal Project",
-      description: "Warm Mediterranean-inspired bedroom featuring natural stone walls, soft lighting, and minimal design. The scene was modeled and rendered in Blender with a focus on realistic materials, lighting, and real-world scale to create a calm and cozy architectural space.",
-      tools: ["Blender","Affinity Photo"],
-      year: "2026",
-      type: "Interior Architectural Visualization"
-    },
-      {
-      id: 4,
-      thumbnail: "/images/Project_Images/living1.webp",
-      title: "Contemporary Apartment - ArchViz",
-      subtitle: "Personal Project",
-      description: "This project was created using blueprints and CAD files, with every object modeled and scaled according to real-world references. The main focus of the project was achieving a realistic and accurate architectural visualization.",
-      tools: ["Blender","Affinity Photo"],
-      year: "2026",
-      type: "Interior Architectural Visualization"
-    },
-    {
-      id: 5,
-      thumbnail: "/images/Project_Images/purple3.webp",
-      title: "Julietta H6",
-      subtitle: "Personal Project",
-      description: "The Julietta H6 is created with strong attention to real-world proportions, clean surface transitions, and high-detail modeling based on accurate references. I focus on precise body lines, realistic materials, and controlled lighting to achieve a professional automotive look suitable for marketing, visualization, and commercial use.",
-      tools: ["Blender","Affinity Photo"],
-      year: "2026",
-      type: "Automotive"
-    },
-    {
-      id: 6,
-      thumbnail: "/images/Project_Images/steering1.webp",
-      title: "R8 Steering Wheel",
-      subtitle: "Personal Project",
-      description: "The Audi R8 Steering Wheel is modeled with high attention to detail and precision hard surface techniques. I focused on very accurate proportions, sharp surface transitions, and small mechanical elements to achieve a realistic and production-level result. The materials and lighting were carefully set to highlight textures and metallic finishes for a premium automotive presentation.",
-      tools: ["Blender", "Affinity Photo"],
-      year: "2026",
-      type: "Automotive Interior Part / Product Visualization",
-    },
-    {
-      id: 7,
-      thumbnail: "/images/Project_Images/nespresso1.webp",
-      title: "Nespresso Vertuo Blue",
-      subtitle: "Personal Project",
-      description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
-      tools: ["Blender", "Affinity Photo"], 
-      year: "2025",
-      type: "Product Visualization"
-    },
-    {
-      id: 8,
-      thumbnail: "/images/Project_Images/replica1.webp",
-      title: "Maison Margiela Replica",
-      subtitle: "Premium Watch",
-      description: "Photorealistic product rendering with studio lighting and material refinement.",
-      tools: ["Blender", "Affinity Photo"],
-      year: "2025",
-      type: "Product Visualization"
-    },
-    {
-      id: 9,
-      thumbnail: "/images/Project_Images/VerticalShot011.webp",
-      title: "Nespresso Vertuo 6 Colors",
-      subtitle: "Personal Project",
-      description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
-      tools: ["Blender", "Affinity Photo"],
-      year: "2024",
-      type: "Creature Design"
-    },
-    {
-      id: 10,
-      thumbnail: "/images/Project_Images/oceandrive1.webp",
-      title: "Ocean Drive - Miami Street Scene",
-      subtitle: "Personal Project",
-      description: "This is a cinematic recreation of Ocean Drive, emphasizing lighting, scale, and coastal urban details. The scene is built to convey a vibrant street atmosphere with realistic materials and a polished, professional look.",
-      tools: ["Blender", "Affinity Photo"],
-      year: "2025",
-      type: "Architecture"
-    }
-  ]
+  // Use archviz-only projects from constants
+  const projects = ARCHVIZ_PROJECTS
+
+  // Get first 3 blog articles for preview
+  const previewArticles = BLOG_ARTICLES.slice(0, 3)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -127,7 +42,7 @@ export default function Portfolio() {
       >
         <div className="text-center space-y-4 md:space-y-6">
           <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter animate-pulse">
-            Bevel Graphics
+            {SITE_CONFIG.name}
           </h1>
           <div className="h-1 w-24 md:w-32 bg-foreground mx-auto animate-pulse" />
         </div>
@@ -141,27 +56,33 @@ export default function Portfolio() {
           <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
               <h1 className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
-                Bevel Graphics
+                {SITE_CONFIG.name}
               </h1>
               <div className="flex items-center gap-4 md:gap-8 flex-wrap">
                 <a href="#" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Home
+                  {NAV_LINKS.home}
                 </a>
                 <Link href="#work" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Work
+                  {NAV_LINKS.work}
+                </Link>
+                <Link href="#services" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
+                  {NAV_LINKS.services}
+                </Link>
+                <Link href="/blog" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
+                  {NAV_LINKS.blog}
                 </Link>
                 <Link href="#about" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  About
+                  {NAV_LINKS.about}
                 </Link>
-                <Link href="#contact" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Contact
+                <Link href="/work-together" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
+                  {NAV_LINKS.workTogether}
                 </Link>
               </div>
               <a 
-                href="mailto:bevel.graphics1@gmail.com" 
+                href={`mailto:${SITE_CONFIG.email}`}
                 className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all md:break-normal"
               >
-                bevel.graphics1@gmail.com
+                {SITE_CONFIG.email}
               </a>
             </div>
           </div>
@@ -186,15 +107,15 @@ export default function Portfolio() {
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8">
             <div className="space-y-2 md:space-y-4">
               <h2 className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight">
-                Portfolio
+                {HERO_CONTENT.title}
               </h2>
               <p className="text-base md:text-xl text-muted-foreground">
-                Featured Projects
+                {HERO_CONTENT.subtitle}
               </p>
             </div>
             <div className="text-left md:text-right">
               <p className="text-2xl md:text-4xl font-light text-muted-foreground">
-                2026
+                {HERO_CONTENT.year}
               </p>
             </div>
           </div>
@@ -267,10 +188,86 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-16 md:py-24 px-4 md:px-6 lg:px-12 scroll-mt-32">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <p className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground mb-2">
+              {SERVICES_SECTION.subtitle}
+            </p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              {SERVICES_SECTION.title}
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {SERVICES_SECTION.items.map((service) => (
+              <div
+                key={service.id}
+                className="group p-6 md:p-8 border border-border hover:border-foreground/30 transition-all duration-500"
+              >
+                <div className="space-y-4">
+                  <h3 className="text-xl md:text-2xl font-bold group-hover:text-muted-foreground transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2 pt-4 border-t border-border">
+                    {service.features.map((feature, index) => (
+                      <li key={index} className="text-xs text-muted-foreground flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-foreground" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link href="/work-together">
+              <Button size="lg" className="px-8">
+                Start a Project
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Preview Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 lg:px-12 bg-muted/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div>
+              <p className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground mb-2">
+                {BLOG_CONTENT.hero.subtitle}
+              </p>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                {BLOG_CONTENT.hero.title}
+              </h2>
+            </div>
+            <Link 
+              href="/blog" 
+              className="text-sm hover:text-muted-foreground transition-colors underline underline-offset-4"
+            >
+              View all articles
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {previewArticles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section 
         id="about" 
-        className="py-16 md:py-32 px-4 md:px-6 lg:px-12 bg-muted/10"
+        className="py-16 md:py-32 px-4 md:px-6 lg:px-12"
       >
         <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
@@ -283,11 +280,10 @@ export default function Portfolio() {
             </div>
             <div className="space-y-3 md:space-y-4 flex-1">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                About
+                {ABOUT_SECTION.title}
               </h2>
               <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
-             Dedicated 3D artist with nearly 2 years of experience in Blender, specializing in hard-surface modeling and exterior and interior architectural rendering. I focus on blueprint-based modeling accuracy, ensuring precise proportions and clean topology in every project, supported by working knowledge of AutoCAD for building accurate layouts.
-             With strong attention to detail, I create high-quality, production-ready assets enhanced by realistic materials and professional lighting setups. My goal is to deliver visually striking renders, further refined through post-production.
+                {ABOUT_SECTION.bio}
               </p>
             </div>
           </div>
@@ -295,56 +291,68 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8">
             <div className="space-y-3">
               <h3 className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
-                Modeling
+                {ABOUT_SECTION.skills.modeling.title}
               </h3>
               <div className="space-y-2 text-xs md:text-sm">
-                <p>Blender</p>
+                {ABOUT_SECTION.skills.modeling.items.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
               </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
-                Rendering
+                {ABOUT_SECTION.skills.rendering.title}
               </h3>
               <div className="space-y-2 text-xs md:text-sm">
-                <p>Blender Cycles</p>
-                <p>Unreal Engine</p>
+                {ABOUT_SECTION.skills.rendering.items.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
               </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-xs md:text-sm uppercase tracking-wider text-muted-foreground">
-                Post Production
+                {ABOUT_SECTION.skills.postProduction.title}
               </h3>
               <div className="space-y-2 text-xs md:text-sm">
-                <p>Photoshop</p>
-                <p>DaVinci Resolve</p>
-                <p>Affinity</p>
+                {ABOUT_SECTION.skills.postProduction.items.map((item, index) => (
+                  <p key={index}>{item}</p>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Work Together CTA Section */}
       <section 
         id="contact"
-        className="py-16 md:py-32 px-4 md:px-6 lg:px-12"
+        className="py-16 md:py-32 px-4 md:px-6 lg:px-12 bg-muted/10"
       >
         <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-            {'Let\'s work together'}
+            {CONTACT_SECTION.title}
           </h2>
           <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Available for freelance projects and collaborations
+            {CONTACT_SECTION.subtitle}
           </p>
-          <div className="pt-4 md:pt-8">
-          <Link href="mailto:bevel.graphics1@gmail.com" >
-            <Button 
-              size="lg" 
-              className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 hover:scale-105 transition-transform"       >
-
-              Get in touch
-            </Button>
-          </Link>
+          <div className="pt-4 md:pt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/work-together">
+              <Button 
+                size="lg" 
+                className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 hover:scale-105 transition-transform"
+              >
+                Start a Project
+              </Button>
+            </Link>
+            <Link href={`mailto:${SITE_CONFIG.email}`}>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="text-base md:text-lg px-6 md:px-8 py-4 md:py-6 hover:scale-105 transition-transform"
+              >
+                {CONTACT_SECTION.cta}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -353,14 +361,20 @@ export default function Portfolio() {
       <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs md:text-sm text-muted-foreground">
-            © 2026 All rights reserved
+            {SITE_CONFIG.copyright}
           </p>
           <div className="flex items-center gap-6 md:gap-8">
-            <a href="https://www.instagram.com/bevel.graphics/" target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/blog" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Blog
+            </Link>
+            <Link href="/work-together" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Work Together
+            </Link>
+            <a href={SITE_CONFIG.social.instagram} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
               Instagram
             </a>
-            <a href="https://www.artstation.com/bevelgraphics" target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
-             Behance
+            <a href={SITE_CONFIG.social.behance} target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Behance
             </a>
           </div>
         </div>
