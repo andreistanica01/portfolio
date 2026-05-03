@@ -299,11 +299,11 @@ export default function ProjectPage() {
                 <Link href="/#work" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   Work
                 </Link>
-                <Link href="/#about" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  About
+                <Link href="/blog" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
+                  Blog
                 </Link>
-                <Link href="/#contact" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Contact
+                <Link href="/work-together" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
+                  Work Together
                 </Link>
               </div>
               <a 
