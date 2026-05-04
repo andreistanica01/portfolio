@@ -13,6 +13,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error"
 
 export function ProjectForm() {
   const [status, setStatus] = useState<FormStatus>("idle")
+  const [errorMessage, setErrorMessage] = useState(FORM_MESSAGES.error.message)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,6 +23,14 @@ export function ProjectForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!FORM_CONFIG.accessKey) {
+      setErrorMessage(FORM_MESSAGES.missingConfig.message)
+      setStatus("error")
+      return
+    }
+
+    setErrorMessage(FORM_MESSAGES.error.message)
     setStatus("submitting")
 
     try {
@@ -33,13 +42,18 @@ export function ProjectForm() {
         body: JSON.stringify({
           access_key: FORM_CONFIG.accessKey,
           subject: `New Project Inquiry from ${formData.name}`,
-          from_name: "Bevel Graphics Website",
+          from_name: FORM_CONFIG.fromName,
+          replyto: formData.email,
+          botcheck: false,
           ...formData,
         }),
       })
 
-      if (response.ok) {
+      const result = await response.json().catch(() => null)
+
+      if (response.ok && result?.success !== false) {
         setStatus("success")
+        setErrorMessage(FORM_MESSAGES.error.message)
         setFormData({
           name: "",
           email: "",
@@ -47,9 +61,11 @@ export function ProjectForm() {
           description: "",
         })
       } else {
+        setErrorMessage(result?.message || FORM_MESSAGES.error.message)
         setStatus("error")
       }
     } catch {
+      setErrorMessage(FORM_MESSAGES.error.message)
       setStatus("error")
     }
   }
@@ -155,7 +171,7 @@ export function ProjectForm() {
           <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
           <div>
             <p className="font-medium">{FORM_MESSAGES.error.title}</p>
-            <p className="text-sm text-muted-foreground">{FORM_MESSAGES.error.message}</p>
+            <p className="text-sm text-muted-foreground">{errorMessage}</p>
           </div>
         </div>
       )}

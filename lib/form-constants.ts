@@ -3,10 +3,9 @@
 // =============================================================================
 
 export const FORM_CONFIG = {
-  // Web3Forms endpoint - user should set their access key
   web3formsEndpoint: "https://api.web3forms.com/submit",
-  // This will be replaced with actual key when user configures
-  accessKey: "YOUR_ACCESS_KEY_HERE",
+  accessKey: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "",
+  fromName: "Bevel Graphics Website",
 }
 
 export const FORM_FIELDS = {
@@ -135,6 +134,10 @@ export const FORM_MESSAGES = {
   error: {
     title: "Something went wrong",
     message: "There was an error sending your inquiry. Please try again or email me directly at bevel.graphics1@gmail.com",
+  },
+  missingConfig: {
+    title: "Form setup incomplete",
+    message: "The inquiry form is not configured yet. Please contact me directly at bevel.graphics1@gmail.com",
   },
   validation: {
     required: "This field is required",

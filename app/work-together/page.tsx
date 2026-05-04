@@ -53,7 +53,7 @@ export default function WorkTogetherPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 md:pt-40 pb-12 md:pb-16 px-4 md:px-6 lg:px-12">
+      <section className="pt-32 md:pt-40 pb-6 md:pb-8 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl space-y-6">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
@@ -62,18 +62,12 @@ export default function WorkTogetherPage() {
             <p className="text-xl md:text-2xl text-muted-foreground font-light">
               {WORK_TOGETHER_CONTENT.hero.subtitle}
             </p>
-            <p className="text-muted-foreground leading-relaxed">
-              {WORK_TOGETHER_CONTENT.hero.description}
-            </p>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
       <HowItWorks />
-
-      {/* What to Prepare */}
-      <WhatToPrepare />
 
       {/* Project Inquiry Form */}
       <section id="inquiry" className="py-16 md:py-24 px-4 md:px-6 lg:px-12">
@@ -90,6 +84,9 @@ export default function WorkTogetherPage() {
           <ProjectForm />
         </div>
       </section>
+
+      {/* What to Prepare */}
+      <WhatToPrepare />
 
       {/* Footer */}
       <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6 lg:px-12">

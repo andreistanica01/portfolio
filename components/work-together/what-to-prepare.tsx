@@ -26,14 +26,16 @@ export function WhatToPrepare() {
                 key={index}
                 className="p-6 border border-border bg-card hover:border-foreground/30 transition-colors"
               >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 flex items-center justify-center border border-border">
+                <div className="flex items-center gap-4 min-[400px]:block min-[400px]:space-y-4">
+                  <div className="w-12 h-12 shrink-0 flex items-center justify-center border border-border">
                     <Icon className="h-5 w-5 text-muted-foreground" />
                   </div>
-                  <h3 className="font-bold">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="space-y-2 min-[400px]:space-y-4">
+                    <h3 className="font-bold">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             )

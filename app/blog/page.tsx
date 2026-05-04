@@ -80,8 +80,8 @@ export default function BlogPage() {
                 onClick={() => setSelectedCategory(key)}
                 className={`px-4 py-2 text-sm border transition-all duration-300 ${
                   selectedCategory === key
-                    ? "border-foreground bg-foreground text-background"
-                    : "border-border hover:border-foreground/50"
+                    ? "border-foreground bg-foreground text-background shadow-md"
+                    : "border-border hover:border-foreground/50 hover:bg-accent/60 hover:text-accent-foreground hover:-translate-y-0.5 hover:shadow-sm"
                 }`}
               >
                 {label}

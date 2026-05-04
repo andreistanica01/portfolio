@@ -193,7 +193,6 @@ export const WORK_TOGETHER_CONTENT = {
   hero: {
     title: "Work Together",
     subtitle: "Let's bring your architectural vision to life",
-    description: "I partner with architects, developers, interior designers, and real estate professionals to create stunning architectural visualizations that communicate your design intent clearly and beautifully.",
   },
   howItWorks: {
     title: "How It Works",
@@ -201,22 +200,22 @@ export const WORK_TOGETHER_CONTENT = {
       {
         number: "01",
         title: "Initial Contact",
-        description: "Fill out the project inquiry form below with details about your project. The more information you provide, the better I can understand your needs and prepare an accurate quote.",
+        description: "Send your project details through the inquiry form so I can understand your needs and prepare a quote.",
       },
       {
         number: "02",
         title: "Quote & Timeline",
-        description: "Within 24-48 hours, I'll review your materials and send you a detailed quote with timeline estimates. We'll discuss any questions and refine the scope if needed.",
+        description: "Within max 24 hours, I review your files and send a quote with an estimated timeline.",
       },
       {
         number: "03",
         title: "Production",
-        description: "Once we agree on the scope, I begin working on your project. You'll receive work-in-progress updates and have opportunities to provide feedback at key milestones.",
+        description: "After approval, I start production and share progress updates at key stages.",
       },
       {
         number: "04",
         title: "Delivery",
-        description: "Final renders are delivered in your preferred format and resolution. I include revision rounds to ensure the result matches your vision perfectly.",
+        description: "Final renders are delivered in your preferred format, with revisions to refine the result.",
       },
     ],
   },
@@ -226,7 +225,7 @@ export const WORK_TOGETHER_CONTENT = {
     items: [
       {
         title: "Floor Plans & Blueprints",
-        description: "CAD files (.dwg, .dxf) or high-resolution PDF plans with measurements",
+        description: "Hand-drawn plans, simple sketches, or reference layouts with basic measurements are enough to get started.",
       },
       {
         title: "Reference Images",

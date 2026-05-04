@@ -379,14 +379,14 @@ export default function ProjectPage() {
                 <button
                   onClick={() => setCarouselIndex(Math.max(0, carouselIndex - 1))}
                   disabled={carouselIndex === 0}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 lg:-translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer bg-background/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 lg:-translate-x-16 p-2 rounded-full border border-border bg-background/80 text-foreground backdrop-blur-sm transition-[color,background-color,border-color,transform,box-shadow,opacity] duration-200 ease-out hover:border-foreground/40 hover:bg-foreground/10 hover:-translate-y-[55%] hover:shadow-md disabled:opacity-50 disabled:cursor-default md:bg-transparent md:backdrop-blur-none"
                 >
                   <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
                 </button>
                 <button
                   onClick={() => setCarouselIndex(Math.min(project.images.length - (isMobile ? 1 : 3), carouselIndex + 1))}
                   disabled={carouselIndex >= project.images.length - (isMobile ? 1 : 3)}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 lg:translate-x-16 p-2 rounded-full border border-border hover:bg-foreground/10 disabled:opacity-50 disabled:cursor-default transition-all cursor-pointer bg-background/80 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 lg:translate-x-16 p-2 rounded-full border border-border bg-background/80 text-foreground backdrop-blur-sm transition-[color,background-color,border-color,transform,box-shadow,opacity] duration-200 ease-out hover:border-foreground/40 hover:bg-foreground/10 hover:-translate-y-[55%] hover:shadow-md disabled:opacity-50 disabled:cursor-default md:bg-transparent md:backdrop-blur-none"
                 >
                   <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 rotate-180" />
                 </button>
@@ -500,7 +500,7 @@ export default function ProjectPage() {
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-2 md:top-4 right-2 md:right-4 p-1.5 md:p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-30 cursor-pointer"
+              className="absolute top-2 md:top-4 right-2 md:right-4 z-30 rounded-full border border-white/20 bg-black/30 p-1.5 text-white transition-[color,background-color,border-color,transform,box-shadow,opacity] duration-200 ease-out hover:-translate-y-0.5 hover:border-white/40 hover:bg-black/50 hover:shadow-md md:p-2"
             >
               <X className="h-4 w-4 md:h-5 md:w-5" />
             </button>
@@ -511,14 +511,14 @@ export default function ProjectPage() {
                 <button
                   onClick={() => navigate(-1)}
                   disabled={displayIndex === null || displayIndex <= 0}
-                  className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
+                  className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/20 bg-black/30 p-1.5 text-white transition-[color,background-color,border-color,transform,box-shadow,opacity] duration-200 ease-out hover:-translate-y-[55%] hover:border-white/40 hover:bg-black/50 hover:shadow-md disabled:opacity-50 disabled:cursor-default md:left-4 md:p-2"
                 >
                   <ArrowLeft className="h-4 w-4 md:h-5 md:w-5" />
                 </button>
                 <button
                   onClick={() => navigate(1)}
                   disabled={displayIndex === null || displayIndex >= project.images.length - 1}
-                  className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-black/30 hover:bg-black/40 border border-border text-white z-20 cursor-pointer"
+                  className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/20 bg-black/30 p-1.5 text-white transition-[color,background-color,border-color,transform,box-shadow,opacity] duration-200 ease-out hover:-translate-y-[55%] hover:border-white/40 hover:bg-black/50 hover:shadow-md disabled:opacity-50 disabled:cursor-default md:right-4 md:p-2"
                 >
                   <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 rotate-180" />
                 </button>

@@ -55,10 +55,18 @@ export default function Portfolio() {
       }`}>
         <div className="border-b border-border/20 bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-              <h1 className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
-                {SITE_CONFIG.name}
-              </h1>
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-0">
+              <div className="flex w-full items-center justify-between gap-4 md:w-auto md:justify-start">
+                <h1 className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors cursor-pointer">
+                  {SITE_CONFIG.name}
+                </h1>
+                <Link href="/work-together" className="shrink-0 md:hidden">
+                  <Button variant="default" size="sm" className="h-7 px-2.5 text-[11px] gap-1 group">
+                    {NAV_LINKS.workTogether}
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Button>
+                </Link>
+              </div>
               <div className="flex items-center gap-4 md:gap-8 flex-wrap">
                 <a href="#" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
                   {NAV_LINKS.home}
@@ -76,8 +84,8 @@ export default function Portfolio() {
                   {NAV_LINKS.about}
                 </Link>
               </div>
-              <Link href="/work-together">
-                <Button variant="default" size="sm" className="text-xs md:text-sm gap-1.5 group">
+              <Link href="/work-together" className="hidden md:inline-flex">
+                <Button variant="default" size="sm" className="h-8 px-3 text-xs gap-1.5 group">
                   {NAV_LINKS.workTogether}
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Button>
