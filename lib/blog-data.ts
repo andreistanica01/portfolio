@@ -22,289 +22,463 @@ export interface BlogSection {
 }
 
 export const BLOG_ARTICLES: BlogArticle[] = [
-  {
-    slug: "preparing-files-for-archviz-projects",
-    title: "How to Prepare Files for an ArchViz Project",
-    excerpt: "A comprehensive guide for architects and developers on organizing and exporting files that will result in faster turnaround times and better visualization quality.",
-    category: "workflow",
-    readTime: 8,
-    publishedAt: "2026-01-15",
-    featured: true,
-    image: "/images/Project_Images/exteriorday1.webp",
-    content: [
-      {
-        type: "paragraph",
-        content: "Proper file preparation is one of the most overlooked aspects of a successful architectural visualization project. When clients provide well-organized, complete files, the entire process moves faster and the final results are significantly better. This guide covers everything you need to know about preparing your files for an archviz artist.",
-      },
-      {
-        type: "heading",
-        content: "Why File Preparation Matters",
-      },
-      {
-        type: "paragraph",
-        content: "The quality of source files directly impacts the accuracy and efficiency of the visualization process. Missing information leads to assumptions, which can result in costly revisions. Complete files, on the other hand, allow the artist to focus on creating beautiful imagery rather than hunting down specifications.",
-      },
-      {
-        type: "heading",
-        content: "Essential Files to Provide",
-      },
-      {
-        type: "list",
-        items: [
-          "Floor plans in CAD format (.dwg or .dxf) with accurate measurements",
-          "Elevations and sections showing heights and vertical relationships",
-          "Material schedules or finish specifications",
-          "Reference images for desired mood and style",
-          "Furniture layouts and fixture specifications",
-          "Site context information for exterior views",
-        ],
-      },
-      {
-        type: "heading",
-        content: "File Format Best Practices",
-      },
-      {
-        type: "paragraph",
-        content: "Export CAD files in a clean state with unnecessary layers removed. PDFs should be high-resolution (300 DPI minimum) and to scale. When providing reference images, organize them by room or area and include notes about what specifically you want to capture from each reference.",
-      },
-      {
-        type: "faq",
-        faqs: [
-          {
-            question: "What if I only have hand-drawn sketches?",
-            answer: "Hand-drawn sketches can work, but they need to include clear measurements and annotations. Scan them at high resolution and provide a scale reference.",
-          },
-          {
-            question: "How should I organize reference images?",
-            answer: "Create folders for each space or view. Name files descriptively (e.g., 'living-room-lighting-reference.jpg') and include a brief notes document explaining what you like about each image.",
-          },
-          {
-            question: "Do I need to provide 3D models?",
-            answer: "If you have existing 3D models from your design software (Revit, SketchUp, ArchiCAD), providing them can speed up the process significantly. Export in common formats like .fbx, .obj, or native file formats.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "understanding-archviz-pricing",
-    title: "Understanding Architectural Visualization Pricing",
-    excerpt: "What factors influence the cost of 3D renders? Learn how complexity, detail level, and timeline affect pricing so you can budget effectively for your projects.",
-    category: "business",
-    readTime: 6,
-    publishedAt: "2026-01-08",
-    featured: false,
-    image: "/images/Project_Images/living1.webp",
-    content: [
-      {
-        type: "paragraph",
-        content: "Architectural visualization pricing can seem opaque to those new to commissioning renders. Understanding what goes into a quote helps you budget appropriately and communicate effectively with your visualization partner.",
-      },
-      {
-        type: "heading",
-        content: "Key Pricing Factors",
-      },
-      {
-        type: "list",
-        items: [
-          "Scene complexity: number of rooms, furniture pieces, and architectural details",
-          "Level of detail: conceptual vs. photorealistic",
-          "Number of views and angles required",
-          "Timeline and urgency",
-          "Revision rounds included",
-          "Output resolution and format requirements",
-        ],
-      },
-      {
-        type: "heading",
-        content: "Interior vs. Exterior Projects",
-      },
-      {
-        type: "paragraph",
-        content: "Interior projects typically require more detailed modeling and texturing for furniture, fixtures, and finishes. Exterior projects often involve landscape modeling and environmental effects. Both have unique challenges that affect pricing.",
-      },
-      {
-        type: "faq",
-        faqs: [
-          {
-            question: "How much does a typical interior render cost?",
-            answer: "Interior renders typically range from $300-800 per image depending on complexity. A fully furnished living room with custom furniture will cost more than a minimalist bathroom.",
-          },
-          {
-            question: "Are revisions included in the price?",
-            answer: "Most quotes include 2-3 revision rounds. Additional revisions beyond the agreed scope may incur extra charges. Clear communication upfront minimizes revision needs.",
-          },
-          {
-            question: "How does timeline affect cost?",
-            answer: "Rush projects (less than 1 week) typically carry a 25-50% premium. Planning ahead allows for better pricing and often better results.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "interior-vs-exterior-visualization",
-    title: "Interior vs. Exterior Visualization: Key Differences",
-    excerpt: "Each type of architectural render presents unique challenges and opportunities. Understand what makes each approach distinct to better plan your visualization needs.",
-    category: "workflow",
-    readTime: 5,
-    publishedAt: "2025-12-20",
-    featured: false,
-    image: "/images/Project_Images/exteriornight2.webp",
-    content: [
-      {
-        type: "paragraph",
-        content: "While both interior and exterior visualizations share fundamental principles, each requires different approaches to lighting, materials, and composition. Understanding these differences helps set appropriate expectations for your project.",
-      },
-      {
-        type: "heading",
-        content: "Interior Visualization Challenges",
-      },
-      {
-        type: "list",
-        items: [
-          "Complex lighting with multiple artificial sources",
-          "Detailed furniture and decor modeling",
-          "Material accuracy at close viewing distances",
-          "Balancing natural and artificial light",
-          "Creating inviting, livable atmospheres",
-        ],
-      },
-      {
-        type: "heading",
-        content: "Exterior Visualization Challenges",
-      },
-      {
-        type: "list",
-        items: [
-          "Environmental context and landscaping",
-          "Sky and weather conditions",
-          "Time of day lighting variations",
-          "Scale and building proportions",
-          "Integrating with surrounding context",
-        ],
-      },
-      {
-        type: "quote",
-        content: "The best exterior renders capture not just the building, but the feeling of being in that place at that moment in time.",
-      },
-      {
-        type: "faq",
-        faqs: [
-          {
-            question: "Which type of render takes longer to produce?",
-            answer: "It depends on complexity. A detailed interior with custom furniture may take longer than a simple exterior, but a complex site with extensive landscaping can exceed both.",
-          },
-          {
-            question: "Can I get both interior and exterior renders of the same project?",
-            answer: "Absolutely. Many clients request a package that includes key exterior views plus important interior spaces. This provides a complete picture of the design.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "choosing-camera-angles-for-renders",
-    title: "Choosing the Right Camera Angles for Your Renders",
-    excerpt: "Camera placement dramatically affects how a space is perceived. Learn professional techniques for selecting angles that showcase your design's best features.",
-    category: "workflow",
-    readTime: 7,
-    publishedAt: "2025-12-10",
-    featured: false,
-    image: "/images/Project_Images/bedroom2.webp",
-    content: [
-      {
-        type: "paragraph",
-        content: "The camera angle in an architectural render can make or break the final image. A well-chosen viewpoint draws the eye to key design features, creates depth, and tells a story about how the space will feel to inhabit.",
-      },
-      {
-        type: "heading",
-        content: "Principles of Good Composition",
-      },
-      {
-        type: "list",
-        items: [
-          "Use the rule of thirds to place key elements",
-          "Create depth with foreground, middle ground, and background",
-          "Lead the eye through the space with lines and forms",
-          "Avoid distortion by using appropriate focal lengths",
-          "Consider human eye level for relatable perspectives",
-        ],
-      },
-      {
-        type: "heading",
-        content: "Common Camera Height Guidelines",
-      },
-      {
-        type: "paragraph",
-        content: "For interior spaces, camera height is typically set at human eye level (approximately 1.6m or 5'3\") to create a natural, immersive perspective. Lower angles can make spaces feel larger, while higher angles provide more overview of the layout.",
-      },
-      {
-        type: "faq",
-        faqs: [
-          {
-            question: "How many angles should I request per room?",
-            answer: "For marketing purposes, 2-3 angles per key space is typical. One main 'hero' shot plus 1-2 supporting angles that highlight specific features or provide alternative views.",
-          },
-          {
-            question: "Should I specify exact camera positions?",
-            answer: "You can mark approximate positions on floor plans, but allow your visualization artist flexibility. They can suggest angles based on experience with what renders well.",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "realistic-materials-in-archviz",
-    title: "Why Realistic Materials Matter in Architectural Visualization",
-    excerpt: "Material accuracy is crucial for convincing renders. Explore how proper texture work, reflections, and surface details create photorealism in 3D visualization.",
-    category: "materials",
-    readTime: 6,
-    publishedAt: "2025-11-28",
-    featured: false,
-    image: "/images/Project_Images/kitchen1.webp",
-    content: [
-      {
-        type: "paragraph",
-        content: "Materials are what make a render feel real. The subtle grain of wood, the soft texture of fabric, the precise reflectivity of glass – these details communicate quality and give viewers confidence in the design.",
-      },
-      {
-        type: "heading",
-        content: "Key Material Properties",
-      },
-      {
-        type: "list",
-        items: [
-          "Color and albedo: the base color without lighting effects",
-          "Roughness: how smooth or matte a surface appears",
-          "Reflectivity: how much light bounces off the surface",
-          "Normal/bump maps: surface detail without geometry",
-          "Displacement: actual geometry-level surface detail",
-        ],
-      },
-      {
-        type: "heading",
-        content: "Common Material Mistakes",
-      },
-      {
-        type: "paragraph",
-        content: "Many renders fail because materials are too perfect or too uniform. Real materials have variation, wear, and imperfection. Wood has grain direction and knots. Concrete has subtle color shifts. Metal has fingerprints and microscopic scratches.",
-      },
-      {
-        type: "faq",
-        faqs: [
-          {
-            question: "Can you match specific manufacturer materials?",
-            answer: "Yes, given product codes or samples, I can create accurate digital representations of specific flooring, tiles, fabrics, and other specified materials.",
-          },
-          {
-            question: "How do I specify materials I want?",
-            answer: "Provide manufacturer names and product codes when possible. Photos of actual samples are also helpful. Include notes about finish (matte, gloss, satin) and any special treatments.",
-          },
-        ],
-      },
-    ],
-  },
+{
+  slug: "interior-design-render-vs-interior-concept-visualization",
+  title: "Interior Design Render vs Interior Concept Visualization: What Is the Difference?",
+  excerpt:
+    "A clear explanation of how interior concept visualization helps clients preview layouts, mood, materials and atmosphere without replacing a full interior design service.",
+  category: "interior visualization",
+  readTime: 6,
+  publishedAt: "2026-05-04",
+  featured: true,
+  image: "/images/Project_Images/interior-modern-living.webp",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "Interior design renders and interior concept visualization are often confused, but they are not exactly the same thing. A full interior design service usually includes detailed design decisions, furniture selection, technical specifications and sourcing. Interior concept visualization focuses on helping the client see how a space could look through realistic 3D images based on plans, measurements, references and mood direction.",
+    },
+    {
+      type: "heading",
+      content: "What Is an Interior Design Render?",
+    },
+    {
+      type: "paragraph",
+      content:
+        "An interior design render is a realistic image that shows a proposed interior before it is built, renovated or furnished. It can include furniture, materials, lighting, colors, decor and camera angles that help the client understand the final atmosphere of the space.",
+    },
+    {
+      type: "heading",
+      content: "What Is Interior Concept Visualization?",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Interior concept visualization is a more flexible visual process. It can start from a floor plan, a rough sketch, a Pinterest board, reference images or a simple mood direction. The goal is to create realistic images that communicate the look and feel of the space, even if the final interior design details are not fully defined yet.",
+    },
+    {
+      type: "heading",
+      content: "Where AI Can Help in This Workflow",
+    },
+    {
+      type: "paragraph",
+      content:
+        "When the floor plan, measurements and references are clear, AI can help explore different visual directions faster. It can be used to test mood, material combinations, lighting atmosphere and style options before the final 3D scene is created.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "AI does not replace the final 3D visualization process. The final result still depends on accurate proportions, proper 3D modeling, realistic materials, lighting, camera composition and manual refinement. AI is useful in the early concept stage, while the final render is built through a controlled 3D workflow.",
+    },
+    {
+      type: "heading",
+      content: "When This Service Is Useful",
+    },
+    {
+      type: "list",
+      items: [
+        "When you have a floor plan but cannot imagine the final space",
+        "When you want to compare different moods or styles before renovation",
+        "When you need presentation images for a client, investor or real estate listing",
+        "When you want to see materials, lighting and layout before making decisions",
+        "When you need a realistic visual direction but not a full interior design package",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Final Render vs AI Concept Image",
+    },
+    {
+      type: "paragraph",
+      content:
+        "An AI concept image can help define a visual direction, but it is not the same as a measured 3D render. A final architectural visualization is based on the actual space, real proportions, planned camera angles and controlled materials. This makes it more reliable for presentation, renovation planning and client approval.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can a 3D artist help with interior design ideas?",
+          answer:
+            "Yes. A 3D artist can help visualize interior ideas, test moods and create realistic renders based on plans and references. However, this does not always replace a full interior design service with technical specifications and sourcing.",
+        },
+        {
+          question: "Is AI used to create the final render?",
+          answer:
+            "AI can be used for early concept exploration, but the final render is created through a 3D visualization workflow with accurate modeling, materials, lighting and camera setup.",
+        },
+        {
+          question: "What do I need to send for an interior concept visualization?",
+          answer:
+            "Useful files include a floor plan, measurements, photos of the space, reference images, mood boards, material preferences and any style direction you already have.",
+        },
+      ],
+    },
+  ],
+},
+{
+  slug: "floor-plan-to-realistic-3d-render",
+  title: "How to Turn a Floor Plan Into a Realistic 3D Render",
+  excerpt:
+    "A practical guide explaining how a floor plan, sketch or PDF can be transformed into a realistic 3D architectural visualization.",
+  category: "3D floor plans",
+  readTime: 7,
+  publishedAt: "2026-05-01",
+  featured: true,
+  image: "/images/Project_Images/floor-plan-to-render.webp",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "A floor plan can be turned into a realistic 3D render by rebuilding the space in 3D, matching the correct proportions, adding materials, setting up lighting and choosing camera angles that communicate the project clearly. The more accurate the original plan and measurements are, the better and faster the final visualization process becomes.",
+    },
+    {
+      type: "heading",
+      content: "What Type of Floor Plan Can Be Used?",
+    },
+    {
+      type: "paragraph",
+      content:
+        "The best starting point is a CAD file such as DWG or DXF, but a high-quality PDF, scanned plan, hand-drawn sketch or measured layout can also work. The most important requirement is that the plan includes reliable dimensions and enough information to understand the space.",
+    },
+    {
+      type: "heading",
+      content: "The Basic Workflow",
+    },
+    {
+      type: "list",
+      items: [
+        "Review the floor plan, measurements and project brief",
+        "Rebuild the layout in 3D using the available dimensions",
+        "Set wall heights, openings, windows, doors and main architectural elements",
+        "Add furniture, materials and lighting based on the desired visual direction",
+        "Choose camera angles that show the space clearly",
+        "Create preview images, refine the scene and render the final visuals",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Where AI Fits Into the Process",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Once the floor plan and measurements are confirmed, AI can be used to explore possible design directions before the final 3D scene is built. For example, it can help test moods such as warm minimalist, Japandi, Scandinavian, luxury neutral or modern industrial.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "This makes the early stage faster because the client can react to visual directions before time is spent on detailed modeling, materials and final lighting. After the direction is chosen, the final image is created through a proper 3D workflow.",
+    },
+    {
+      type: "heading",
+      content: "What Makes the Render Accurate?",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Accuracy comes from correct dimensions, clean modeling, real proportions and a clear understanding of the space. AI references can help with mood, but they cannot replace measured geometry. For architectural visualization, the final render needs to be based on the actual plan.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can you create a 3D render from a PDF floor plan?",
+          answer:
+            "Yes, a PDF floor plan can be used if it is clear, readable and includes measurements or scale information. CAD files are preferred, but PDFs and sketches can also work.",
+        },
+        {
+          question: "Do I need to send exact measurements?",
+          answer:
+            "Yes, measurements are very important. They help keep the 3D model accurate and reduce the number of assumptions during the visualization process.",
+        },
+        {
+          question: "Can AI create the render directly from the plan?",
+          answer:
+            "AI can help explore visual ideas, but a professional render still needs a controlled 3D scene with correct scale, geometry, materials, lighting and camera composition.",
+        },
+      ],
+    },
+  ],
+},
+{
+  slug: "what-to-send-before-starting-archviz-project",
+  title: "What Should You Send Before Starting an ArchViz Project?",
+  excerpt:
+    "A simple checklist for clients preparing floor plans, references, photos, measurements and project details before starting an architectural visualization project.",
+  category: "client guide",
+  readTime: 5,
+  publishedAt: "2026-04-28",
+  featured: true,
+  image: "/images/Project_Images/archviz-project-brief.webp",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "Before starting an architectural visualization project, the most useful thing a client can do is prepare clear project information. Good files and references help the 3D artist understand the space faster, reduce assumptions and create better final renders with fewer revisions.",
+    },
+    {
+      type: "heading",
+      content: "Essential Files to Send",
+    },
+    {
+      type: "list",
+      items: [
+        "Floor plans in DWG, DXF, PDF or image format",
+        "Room measurements or scale information",
+        "Elevations and sections if exterior or architectural details are needed",
+        "Photos of the existing space if it is a renovation project",
+        "Reference images for style, lighting, furniture and materials",
+        "Mood boards or Pinterest boards",
+        "Material preferences and color direction",
+        "Deadline and number of final renders needed",
+      ],
+    },
+    {
+      type: "heading",
+      content: "If You Do Not Have a Complete Design Yet",
+    },
+    {
+      type: "paragraph",
+      content:
+        "You do not always need a complete design package before starting a visualization. If you have a plan, measurements and some references, the project can begin with a concept exploration stage. This is especially useful for interiors, apartments, bathrooms, living rooms and renovation projects.",
+    },
+    {
+      type: "heading",
+      content: "References for AI-Assisted Concept Exploration",
+    },
+    {
+      type: "paragraph",
+      content:
+        "If the design direction is not fully clear, reference images can be used together with AI-assisted concept exploration. This helps define mood, material combinations, lighting atmosphere and style direction before the final 3D scene is created.",
+    },
+    {
+      type: "heading",
+      content: "How to Organize Your Files",
+    },
+    {
+      type: "list",
+      items: [
+        "Create one folder for plans and measurements",
+        "Create one folder for reference images",
+        "Separate interior and exterior references if needed",
+        "Name files clearly, such as living-room-reference or bathroom-plan",
+        "Add notes if a reference image is only for lighting, materials or furniture style",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Why This Speeds Up the Project",
+    },
+    {
+      type: "paragraph",
+      content:
+        "A clear brief allows the visualization process to move directly into modeling, visual direction, materials and lighting. Without clear files, time is spent asking for missing information or correcting assumptions, which can slow down the project.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can I start if I only have reference images?",
+          answer:
+            "Yes, but measurements or a basic layout are still needed if the final render should match a real space accurately.",
+        },
+        {
+          question: "Can I send a Google Drive or WeTransfer link?",
+          answer:
+            "Yes. A shared folder with floor plans, references, photos and notes is one of the easiest ways to send project materials.",
+        },
+        {
+          question: "Do I need a mood board?",
+          answer:
+            "A mood board is not mandatory, but it helps define the style faster and makes the concept stage more efficient.",
+        },
+      ],
+    },
+  ],
+},
+{
+  slug: "ai-interior-concept-visualization-workflow",
+  title: "How AI Can Speed Up Interior Concept Visualization",
+  excerpt:
+    "How AI-assisted concept exploration can help test mood, materials, lighting and style directions before the final 3D interior visualization is created.",
+  category: "AI workflow",
+  readTime: 6,
+  publishedAt: "2026-04-20",
+  featured: false,
+  image: "/images/Project_Images/ai-interior-concept-workflow.webp",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "AI can speed up interior concept visualization by helping explore visual directions before the final 3D render is created. When floor plans, measurements, photos and references are available, AI can be used to test different moods, materials and lighting ideas faster than a traditional concept stage.",
+    },
+    {
+      type: "heading",
+      content: "What AI Is Useful For",
+    },
+    {
+      type: "list",
+      items: [
+        "Exploring different interior moods",
+        "Testing color and material combinations",
+        "Generating visual references based on a style direction",
+        "Comparing atmosphere options before the 3D scene is built",
+        "Helping the client choose a direction faster",
+      ],
+    },
+    {
+      type: "heading",
+      content: "What AI Does Not Replace",
+    },
+    {
+      type: "paragraph",
+      content:
+        "AI does not replace accurate 3D modeling, measurements, floor plan interpretation, realistic material setup, lighting control or final rendering. For architectural visualization, the final image still needs to be created in a controlled 3D environment so the result matches the actual space.",
+    },
+    {
+      type: "heading",
+      content: "The AI-Assisted Workflow",
+    },
+    {
+      type: "list",
+      items: [
+        "The client sends floor plans, measurements, photos and references",
+        "AI is used to explore possible visual directions",
+        "The strongest mood or style direction is selected",
+        "The actual space is rebuilt in 3D with correct proportions",
+        "Materials, lighting and cameras are created based on the selected direction",
+        "The final render is refined and prepared for presentation",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Why This Helps the Client",
+    },
+    {
+      type: "paragraph",
+      content:
+        "The main benefit is speed and clarity. Instead of spending too much time guessing the visual direction, the client can see several possible moods earlier in the process. This reduces confusion and makes the final 3D visualization more focused.",
+    },
+    {
+      type: "heading",
+      content: "AI Concept vs Final 3D Render",
+    },
+    {
+      type: "paragraph",
+      content:
+        "An AI concept is useful for visual exploration, but the final 3D render is the controlled result. The final render is based on real dimensions, selected materials, camera composition and proper lighting. This makes it more reliable for presentation, renovation planning and client approval.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can AI create the final interior render?",
+          answer:
+            "AI can create concept images, but a final architectural visualization should be built in 3D for better control, accuracy and consistency.",
+        },
+        {
+          question: "Is AI useful if I already have a full design?",
+          answer:
+            "If the design is already complete, AI may not be necessary. It is most useful when the visual direction still needs exploration.",
+        },
+        {
+          question: "Does AI make the project cheaper?",
+          answer:
+            "AI can make the concept stage faster, but the final cost still depends on the complexity of the space, number of renders, level of detail and revision process.",
+        },
+      ],
+    },
+  ],
+},
+{
+  slug: "mood-board-to-3d-render",
+  title: "Mood Board to 3D Render: How References Become a Visual Concept",
+  excerpt:
+    "A look at how mood boards, references and AI-assisted exploration can be turned into a realistic architectural visualization.",
+  category: "workflow",
+  readTime: 6,
+  publishedAt: "2026-04-12",
+  featured: false,
+  image: "/images/Project_Images/mood-board-to-3d-render.webp",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "A mood board is one of the easiest ways to communicate the desired atmosphere of an interior or architectural project. It can include materials, colors, lighting references, furniture ideas, textures and images that describe how the final space should feel.",
+    },
+    {
+      type: "heading",
+      content: "Why Mood Boards Are Useful",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Mood boards help bridge the gap between a client’s idea and the final 3D visualization. Instead of relying only on words like modern, warm, luxury or minimalist, visual references make the direction easier to understand.",
+    },
+    {
+      type: "heading",
+      content: "How AI Can Help Explore the Mood",
+    },
+    {
+      type: "paragraph",
+      content:
+        "AI can be used to create quick visual variations based on the mood board. This can help compare different atmospheres, lighting styles, material combinations and furniture directions before the final 3D scene is built.",
+    },
+    {
+      type: "heading",
+      content: "Human Selection Still Matters",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Not every AI concept is usable. Some ideas may look good visually but may not work with the real plan, scale or function of the space. The important part is selecting what makes sense and translating it into a realistic 3D visualization.",
+    },
+    {
+      type: "heading",
+      content: "Turning the Direction Into a 3D Scene",
+    },
+    {
+      type: "list",
+      items: [
+        "Analyze the references and identify the main visual direction",
+        "Select materials, colors and lighting ideas that fit the project",
+        "Model or rebuild the space in 3D using accurate dimensions",
+        "Apply the selected materials and furniture direction",
+        "Set camera angles that show the space clearly",
+        "Render the final visuals for presentation or approval",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Why the Final Render Is More Reliable",
+    },
+    {
+      type: "paragraph",
+      content:
+        "A final 3D render is more reliable than a concept image because it is based on the actual layout, measurements and selected visual direction. It gives the client a clearer idea of how the space can look in reality.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can I send a Pinterest board as a mood board?",
+          answer:
+            "Yes. Pinterest boards are useful because they show style, materials, colors and atmosphere. Notes about what you like in each image are also helpful.",
+        },
+        {
+          question: "Do references need to match the exact room?",
+          answer:
+            "No. References can be used for mood, lighting, furniture style, materials or color palette, even if the room layout is different.",
+        },
+        {
+          question: "Can AI turn a mood board into the final render?",
+          answer:
+            "AI can help explore the visual direction, but the final render should be created in 3D for accuracy, control and consistency.",
+        },
+      ],
+    },
+  ],
+},
   {
     slug: "lighting-techniques-for-archviz",
     title: "Lighting Techniques That Elevate Architectural Renders",
