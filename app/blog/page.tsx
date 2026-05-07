@@ -5,8 +5,9 @@ import Link from "next/link"
 import { NoiseOverlay } from "@/components/noise-overlay"
 import { BlogHero } from "@/components/blog/blog-hero"
 import { ArticleCard } from "@/components/blog/article-card"
+import { SiteNavbar } from "@/components/site-navbar"
 import { Button } from "@/components/ui/button"
-import { BLOG_CONTENT, SITE_CONFIG, NAV_LINKS } from "@/lib/content"
+import { BLOG_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { BLOG_ARTICLES, getFeaturedArticle } from "@/lib/blog-data"
 
 const categories = Object.entries(BLOG_CONTENT.categories) as [string, string][]
@@ -23,41 +24,7 @@ export default function BlogPage() {
     <div className="min-h-screen bg-background text-foreground">
       <NoiseOverlay />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40">
-        <div className="border-b border-border/20 bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-              <Link
-                href="/"
-                className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors"
-              >
-                {SITE_CONFIG.name}
-              </Link>
-              <div className="flex items-center gap-4 md:gap-8 flex-wrap">
-                <Link href="/" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  {NAV_LINKS.home}
-                </Link>
-                <Link href="/#work" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  {NAV_LINKS.work}
-                </Link>
-                <Link href="/blog" className="text-xs md:text-sm text-foreground font-medium">
-                  {NAV_LINKS.blog}
-                </Link>
-                <Link href="/work-together" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  {NAV_LINKS.workTogether}
-                </Link>
-              </div>
-              <a
-                href={`mailto:${SITE_CONFIG.email}`}
-                className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all md:break-normal"
-              >
-                {SITE_CONFIG.email}
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <SiteNavbar activePage="blog" />
 
       <BlogHero />
 

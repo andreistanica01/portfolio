@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { useParams } from "next/navigation"
 import Link from "next/link"
 import { NoiseOverlay } from "@/components/noise-overlay"
+import { SiteNavbar } from "@/components/site-navbar"
 import { ArrowLeft, Play, X } from "lucide-react"
 
 const projects = [
@@ -59,7 +60,7 @@ const projects = [
     title: "Contemporary Apartment - ArchViz",
     subtitle: "Personal Project",
     description: "This project was created using blueprints and CAD files, with every object modeled and scaled according to real-world references. The main focus of the project was achieving a realistic and accurate architectural visualization.",
-    tools: ["Blender", "Affinity Photo"],
+    tools: ["Blender", "Affinity Photo", 'Autodesk AutoCAD'],
     year: "2026",
     type: "Interior Architectural Visualization",
     images: [
@@ -108,55 +109,55 @@ const projects = [
       { type: "image", label: "Render 4", image: "/images/Project_Images/steering4.webp"},
     ]
   },
-  {
-    id: "7",
-    thumbnail: "/images/Project_Images/nespresso1.webp",
-    thumbnail_main: "/images/Project_Images/nespresso1.webp",
-    title: "Nespresso Vertuo Blue",
-    subtitle: "Personal Project",
-    description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
-    tools: ["Blender", "Affinity Photo"],
-    year: "2025",
-    type: "Product Visualization",
-    images: [
-        { type: "image", label: "Render 1", image: "/images/Project_Images/nespresso1.webp"},
-        { type: "image", label: "Render 2", image: "/images/Project_Images/nespresso3.webp"},
-        { type: "image", label: "Render 3", image: "/images/Project_Images/nespresso2.webp"},
-    ]
-  },
-  {
-    id: "8",
-    thumbnail: "/images/Project_Images/replica2.webp",
-    thumbnail_main: "/images/Project_Images/replica1.webp",
-    title: "Maison Margiela - Replica Perfume",
-    subtitle: "Personal Project",
-    description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
-    tools: ["Blender", "Affinity Photo"],
-    year: "2025",
-    type: "Product Visualization",
-    images: [
-      { type: "image", label: "Render 1", image: "/images/Project_Images/replica1.webp" },
-      { type: "image", label: "Render 2", image: "/images/Project_Images/replica2.webp"},
-      { type: "image", label: "Render 3", image: "/images/Project_Images/replica3.webp"},
-    ]
-  },
-  {
-    id: "9",
-    thumbnail: "/images/Project_Images/VerticalShot011.webp",
-    thumbnail_main: "/images/Project_Images/VerticalShot011.webp",
-    title: "Nespresso Vertuo 6 Colors",
-    subtitle: "Personal Project",
-    description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
-    tools: ["Blender", "Affinity Photo"],
-    year: "2025",
-    type: "Creature Design",
-    images: [
-      { type: "image", label: "Render 1", image: "/images/Project_Images/VerticalShot013.webp" },
-      { type: "image", label: "Render 2", image: "/images/Project_Images/VerticalShot011.webp"},
-      { type: "image", label: "Render 3", image: "/images/Project_Images/TableRender005.webp"},
-      { type: "image", label: "Render 4", image: "/images/Project_Images/TableRender004.webp"},
-    ]
-  },
+  // {
+  //   id: "7",
+  //   thumbnail: "/images/Project_Images/nespresso1.webp",
+  //   thumbnail_main: "/images/Project_Images/nespresso1.webp",
+  //   title: "Nespresso Vertuo Blue",
+  //   subtitle: "Personal Project",
+  //   description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
+  //   tools: ["Blender", "Affinity Photo"],
+  //   year: "2025",
+  //   type: "Product Visualization",
+  //   images: [
+  //       { type: "image", label: "Render 1", image: "/images/Project_Images/nespresso1.webp"},
+  //       { type: "image", label: "Render 2", image: "/images/Project_Images/nespresso3.webp"},
+  //       { type: "image", label: "Render 3", image: "/images/Project_Images/nespresso2.webp"},
+  //   ]
+  // },
+  // {
+  //   id: "8",
+  //   thumbnail: "/images/Project_Images/replica2.webp",
+  //   thumbnail_main: "/images/Project_Images/replica1.webp",
+  //   title: "Maison Margiela - Replica Perfume",
+  //   subtitle: "Personal Project",
+  //   description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
+  //   tools: ["Blender", "Affinity Photo"],
+  //   year: "2025",
+  //   type: "Product Visualization",
+  //   images: [
+  //     { type: "image", label: "Render 1", image: "/images/Project_Images/replica1.webp" },
+  //     { type: "image", label: "Render 2", image: "/images/Project_Images/replica2.webp"},
+  //     { type: "image", label: "Render 3", image: "/images/Project_Images/replica3.webp"},
+  //   ]
+  // },
+  // {
+  //   id: "9",
+  //   thumbnail: "/images/Project_Images/VerticalShot011.webp",
+  //   thumbnail_main: "/images/Project_Images/VerticalShot011.webp",
+  //   title: "Nespresso Vertuo 6 Colors",
+  //   subtitle: "Personal Project",
+  //   description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
+  //   tools: ["Blender", "Affinity Photo"],
+  //   year: "2025",
+  //   type: "Creature Design",
+  //   images: [
+  //     { type: "image", label: "Render 1", image: "/images/Project_Images/VerticalShot013.webp" },
+  //     { type: "image", label: "Render 2", image: "/images/Project_Images/VerticalShot011.webp"},
+  //     { type: "image", label: "Render 3", image: "/images/Project_Images/TableRender005.webp"},
+  //     { type: "image", label: "Render 4", image: "/images/Project_Images/TableRender004.webp"},
+  //   ]
+  // },
 
 ]
 
@@ -262,41 +263,7 @@ export default function ProjectPage() {
     <div className="min-h-screen bg-background text-foreground">
       <NoiseOverlay />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40">
-        <div className="border-b border-border/50 bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12 py-4 md:py-6">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
-              <Link 
-                href="/"
-                className="text-base md:text-lg font-bold tracking-tight hover:text-muted-foreground transition-colors"
-              >
-                Bevel Graphics
-              </Link>
-              <div className="flex items-center gap-4 md:gap-8 flex-wrap">
-                <Link href="/" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Home
-                </Link>
-                <Link href="/#work" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Work
-                </Link>
-                <Link href="/blog" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Blog
-                </Link>
-                <Link href="/work-together" className="text-xs md:text-sm hover:text-muted-foreground transition-colors">
-                  Work Together
-                </Link>
-              </div>
-              <a 
-                href="mailto:bevel.graphics1@gmail.com" 
-                className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors break-all md:break-normal"
-              >
-                bevel.graphics1@gmail.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <SiteNavbar activePage="project" />
 
       <section className="relative isolate min-h-[50vh] md:min-h-[60vh] flex flex-col justify-end pt-24 md:pt-32 pb-8 md:pb-12 px-4 md:px-6 lg:px-12">
         <div
