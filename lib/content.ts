@@ -28,6 +28,8 @@ export const HERO_CONTENT = {
   title: "Portfolio",
   subtitle: "Architectural Visualization",
   year: "2026",
+  backgroundImage: "/images/Project_Images/greenmarble1.webp",
+  mobileBackgroundImage: "/images/Project_Images/greenmarble4.webp",
 }
 
 export const SERVICES_SECTION = {
@@ -93,8 +95,27 @@ export const FOOTER_CONTENT = {
 // =============================================================================
 
 export const ALL_PROJECTS = [
-  {
+     {
     id: 1,
+    thumbnail: "/images/Project_Images/blackmarble1.webp",
+    title: "Dark Marble Modern Villa",
+    subtitle: "Personal Project",
+    description: "Photorealistic architectural visualization of a luxury modern villa featuring dark marble cladding, rich walnut wood finishes, floor-to-ceiling glass, warm recessed lighting, and refined contemporary landscaping. This Blender ArchViz project includes exterior and interior renders, presenting the villa facade, living room, kitchen, and bathroom in a cohesive high-end residential design. Created for portfolio presentation, luxury real estate visualization, residential architecture marketing, and premium interior design concepts.",    tools: ["Blender", "Affinity Photo", "Autodesk AutoCAD"],
+    year: "2026",
+    type: "Exterior Architectural Visualization",
+  },
+   {
+    id: 2,
+    thumbnail: "/images/Project_Images/greenmarble1.webp",
+    title: "Tropical Green Marble Villa",
+    subtitle: "Personal Project",
+    description: "Photorealistic architectural visualization of a luxury tropical villa designed with green marble, warm oak wood, bronze accents, large glass openings, soft interior lighting, and dense tropical landscaping. This Blender ArchViz project includes exterior and interior renders, showing the villa facade, bathroom, bedroom, and living room in a cohesive high-end residential design. Created for portfolio presentation, real estate visualization, interior design concepts, and modern luxury villa marketing.",
+    tools: ["Blender", "Affinity Photo", "Autodesk AutoCAD"],
+    year: "2026",
+    type: "Exterior Architectural Visualization",
+  },
+  {
+    id: 3,
     thumbnail: "/images/Project_Images/exteriorsunset2.webp",
     title: "Modern Villa",
     subtitle: "Personal Project",
@@ -104,7 +125,7 @@ export const ALL_PROJECTS = [
     type: "Exterior Architectural Visualization",
   },
   {
-    id: 2,
+    id: 4,
     thumbnail: "/images/Project_Images/bg.webp",
     title: "Modern House Exterior",
     subtitle: "Personal Project",
@@ -114,7 +135,7 @@ export const ALL_PROJECTS = [
     type: "Exterior Architectural Visualization",
   },
   {
-    id: 3,
+    id: 5,
     thumbnail: "/images/Project_Images/bedroom2.webp",
     title: "Mediterranean Stone Bedroom",
     subtitle: "Personal Project",
@@ -124,7 +145,7 @@ export const ALL_PROJECTS = [
     type: "Interior Architectural Visualization",
   },
   {
-    id: 4,
+    id: 6,
     thumbnail: "/images/Project_Images/bedroom1.webp",
     title: "Contemporary Apartment",
     subtitle: "Personal Project",
@@ -134,7 +155,7 @@ export const ALL_PROJECTS = [
     type: "Interior Architectural Visualization",
   },
   {
-    id: 5,
+    id: 7,
     thumbnail: "/images/Project_Images/purple3.webp",
     title: "Julietta H6",
     subtitle: "Personal Project",
@@ -144,7 +165,7 @@ export const ALL_PROJECTS = [
     type: "Automotive",
   },
   {
-    id: 6,
+    id: 8,
     thumbnail: "/images/Project_Images/steering1.webp",
     title: "R8 Steering Wheel",
     subtitle: "Personal Project",
@@ -153,6 +174,36 @@ export const ALL_PROJECTS = [
     year: "2026",
     type: "Automotive Interior Part / Product Visualization",
   },
+  // {
+  //   id: 7,
+  //   thumbnail: "/images/Project_Images/nespresso1.webp",
+  //   title: "Nespresso Vertuo Blue",
+  //   subtitle: "Personal Project",
+  //   description: "This blue edition of the Nespresso Vertuo explores a different presentation style, using lighting and composition to enhance the richness of the color and surface detail. The scene was designed to elevate the product visually while maintaining realism and brand consistency.",
+  //   tools: ["Blender", "Affinity Photo"],
+  //   year: "2025",
+  //   type: "Product Visualization",
+  // },
+  // {
+  //   id: 8,
+  //   thumbnail: "/images/Project_Images/replica2.webp",
+  //   title: "Maison Margiela - Replica Perfume",
+  //   subtitle: "Personal Project",
+  //   description: "Photorealistic product rendering with studio lighting and material refinement. Created for a premium watch brand showcasing attention to detail and realistic materials.",
+  //   tools: ["Blender", "Affinity Photo"],
+  //   year: "2025",
+  //   type: "Product Visualization",
+  // },
+  // {
+  //   id: 9,
+  //   thumbnail: "/images/Project_Images/VerticalShot011.webp",
+  //   title: "Nespresso Vertuo 6 Colors",
+  //   subtitle: "Personal Project",
+  //   description: "High-detail 3D recreation of the Nespresso Vertuo presented in six color variations. The project emphasizes accurate modeling, realistic materials, and controlled lighting to achieve clean, premium product visuals suitable for commercial use.",
+  //   tools: ["Blender", "Affinity Photo"],
+  //   year: "2025",
+  //   type: "Product Visualization",
+  // },
 ]
 
 // =============================================================================

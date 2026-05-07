@@ -187,9 +187,14 @@ export default function Portfolio() {
         }`}
       >
         {/* Background Image - extends to cover header */}
-        <div 
-          className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/Project_Images/greenmarble1.webp)' }}
+        <div
+          className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat max-[599px]:hidden"
+          style={{ backgroundImage: `url(${HERO_CONTENT.backgroundImage})` }}
+        />
+        {/* MOBILE Background Image - extends to cover header */}
+        <div
+          className="absolute -top-24 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat min-[600px]:hidden"
+          style={{ backgroundImage: `url(${HERO_CONTENT.mobileBackgroundImage})` }}
         />
         {/* Gradient Overlay - same strong fade at top and bottom */}
       <div className="absolute -top-24 left-0 right-0 bottom-0 bg-gradient-to-b from-background via-transparent to-background" />

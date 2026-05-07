@@ -8,8 +8,42 @@ import { SiteNavbar } from "@/components/site-navbar"
 import { ArrowLeft, Play, X } from "lucide-react"
 
 const projects = [
-        {
+  {
     id: "1",
+    thumbnail: "/images/Project_Images/blackmarble3.webp",
+    thumbnail_main: "/images/Project_Images/greenmarble3.webp",
+    title: "Dark Marble Modern Villa",
+    subtitle: "Personal Project",
+    description: "Photorealistic architectural visualization of a luxury modern villa featuring dark marble cladding, rich walnut wood finishes, floor-to-ceiling glass, warm recessed lighting, and refined contemporary landscaping. This Blender ArchViz project includes exterior and interior renders, presenting the villa facade, living room, kitchen, and bathroom in a cohesive high-end residential design. Created for portfolio presentation, luxury real estate visualization, residential architecture marketing, and premium interior design concepts.",    tools: ["Blender", "Affinity Photo", "Autodesk AutoCAD"],
+    year: "2026",
+    type: "Exterior Architectural Visualization",
+    images: [
+      { type: "image", label: "Render 1", image: "/images/Project_Images/blackmarble1.webp" },
+      { type: "image", label: "Render 1", image: "/images/Project_Images/blackmarble2.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/blackmarble3.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/blackmarble4.webp" },
+      ]
+  },
+   {
+    id: "2",
+    thumbnail: "/images/Project_Images/greenmarble3.webp",
+    thumbnail_main: "/images/Project_Images/greenmarble3.webp",
+    title: "Tropical Green Marble Villa",
+    subtitle: "Personal Project",
+    description: "Photorealistic architectural visualization of a luxury tropical villa designed with green marble, warm oak wood, bronze accents, large glass openings, soft interior lighting, and dense tropical landscaping. This Blender ArchViz project includes exterior and interior renders, showing the villa facade, bathroom, bedroom, and living room in a cohesive high-end residential design. Created for portfolio presentation, real estate visualization, interior design concepts, and modern luxury villa marketing.",
+    tools: ["Blender", "Affinity Photo", "Autodesk AutoCAD"],
+    year: "2026",
+    type: "Exterior Architectural Visualization",
+    images: [
+      { type: "image", label: "Render 1", image: "/images/Project_Images/greenmarble1.webp" },
+      { type: "image", label: "Render 1", image: "/images/Project_Images/greenmarble2.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/greenmarble3.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/greenmarble4.webp" },
+      { type: "image", label: "Render 2", image: "/images/Project_Images/greenmarble5.webp" },
+      ]
+  },
+    {
+    id: "3",
     thumbnail: "/images/Project_Images/exteriorsunset2.webp",
     thumbnail_main: "/images/Project_Images/exteriorday2.webp",
     title: "Modern Villa – ArchViz",
@@ -25,7 +59,7 @@ const projects = [
       ]
   },
       {
-    id: "2",
+    id: "4",
     thumbnail: "/images/Project_Images/bg.webp",
     thumbnail_main: "/images/Project_Images/exteriorday1.webp",
     title: "Modern House Exterior - ArchViz",
@@ -40,7 +74,7 @@ const projects = [
       ]
   },
     {
-    id: "3",
+    id: "5",
     thumbnail: "/images/Project_Images/bedroom2.webp",
     thumbnail_main: "/images/Project_Images/bedroom2.webp",
     title: "Mediterranean Stone Bedroom - ArchViz",
@@ -54,7 +88,7 @@ const projects = [
       ]
   },
     {
-    id: "4",
+    id: "6",
     thumbnail: "/images/Project_Images/bedroom1.webp",
     thumbnail_main: "/images/Project_Images/living1.webp",
     title: "Contemporary Apartment - ArchViz",
@@ -70,7 +104,7 @@ const projects = [
        ]
   },
   {
-    id: "5",
+    id: "7",
     thumbnail: "/images/Project_Images/purple3.webp",
     thumbnail_main: "/images/Project_Images/purple3.webp",
     title: "Julietta H6",
@@ -93,7 +127,7 @@ const projects = [
     ]
   },
   {
-    id: "6",
+    id: "8",
     thumbnail: "/images/Project_Images/steering1.webp",
     thumbnail_main: "/images/Project_Images/steering1.webp",
     title: "R8 Steering Wheel",
