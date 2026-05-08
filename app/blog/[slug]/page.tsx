@@ -8,6 +8,7 @@ import { SiteNavbar } from "@/components/site-navbar"
 import { Button } from "@/components/ui/button"
 import { BLOG_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { BLOG_ARTICLES, getArticleBySlug } from "@/lib/blog-data"
+import { getAbsoluteUrl, getBlogArticleJsonLd } from "@/lib/seo"
 import type { Metadata } from "next"
 
 interface PageProps {
@@ -33,6 +34,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${article.title} | Bevel Graphics Blog`,
     description: article.excerpt,
+    openGraph: {
+      title: `${article.title} | Bevel Graphics Blog`,
+      description: article.excerpt,
+      url: getAbsoluteUrl(`/blog/${article.slug}`),
+      images: [
+        {
+          url: article.image,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${article.title} | Bevel Graphics Blog`,
+      description: article.excerpt,
+      images: [article.image],
+    },
   }
 }
 
@@ -48,10 +66,15 @@ export default async function ArticlePage({ params }: PageProps) {
   const relatedArticles = BLOG_ARTICLES
     .filter((a) => a.category === article.category && a.slug !== article.slug)
     .slice(0, 2)
+  const articleJsonLd = getBlogArticleJsonLd(article)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <NoiseOverlay />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
 
       <SiteNavbar activePage="blog" />
 

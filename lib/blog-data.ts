@@ -6,7 +6,16 @@ export interface BlogArticle {
   slug: string
   title: string
   excerpt: string
-  category: "workflow" | "materials" | "lighting" | "software" | "business"
+  category:
+    | "workflow"
+    | "materials"
+    | "lighting"
+    | "software"
+    | "business"
+    | "interior visualization"
+    | "3D floor plans"
+    | "client guide"
+    | "AI workflow"
   readTime: number
   publishedAt: string
   featured: boolean
@@ -31,7 +40,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 6,
   publishedAt: "2026-05-04",
   featured: true,
-  image: "/images/Project_Images/interior-modern-living.webp",
+  image: "/images/Project_Images/living1.webp",
   content: [
     {
       type: "paragraph",
@@ -124,7 +133,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 7,
   publishedAt: "2026-05-01",
   featured: true,
-  image: "/images/Project_Images/floor-plan-to-render.webp",
+  image: "/images/Project_Images/kitchen1.webp",
   content: [
     {
       type: "paragraph",
@@ -209,7 +218,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 5,
   publishedAt: "2026-04-28",
   featured: true,
-  image: "/images/Project_Images/archviz-project-brief.webp",
+  image: "/images/Project_Images/bedroom1.webp",
   content: [
     {
       type: "paragraph",
@@ -305,7 +314,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 6,
   publishedAt: "2026-04-20",
   featured: false,
-  image: "/images/Project_Images/ai-interior-concept-workflow.webp",
+  image: "/images/Project_Images/bedroom2.webp",
   content: [
     {
       type: "paragraph",
@@ -399,7 +408,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 6,
   publishedAt: "2026-04-12",
   featured: false,
-  image: "/images/Project_Images/mood-board-to-3d-render.webp",
+  image: "/images/Project_Images/greenmarble4.webp",
   content: [
     {
       type: "paragraph",

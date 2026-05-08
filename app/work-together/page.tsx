@@ -8,8 +8,31 @@ import { ProjectForm } from "@/components/work-together/project-form"
 import { WORK_TOGETHER_CONTENT, SITE_CONFIG } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Work Together | Bevel Graphics - Architectural Visualization",
-  description: "Start your architectural visualization project. Get a quote for interior renders, exterior renders, and 3D floor plans.",
+  title: "Work Together",
+  description:
+    "Start your architectural visualization project and request a quote for interior renders, exterior renders, 3D floor plans, and presentation visuals.",
+  alternates: {
+    canonical: "/work-together",
+  },
+  openGraph: {
+    title: "Work Together | Bevel Graphics",
+    description:
+      "Request a quote for architectural visualization services including interior renders, exterior renders, and 3D floor plans.",
+    url: `${SITE_CONFIG.siteUrl}/work-together`,
+    images: [
+      {
+        url: "/images/Project_Images/greenmarble1.webp",
+        alt: "Bevel Graphics architectural visualization inquiry page",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Work Together | Bevel Graphics",
+    description:
+      "Request a quote for architectural visualization services including interior renders, exterior renders, and 3D floor plans.",
+    images: ["/images/Project_Images/greenmarble1.webp"],
+  },
 }
 
 export default function WorkTogetherPage() {
