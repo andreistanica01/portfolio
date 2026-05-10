@@ -2,10 +2,12 @@ import type { Metadata } from "next"
 import { notFound, redirect } from "next/navigation"
 import { ProjectPageClient } from "@/components/project/project-page-client"
 import { SITE_CONFIG } from "@/lib/content"
+import { getRequestLocale } from "@/lib/i18n"
 import {
   PROJECTS,
   getProjectById,
   getProjectBySlug,
+  getLocalizedProject,
   getProjectMetadata,
 } from "@/lib/projects"
 import {
@@ -70,12 +72,16 @@ export async function generateMetadata({
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params
+  const locale = await getRequestLocale()
   const projectBySlug = getProjectBySlug(slug)
 
   if (projectBySlug) {
     const moreProjects = PROJECTS.filter(
       (candidate) => candidate.slug !== projectBySlug.slug,
-    ).slice(0, 3)
+    )
+      .slice(0, 3)
+      .map((candidate) => getLocalizedProject(candidate, locale))
+    const localizedProject = getLocalizedProject(projectBySlug, locale)
     const projectJsonLd = getProjectJsonLd(projectBySlug)
     const breadcrumbJsonLd = getBreadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -94,7 +100,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <ProjectPageClient
-          project={projectBySlug}
+          project={localizedProject}
           moreProjects={moreProjects}
         />
       </>

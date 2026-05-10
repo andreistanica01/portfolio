@@ -126,7 +126,7 @@ export function ProjectPageClient({
             className="group inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
           >
             <ArrowLeft className="h-3 w-3 transition-transform group-hover:-translate-x-1 md:h-4 md:w-4" />
-            {locale === "ro" ? "INAPOI LA ACASA" : "BACK TO HOME"}
+            {locale === "ro" ? "INAPOI ACASA" : "BACK TO HOME"}
           </Link>
 
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end md:gap-8">

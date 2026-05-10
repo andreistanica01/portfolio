@@ -8,18 +8,28 @@ import { ArticleCard } from "@/components/blog/article-card"
 import { SiteNavbar } from "@/components/site-navbar"
 import { useLocaleDictionary } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
-import { BLOG_ARTICLES, getFeaturedArticle } from "@/lib/blog-data"
+import {
+  BLOG_ARTICLES,
+  getFeaturedArticle,
+  getLocalizedArticle,
+} from "@/lib/blog-data"
 
 export function BlogPageClient() {
   const { blogContent, siteConfig, locale } = useLocaleDictionary()
   const [selectedCategory, setSelectedCategory] = useState("all")
-  const featuredArticle = getFeaturedArticle()
+  const featuredArticleRaw = getFeaturedArticle()
+  const featuredArticle = featuredArticleRaw
+    ? getLocalizedArticle(featuredArticleRaw, locale)
+    : undefined
   const categories = Object.entries(blogContent.categories) as [string, string][]
+  const localizedArticles = BLOG_ARTICLES.map((article) =>
+    getLocalizedArticle(article, locale),
+  )
 
   const filteredArticles =
     selectedCategory === "all"
-      ? BLOG_ARTICLES.filter((a) => !a.featured)
-      : BLOG_ARTICLES.filter(
+      ? localizedArticles.filter((a) => !a.featured)
+      : localizedArticles.filter(
           (a) => a.category === selectedCategory && !a.featured,
         )
 

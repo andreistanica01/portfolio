@@ -8,8 +8,8 @@ import { useLocaleDictionary } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
 import { NoiseOverlay } from "@/components/noise-overlay"
 import { ArticleCard } from "@/components/blog/article-card"
-import { BLOG_ARTICLES } from "@/lib/blog-data"
-import { PROJECTS } from "@/lib/projects"
+import { BLOG_ARTICLES, getLocalizedArticle } from "@/lib/blog-data"
+import { PROJECTS, getLocalizedProject } from "@/lib/projects"
 
 export function HomePageClient() {
   const {
@@ -61,8 +61,10 @@ export function HomePageClient() {
     }
   }, [])
 
-  const projects = PROJECTS
-  const previewArticles = BLOG_ARTICLES.slice(0, 3)
+  const projects = PROJECTS.map((project) => getLocalizedProject(project, locale))
+  const previewArticles = BLOG_ARTICLES.slice(0, 3).map((article) =>
+    getLocalizedArticle(article, locale),
+  )
   const shellInset = scrollProgress * 48
   const shellTop = scrollProgress * 16
   const maxShellWidthReduction =

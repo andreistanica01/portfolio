@@ -7,7 +7,11 @@ import { FAQBlock } from "@/components/blog/faq-block"
 import { ArticleCard } from "@/components/blog/article-card"
 import { SiteNavbar } from "@/components/site-navbar"
 import { Button } from "@/components/ui/button"
-import { BLOG_ARTICLES, getArticleBySlug } from "@/lib/blog-data"
+import {
+  BLOG_ARTICLES,
+  getArticleBySlug,
+  getLocalizedArticle,
+} from "@/lib/blog-data"
 import { getRequestLocale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/locale-dictionary"
 import {
@@ -67,23 +71,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params
-  const article = getArticleBySlug(slug)
   const locale = await getRequestLocale()
   const { blogContent, siteConfig } = getDictionary(locale)
+  const articleRaw = getArticleBySlug(slug)
 
-  if (!article) {
+  if (!articleRaw) {
     notFound()
   }
+  const article = getLocalizedArticle(articleRaw, locale)
 
   // Get related articles (same category, excluding current)
   const relatedArticles = BLOG_ARTICLES
-    .filter((a) => a.category === article.category && a.slug !== article.slug)
+    .filter((a) => a.category === articleRaw.category && a.slug !== articleRaw.slug)
+    .map((related) => getLocalizedArticle(related, locale))
     .slice(0, 2)
-  const articleJsonLd = getBlogArticleJsonLd(article)
+  const articleJsonLd = getBlogArticleJsonLd(articleRaw)
   const breadcrumbJsonLd = getBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
-    { name: article.title, path: `/blog/${article.slug}` },
+    { name: articleRaw.title, path: `/blog/${articleRaw.slug}` },
   ])
 
   return (

@@ -11,8 +11,15 @@ export function proxy(request: NextRequest) {
   const region = request.headers.get("x-vercel-ip-country-region")
   const city = request.headers.get("x-vercel-ip-city")
   const existingLocale = request.cookies.get("preferred-locale")?.value
+  const localeOverride = request.nextUrl.searchParams.get("lang")
 
-  if (!existingLocale || !SUPPORTED_LOCALES.has(existingLocale)) {
+  if (localeOverride && SUPPORTED_LOCALES.has(localeOverride)) {
+    response.cookies.set("preferred-locale", localeOverride, {
+      path: "/",
+      maxAge: GEO_COOKIE_MAX_AGE,
+      sameSite: "lax",
+    })
+  } else if (!existingLocale || !SUPPORTED_LOCALES.has(existingLocale)) {
     const autoDetectedLocale = country?.toUpperCase() === "RO" ? "ro" : "en"
 
     response.cookies.set("preferred-locale", autoDetectedLocale, {
