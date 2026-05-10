@@ -3,14 +3,19 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { LocaleProvider } from "@/components/locale-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SITE_CONFIG } from "@/lib/content"
+import { getRequestLocale } from "@/lib/i18n"
+import { getDictionary } from "@/lib/locale-dictionary"
 import { getOrganizationJsonLd, getWebsiteJsonLd } from "@/lib/seo"
 import './globals.css'
 
-const geist = Geist({ subsets: ["latin"] });
-const geistMono = Geist_Mono({ subsets: ["latin"] });
-
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.siteUrl),
   applicationName: SITE_CONFIG.name,
@@ -19,7 +24,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description:
-    "Architectural visualization portfolio focused on interior visualization, exterior renders, 3D floor plans, and real estate presentation imagery.",
+    "Architectural visualization portfolio featuring residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation imagery for design and real estate marketing.",
   keywords: [
     "architectural visualization",
     "interior visualization",
@@ -38,11 +43,11 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     title: `${SITE_CONFIG.name} | Architectural Visualization`,
     description:
-      "Architectural visualization portfolio focused on interior visualization, exterior renders, 3D floor plans, and real estate presentation imagery.",
+      "Architectural visualization portfolio featuring residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation imagery for design and real estate marketing.",
     url: SITE_CONFIG.siteUrl,
     images: [
       {
-        url: "/images/Project_Images/greenmarble1.webp",
+        url: "/images/Project_Images/elegantvilla1.webp",
         alt: "Bevel Graphics architectural visualization portfolio",
       },
     ],
@@ -51,8 +56,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_CONFIG.name} | Architectural Visualization`,
     description:
-      "Architectural visualization portfolio focused on interior visualization, exterior renders, 3D floor plans, and real estate presentation imagery.",
-    images: ["/images/Project_Images/greenmarble1.webp"],
+      "Architectural visualization portfolio featuring residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation imagery for design and real estate marketing.",
+    images: ["/images/Project_Images/elegantvilla1.webp"],
   },
   robots: {
     index: true,
@@ -88,27 +93,34 @@ export const metadata: Metadata = {
 const websiteJsonLd = getWebsiteJsonLd()
 const organizationJsonLd = getOrganizationJsonLd()
 
-export default function RootLayout({
-  
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = await getRequestLocale()
+  const dictionary = getDictionary(locale)
+
   return (
-    
-    <html lang="en" className={geist.className} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${geist.variable} ${geistMono.variable} ${geist.className}`}
+      suppressHydrationWarning
+    >
       <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-          />
-          {children}
-        </ThemeProvider>
+        <LocaleProvider dictionary={dictionary}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+            />
+            {children}
+          </ThemeProvider>
+        </LocaleProvider>
         <SpeedInsights/>
         <Analytics />
       </body>

@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, Play, X } from "lucide-react"
+import { useLocaleDictionary } from "@/components/locale-provider"
 import { NoiseOverlay } from "@/components/noise-overlay"
 import { SiteNavbar } from "@/components/site-navbar"
-import { SITE_CONFIG } from "@/lib/content"
 import type { Project } from "@/lib/projects"
 
 interface ProjectPageClientProps {
@@ -17,6 +18,7 @@ export function ProjectPageClient({
   project,
   moreProjects,
 }: ProjectPageClientProps) {
+  const { siteConfig, locale } = useLocaleDictionary()
   const [selectedImage, setSelectedImage] = useState<{
     type: string
     image: Project["images"][number]
@@ -58,7 +60,7 @@ export function ProjectPageClient({
     }
   }, [selectedImage])
 
-  const navigate = (delta: number) => {
+  const navigate = useCallback((delta: number) => {
     if (!selectedImage) return
     const current = selectedImage.index
     const newIndex = Math.min(
@@ -79,7 +81,7 @@ export function ProjectPageClient({
       })
       setIsAnimating(false)
     }, 260)
-  }
+  }, [project.images, selectedImage])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -100,7 +102,7 @@ export function ProjectPageClient({
 
     window.addEventListener("keydown", handleKey)
     return () => window.removeEventListener("keydown", handleKey)
-  }, [selectedImage, project.images.length])
+  }, [navigate, selectedImage])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -124,7 +126,7 @@ export function ProjectPageClient({
             className="group inline-flex items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
           >
             <ArrowLeft className="h-3 w-3 transition-transform group-hover:-translate-x-1 md:h-4 md:w-4" />
-            BACK TO HOME
+            {locale === "ro" ? "INAPOI LA ACASA" : "BACK TO HOME"}
           </Link>
 
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end md:gap-8">
@@ -165,10 +167,12 @@ export function ProjectPageClient({
                     }
                     className="group relative aspect-video w-full flex-shrink-0 cursor-pointer overflow-hidden border border-border bg-muted/20 transition-all duration-500 hover:border-foreground/30 md:w-1/3"
                   >
-                    <img
+                    <Image
                       src={image.image}
-                      alt={image.label}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      alt={image.alt ?? image.label}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/10" />
 
@@ -238,7 +242,7 @@ export function ProjectPageClient({
       <section className="border-t border-border px-4 py-12 md:px-6 md:py-16 lg:px-12">
         <div className="mx-auto max-w-7xl space-y-6 md:space-y-8">
           <h2 className="text-xl font-bold tracking-tight md:text-2xl">
-            More Projects
+            {locale === "ro" ? "Mai Multe Proiecte" : "More Projects"}
           </h2>
 
           <div className="grid gap-4 md:grid-cols-3 md:gap-6">
@@ -248,10 +252,12 @@ export function ProjectPageClient({
                 href={`/project/${relatedProject.slug}`}
                 className="group relative aspect-[4/3] overflow-hidden border border-border bg-muted/20 transition-all duration-500 hover:border-foreground/30"
               >
-                <img
+                <Image
                   src={relatedProject.previewImage}
-                  alt={relatedProject.title}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  alt={relatedProject.imageAlt ?? relatedProject.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
                 />
 
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -277,17 +283,17 @@ export function ProjectPageClient({
       <footer className="border-t border-border px-4 py-6 md:px-6 md:py-8 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-muted-foreground md:text-sm">
-            {SITE_CONFIG.copyright}
+            {siteConfig.copyright}
           </p>
           <div className="flex items-center gap-6 md:gap-8">
             <a
-              href={SITE_CONFIG.social.instagram}
+              href={siteConfig.social.instagram}
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
               Instagram
             </a>
             <a
-              href={SITE_CONFIG.social.behance}
+              href={siteConfig.social.behance}
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
               Behance
@@ -370,11 +376,13 @@ export function ProjectPageClient({
               </div>
             ) : (
               displayIndex !== null && (
-                <img
+                <Image
                   src={project.images[displayIndex].image}
-                  alt={project.images[displayIndex].label}
+                  alt={project.images[displayIndex].alt ?? project.images[displayIndex].label}
                   key={`${project.id}-${displayIndex}`}
-                  className={`h-full w-full rounded-lg object-contain transition-opacity duration-500 ${
+                  fill
+                  sizes="95vw"
+                  className={`rounded-lg object-contain transition-opacity duration-500 ${
                     isAnimating ? "opacity-0" : "opacity-100"
                   }`}
                 />

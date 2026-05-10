@@ -8,7 +8,11 @@ import {
   getProjectBySlug,
   getProjectMetadata,
 } from "@/lib/projects"
-import { getAbsoluteUrl, getProjectJsonLd } from "@/lib/seo"
+import {
+  getAbsoluteUrl,
+  getProjectJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/lib/seo"
 
 type ProjectPageProps = {
   params: Promise<{
@@ -44,6 +48,7 @@ export async function generateMetadata({
       canonical: `/project/${project.slug}`,
     },
     openGraph: {
+      type: "website",
       title: metadata.title,
       description: metadata.description,
       url: getAbsoluteUrl(`/project/${project.slug}`),
@@ -72,12 +77,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       (candidate) => candidate.slug !== projectBySlug.slug,
     ).slice(0, 3)
     const projectJsonLd = getProjectJsonLd(projectBySlug)
+    const breadcrumbJsonLd = getBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Portfolio", path: "/" },
+      { name: projectBySlug.title, path: `/project/${projectBySlug.slug}` },
+    ])
 
     return (
       <>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <ProjectPageClient
           project={projectBySlug}

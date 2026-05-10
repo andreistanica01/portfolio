@@ -6,15 +6,15 @@ import { NoiseOverlay } from "@/components/noise-overlay"
 import { BlogHero } from "@/components/blog/blog-hero"
 import { ArticleCard } from "@/components/blog/article-card"
 import { SiteNavbar } from "@/components/site-navbar"
+import { useLocaleDictionary } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
-import { BLOG_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { BLOG_ARTICLES, getFeaturedArticle } from "@/lib/blog-data"
 
-const categories = Object.entries(BLOG_CONTENT.categories) as [string, string][]
-
 export function BlogPageClient() {
+  const { blogContent, siteConfig, locale } = useLocaleDictionary()
   const [selectedCategory, setSelectedCategory] = useState("all")
   const featuredArticle = getFeaturedArticle()
+  const categories = Object.entries(blogContent.categories) as [string, string][]
 
   const filteredArticles =
     selectedCategory === "all"
@@ -70,7 +70,9 @@ export function BlogPageClient() {
           {filteredArticles.length === 0 && (
             <div className="py-16 text-center">
               <p className="text-muted-foreground">
-                No articles in this category yet.
+                {locale === "ro"
+                  ? "Nu exista articole in aceasta categorie momentan."
+                  : "No articles in this category yet."}
               </p>
             </div>
           )}
@@ -80,15 +82,15 @@ export function BlogPageClient() {
       <section className="bg-muted/10 px-4 py-16 md:px-6 md:py-24 lg:px-12">
         <div className="mx-auto max-w-4xl space-y-6 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            {BLOG_CONTENT.cta.title}
+            {blogContent.cta.title}
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground">
-            {BLOG_CONTENT.cta.description}
+            {blogContent.cta.description}
           </p>
           <div className="pt-4">
             <Link href="/work-together">
               <Button size="lg" className="px-8">
-                {BLOG_CONTENT.cta.button}
+                {blogContent.cta.button}
               </Button>
             </Link>
           </div>
@@ -98,11 +100,11 @@ export function BlogPageClient() {
       <footer className="border-t border-border px-4 py-6 md:px-6 md:py-8 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-muted-foreground md:text-sm">
-            {SITE_CONFIG.copyright}
+            {siteConfig.copyright}
           </p>
           <div className="flex items-center gap-6 md:gap-8">
             <a
-              href={SITE_CONFIG.social.instagram}
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
@@ -110,7 +112,7 @@ export function BlogPageClient() {
               Instagram
             </a>
             <a
-              href={SITE_CONFIG.social.behance}
+              href={siteConfig.social.behance}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"

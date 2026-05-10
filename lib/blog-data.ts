@@ -6,12 +6,11 @@ export interface BlogArticle {
   slug: string
   title: string
   excerpt: string
+  metaTitle?: string
+  metaDescription?: string
   category:
     | "workflow"
-    | "materials"
     | "lighting"
-    | "software"
-    | "business"
     | "interior visualization"
     | "3D floor plans"
     | "client guide"
@@ -20,6 +19,7 @@ export interface BlogArticle {
   publishedAt: string
   featured: boolean
   image: string
+  imageAlt?: string
   content: BlogSection[]
 }
 
@@ -32,15 +32,201 @@ export interface BlogSection {
 
 export const BLOG_ARTICLES: BlogArticle[] = [
 {
-  slug: "interior-design-render-vs-interior-concept-visualization",
-  title: "Interior Design Render vs Interior Concept Visualization: What Is the Difference?",
+  slug: "office-interior-visualization-for-modern-workspaces",
+  title: "Office Interior Visualization for Modern Workspaces: What Makes a Render Feel Premium?",
   excerpt:
-    "A clear explanation of how interior concept visualization helps clients preview layouts, mood, materials and atmosphere without replacing a full interior design service.",
+    "Learn what makes office interior visualization feel premium, from glazing and lighting to layout clarity, brand atmosphere, and commercial presentation value.",
+  metaTitle:
+    "Office Interior Visualization for Modern Workspaces | ArchViz Guide",
+  metaDescription:
+    "Learn what makes office interior visualization feel premium for leasing, branding, and workplace presentation, from lighting and glazing to layout clarity.",
+  category: "interior visualization",
+  readTime: 6,
+  publishedAt: "2026-05-08",
+  featured: false,
+  image: "/images/Project_Images/office2.webp",
+  imageAlt:
+    "Contemporary office render showing premium office interior visualization with glazing, warm wood, and integrated lighting",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "Premium office interior visualization is not only about making a workspace look clean and modern. A strong office render has to communicate how the space functions, how daylight moves through it, how meeting areas relate to open desks, and how the overall atmosphere supports the brand or business using the space.",
+    },
+    {
+      type: "heading",
+      content: "What Clients Usually Need From an Office Render",
+    },
+    {
+      type: "list",
+      items: [
+        "A clear view of the overall workspace layout",
+        "Visual proof that the office feels functional and professional",
+        "A presentation image for leasing, marketing, or investor review",
+        "A way to test atmosphere, finishes, and furniture direction before execution",
+        "A realistic preview that helps internal teams make decisions faster",
+      ],
+    },
+    {
+      type: "heading",
+      content: "What Makes the Image Feel Premium",
+    },
+    {
+      type: "paragraph",
+      content:
+        "The strongest office visualizations usually combine several things well: clean proportions, believable desk spacing, balanced glazing, realistic material contrast, controlled lighting, and camera angles that show both openness and hierarchy. Premium does not only mean expensive finishes. It means the image feels resolved, usable, and credible as a professional workplace.",
+    },
+    {
+      type: "heading",
+      content: "Important Visual Elements in Office Presentation",
+    },
+    {
+      type: "list",
+      items: [
+        "How open-plan desks relate to private rooms and meeting zones",
+        "Daylight quality from perimeter glazing",
+        "Warm and neutral material balance",
+        "Ceiling lighting that supports the architecture",
+        "Storage, circulation, and furniture spacing that feel realistic",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Why This Helps Before Build-Out",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Office interior visualization helps teams align early. It can support design review, help explain a workplace concept to decision-makers, and create stronger presentation images for commercial leasing or brand rollout. A polished render reduces uncertainty and gives the project a clearer visual direction before implementation starts.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can office renders help with leasing or marketing?",
+          answer:
+            "Yes. Well-made office renders are often used in leasing presentations, pitch decks, brochures, and commercial marketing to show the intended quality and atmosphere of the workspace.",
+        },
+        {
+          question: "Do I need a full interior design package first?",
+          answer:
+            "Not always. A floor plan, measurements, and a clear style direction are often enough to begin the visualization process and define the workspace atmosphere.",
+        },
+        {
+          question: "What matters most in an office visualization?",
+          answer:
+            "The most important elements are believable scale, layout clarity, lighting quality, and a material direction that matches the kind of workplace being presented.",
+        },
+      ],
+    },
+  ],
+},
+{
+  slug: "coffee-shop-interior-visualization-for-brand-presentation",
+  title: "Coffee Shop Interior Visualization for Brand Presentation and Leasing",
+  excerpt:
+    "See how coffee shop interior visualization helps present brand atmosphere, seating flow, service counter design, and hospitality mood before build-out.",
+  metaTitle:
+    "Coffee Shop Interior Visualization for Brand Presentation | ArchViz Guide",
+  metaDescription:
+    "Learn how coffee shop interior visualization helps communicate brand atmosphere, seating layout, service flow, and hospitality mood for presentation and leasing.",
+  category: "workflow",
+  readTime: 5,
+  publishedAt: "2026-05-06",
+  featured: false,
+  image: "/images/Project_Images/coffeeshop2.webp",
+  imageAlt:
+    "Contemporary cafe render showing coffee shop interior visualization for brand presentation and hospitality concept approval",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "Coffee shop interior visualization is especially useful when the goal is not only to show furniture and finishes, but to communicate the full hospitality atmosphere of the space. A successful cafe render helps people understand how the counter, seating, circulation, lighting, and brand mood work together before the project is built.",
+    },
+    {
+      type: "heading",
+      content: "Why Hospitality Renders Matter Early",
+    },
+    {
+      type: "paragraph",
+      content:
+        "In cafe and hospitality projects, first impressions matter. A render can help test whether the concept feels calm, premium, welcoming, minimalist, or community-driven. This is useful for design approval, investor presentation, and commercial marketing because the visual mood often influences how the whole concept is understood.",
+    },
+    {
+      type: "heading",
+      content: "What a Good Cafe Visualization Should Communicate",
+    },
+    {
+      type: "list",
+      items: [
+        "The relationship between service counter and seating area",
+        "How daylight and artificial lighting shape the atmosphere",
+        "The material palette and brand tone of the space",
+        "How guests move through the room",
+        "Whether the concept feels intimate, premium, or high-traffic",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Useful Inputs Before Starting",
+    },
+    {
+      type: "list",
+      items: [
+        "Floor plan or measured layout",
+        "Brand references or mood boards",
+        "Menu/service concept if it affects the counter layout",
+        "Material and color preferences",
+        "Any key views you want to present to investors or clients",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Where These Images Add Value",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Coffee shop renders can be used in hospitality design reviews, presentation decks, leasing conversations, brand launch material, and social media previews. When the layout and atmosphere are shown clearly, the project feels more tangible and easier to approve.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Can a cafe render help if the design is still early?",
+          answer:
+            "Yes. Even with an early-stage concept, visualization helps test mood, layout flow, and the relationship between seating, service, and brand atmosphere.",
+        },
+        {
+          question: "Do hospitality renders need exact furniture models?",
+          answer:
+            "Not always. The most important part is that the furniture scale, spacing, and style direction feel realistic and support the intended concept.",
+        },
+        {
+          question: "Can these images be used for investors?",
+          answer:
+            "Yes. Cafe visualizations are useful in investor decks and commercial presentations because they make the concept easier to understand quickly.",
+        },
+      ],
+    },
+  ],
+},
+{
+  slug: "interior-design-render-vs-interior-concept-visualization",
+  title: "Interior Design Render vs Interior Concept Visualization: What Is the Difference for Clients?",
+  excerpt:
+    "Learn the difference between an interior design render and interior concept visualization, and when each is useful for apartments, renovations, and real estate presentation.",
+  metaTitle:
+    "Interior Design Render vs Interior Concept Visualization | ArchViz Guide",
+  metaDescription:
+    "Understand the difference between interior design renders and interior concept visualization for apartments, renovations, and real estate presentation. Practical ArchViz guide.",
   category: "interior visualization",
   readTime: 6,
   publishedAt: "2026-05-04",
   featured: true,
   image: "/images/Project_Images/living1.webp",
+  imageAlt:
+    "Contemporary apartment living room render illustrating interior concept visualization and realistic interior presentation",
   content: [
     {
       type: "paragraph",
@@ -128,12 +314,18 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   slug: "floor-plan-to-realistic-3d-render",
   title: "How to Turn a Floor Plan Into a Realistic 3D Render",
   excerpt:
-    "A practical guide explaining how a floor plan, sketch or PDF can be transformed into a realistic 3D architectural visualization.",
+    "A practical architectural visualization guide showing how a floor plan, CAD file, sketch, or PDF becomes a realistic 3D interior render.",
+  metaTitle:
+    "How to Turn a Floor Plan Into a Realistic 3D Render | ArchViz Workflow",
+  metaDescription:
+    "See how a floor plan, PDF, or CAD drawing is turned into a realistic 3D render through modeling, materials, lighting, and camera setup in architectural visualization.",
   category: "3D floor plans",
   readTime: 7,
   publishedAt: "2026-05-01",
   featured: true,
   image: "/images/Project_Images/kitchen1.webp",
+  imageAlt:
+    "Kitchen interior render connected to a floor-plan-to-3D-render architectural visualization workflow",
   content: [
     {
       type: "paragraph",
@@ -211,14 +403,20 @@ export const BLOG_ARTICLES: BlogArticle[] = [
 },
 {
   slug: "what-to-send-before-starting-archviz-project",
-  title: "What Should You Send Before Starting an ArchViz Project?",
+  title: "What to Send Before Starting an Architectural Visualization Project",
   excerpt:
-    "A simple checklist for clients preparing floor plans, references, photos, measurements and project details before starting an architectural visualization project.",
+    "A clear client checklist covering floor plans, measurements, references, photos, and project notes before starting an interior or exterior architectural visualization project.",
+  metaTitle:
+    "What to Send Before Starting an Architectural Visualization Project",
+  metaDescription:
+    "Use this client checklist before starting an architectural visualization project, including floor plans, measurements, references, photos, and key project notes.",
   category: "client guide",
   readTime: 5,
   publishedAt: "2026-04-28",
   featured: true,
   image: "/images/Project_Images/bedroom1.webp",
+  imageAlt:
+    "Bedroom interior render used for a client guide about preparing files for an architectural visualization project",
   content: [
     {
       type: "paragraph",
@@ -309,12 +507,18 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   slug: "ai-interior-concept-visualization-workflow",
   title: "How AI Can Speed Up Interior Concept Visualization",
   excerpt:
-    "How AI-assisted concept exploration can help test mood, materials, lighting and style directions before the final 3D interior visualization is created.",
+    "Discover how AI-assisted concept exploration can speed up interior visualization by testing mood, materials, lighting, and style direction before the final 3D render.",
+  metaTitle:
+    "How AI Can Speed Up Interior Concept Visualization | ArchViz Guide",
+  metaDescription:
+    "Learn how AI-assisted concept exploration can speed up interior visualization by helping test mood, materials, lighting, and style before the final 3D render.",
   category: "AI workflow",
   readTime: 6,
   publishedAt: "2026-04-20",
   featured: false,
   image: "/images/Project_Images/bedroom2.webp",
+  imageAlt:
+    "Mediterranean-style bedroom render used to illustrate AI-assisted interior concept visualization workflow",
   content: [
     {
       type: "paragraph",
@@ -401,14 +605,19 @@ export const BLOG_ARTICLES: BlogArticle[] = [
 },
 {
   slug: "mood-board-to-3d-render",
-  title: "Mood Board to 3D Render: How References Become a Visual Concept",
+  title: "How to Turn a Mood Board Into a 3D Render",
   excerpt:
-    "A look at how mood boards, references and AI-assisted exploration can be turned into a realistic architectural visualization.",
+    "See how mood boards, references, and concept direction are translated into a realistic architectural visualization for interior and residential presentation.",
+  metaTitle: "How to Turn a Mood Board Into a 3D Render | ArchViz Workflow",
+  metaDescription:
+    "Learn how mood boards and visual references are turned into realistic architectural visualization through concept direction, modeling, materials, and lighting.",
   category: "workflow",
   readTime: 6,
   publishedAt: "2026-04-12",
   featured: false,
   image: "/images/Project_Images/greenmarble4.webp",
+  imageAlt:
+    "Luxury tropical villa render used to illustrate how mood boards become realistic architectural visualization",
   content: [
     {
       type: "paragraph",
@@ -422,7 +631,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
       type: "paragraph",
       content:
-        "Mood boards help bridge the gap between a client’s idea and the final 3D visualization. Instead of relying only on words like modern, warm, luxury or minimalist, visual references make the direction easier to understand.",
+        "Mood boards help bridge the gap between a client's idea and the final 3D visualization. Instead of relying only on words like modern, warm, luxury or minimalist, visual references make the direction easier to understand.",
     },
     {
       type: "heading",
@@ -491,12 +700,19 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: "lighting-techniques-for-archviz",
     title: "Lighting Techniques That Elevate Architectural Renders",
-    excerpt: "Lighting sets the mood and defines the atmosphere of a visualization. Discover professional lighting approaches that make spaces feel alive and inviting.",
+    excerpt:
+      "Discover lighting techniques for architectural visualization, including day, sunset, and interior mood setups that make renders feel realistic and emotionally engaging.",
+    metaTitle:
+      "Lighting Techniques for Architectural Visualization | ArchViz Guide",
+    metaDescription:
+      "Explore architectural visualization lighting techniques for exterior and interior renders, including mood, sun angle, atmosphere, and realistic presentation strategies.",
     category: "lighting",
     readTime: 8,
     publishedAt: "2025-11-15",
     featured: false,
     image: "/images/Project_Images/exteriorsunset2.webp",
+    imageAlt:
+      "Sunset exterior villa render used to demonstrate lighting techniques in architectural visualization",
     content: [
       {
         type: "paragraph",
@@ -526,7 +742,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
       },
       {
         type: "quote",
-        content: "Good lighting in a render does what good lighting does in life – it makes you feel something about the space.",
+        content: "Good lighting in a render does what good lighting does in life - it makes you feel something about the space.",
       },
       {
         type: "faq",

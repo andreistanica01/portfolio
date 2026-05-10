@@ -1,5 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
-import { BLOG_CONTENT } from "@/lib/content"
+import { useLocaleDictionary } from "@/components/locale-provider"
 import type { BlogArticle } from "@/lib/blog-data"
 
 interface ArticleCardProps {
@@ -8,6 +9,8 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({ article, featured = false }: ArticleCardProps) {
+  const { blogContent } = useLocaleDictionary()
+
   if (featured) {
     return (
       <Link
@@ -17,14 +20,16 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
         <div className="flex flex-col lg:flex-row">
           {/* Image */}
           <div className="relative aspect-video lg:aspect-auto lg:w-1/2 overflow-hidden">
-            <img
+            <Image
               src={article.image}
-              alt={article.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt={article.imageAlt ?? article.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute top-4 left-4">
               <span className="px-3 py-1 text-xs font-medium bg-foreground text-background">
-                {BLOG_CONTENT.featured}
+                {blogContent.featured}
               </span>
             </div>
           </div>
@@ -34,11 +39,11 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="uppercase tracking-wider">
-                  {BLOG_CONTENT.categories[article.category]}
+                  {blogContent.categories[article.category]}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-muted-foreground" />
                 <span>
-                  {article.readTime} {BLOG_CONTENT.readTime}
+                  {article.readTime} {blogContent.readTime}
                 </span>
               </div>
 
@@ -52,7 +57,7 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
 
               <div className="pt-2">
                 <span className="text-sm font-medium group-hover:underline">
-                  {BLOG_CONTENT.readMore}
+                  {blogContent.readMore}
                 </span>
               </div>
             </div>
@@ -69,10 +74,12 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
     >
       {/* Image */}
       <div className="relative aspect-video overflow-hidden">
-        <img
+        <Image
           src={article.image}
-          alt={article.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          alt={article.imageAlt ?? article.title}
+          fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
 
@@ -80,11 +87,11 @@ export function ArticleCard({ article, featured = false }: ArticleCardProps) {
       <div className="p-5 space-y-3 bg-card">
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span className="uppercase tracking-wider">
-            {BLOG_CONTENT.categories[article.category]}
+            {blogContent.categories[article.category]}
           </span>
           <span className="w-1 h-1 rounded-full bg-muted-foreground" />
           <span>
-            {article.readTime} {BLOG_CONTENT.readTime}
+            {article.readTime} {blogContent.readTime}
           </span>
         </div>
 

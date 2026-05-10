@@ -1,10 +1,11 @@
 import { FileText, Image, Palette, Camera } from "lucide-react"
-import { WORK_TOGETHER_CONTENT } from "@/lib/content"
+import { useLocaleDictionary } from "@/components/locale-provider"
 
 const icons = [FileText, Image, Palette, Camera]
 
 export function WhatToPrepare() {
-  const { whatToPrepare } = WORK_TOGETHER_CONTENT
+  const { workTogetherContent } = useLocaleDictionary()
+  const { whatToPrepare } = workTogetherContent
 
   return (
     <section className="py-16 md:py-24 px-4 md:px-6 lg:px-12 bg-muted/10">

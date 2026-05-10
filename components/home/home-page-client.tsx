@@ -1,33 +1,45 @@
 'use client'
 
+import Image from "next/image"
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
+import { useLocaleDictionary } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
 import { NoiseOverlay } from "@/components/noise-overlay"
 import { ArticleCard } from "@/components/blog/article-card"
-import {
-  SITE_CONFIG,
-  NAV_LINKS,
-  HERO_CONTENT,
-  SERVICES_SECTION,
-  ABOUT_SECTION,
-  CONTACT_SECTION,
-  BLOG_CONTENT,
-} from "@/lib/content"
 import { BLOG_ARTICLES } from "@/lib/blog-data"
 import { PROJECTS } from "@/lib/projects"
 
 export function HomePageClient() {
+  const {
+    siteConfig,
+    navLinks,
+    heroContent,
+    servicesSection,
+    aboutSection,
+    contactSection,
+    blogContent,
+    locale,
+  } = useLocaleDictionary()
   const [isLoaded, setIsLoaded] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
   const [activeNav, setActiveNav] = useState("home")
+  const [viewportWidth, setViewportWidth] = useState(1440)
 
   useEffect(() => {
     setIsLoaded(true)
 
     const handleScroll = () => {
+      const rawProgress = Math.min(window.scrollY / 360, 1)
+      const easedProgress = 1 - Math.pow(1 - rawProgress, 3)
+      setScrollProgress(easedProgress)
       setIsScrolled(window.scrollY > 32)
+    }
+
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth)
     }
 
     const syncActiveNav = () => {
@@ -36,18 +48,26 @@ export function HomePageClient() {
     }
 
     handleScroll()
+    handleResize()
     syncActiveNav()
     window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("resize", handleResize)
     window.addEventListener("hashchange", syncActiveNav)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleResize)
       window.removeEventListener("hashchange", syncActiveNav)
     }
   }, [])
 
   const projects = PROJECTS
   const previewArticles = BLOG_ARTICLES.slice(0, 3)
+  const shellInset = scrollProgress * 48
+  const shellTop = scrollProgress * 16
+  const maxShellWidthReduction =
+    viewportWidth < 640 ? 40 : viewportWidth < 768 ? 64 : 96
+  const shellWidthReduction = scrollProgress * maxShellWidthReduction
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -58,10 +78,10 @@ export function HomePageClient() {
           isLoaded ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
-        <div className="space-y-4 text-center md:space-y-6">
-          <h1 className="animate-pulse text-4xl font-bold tracking-tighter md:text-6xl lg:text-8xl">
-            {SITE_CONFIG.name}
-          </h1>
+            <div className="space-y-4 text-center md:space-y-6">
+              <h1 className="animate-pulse text-4xl font-bold tracking-tighter md:text-6xl lg:text-8xl">
+            {siteConfig.name}
+              </h1>
           <div className="mx-auto h-1 w-24 animate-pulse bg-foreground md:w-32" />
         </div>
       </div>
@@ -72,16 +92,23 @@ export function HomePageClient() {
         }`}
       >
         <div
-          className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            isScrolled ? "px-3 pt-3 sm:px-4 md:px-6 md:pt-4 lg:px-12" : "px-0 pt-0"
-          }`}
+          className="transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          style={{
+            paddingTop: `${shellTop}px`,
+            paddingInline: `clamp(${scrollProgress * 12}px, ${scrollProgress * 3}vw, ${shellInset}px)`,
+          }}
         >
           <div
             className={`transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isScrolled
                 ? "mx-auto max-w-7xl rounded-[1.6rem] border border-border/60 bg-background/60 px-3 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.18)] backdrop-blur-sm sm:rounded-[1.8rem] sm:px-4 md:rounded-[2rem] md:px-6"
-                : "w-full border-b border-border/20 bg-gradient-to-b from-background/80 to-transparent px-4 py-4 backdrop-blur-sm md:px-6 md:py-6 lg:px-12"
+              : "w-full border-b border-border/20 bg-gradient-to-b from-background/80 to-transparent px-4 py-4 backdrop-blur-sm md:px-6 md:py-6 lg:px-12"
             }`}
+            style={{
+              transform: `scale(${1 - scrollProgress * 0.035})`,
+              transformOrigin: "top center",
+              width: `calc(100% - ${shellWidthReduction}px)`,
+            }}
           >
             <div
               className={`flex flex-col gap-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:flex-row md:items-center md:justify-between md:gap-6 ${
@@ -90,7 +117,7 @@ export function HomePageClient() {
             >
               <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-start md:pr-6">
                 <h1 className="cursor-pointer whitespace-nowrap text-sm font-bold tracking-tight transition-colors hover:text-muted-foreground sm:text-base md:text-lg">
-                  {SITE_CONFIG.name}
+                  {siteConfig.name}
                 </h1>
                 <Link href="/work-together" className="shrink-0 md:hidden">
                   <Button
@@ -98,7 +125,7 @@ export function HomePageClient() {
                     size="sm"
                     className="group h-7 gap-1 rounded-full px-2.5 text-[11px] sm:px-3"
                   >
-                    {NAV_LINKS.workTogether}
+                    {navLinks.workTogether}
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Button>
                 </Link>
@@ -123,7 +150,7 @@ export function HomePageClient() {
                         : "hover:text-muted-foreground"
                   }`}
                 >
-                  {NAV_LINKS.home}
+                  {navLinks.home}
                 </a>
                 <Link
                   href="#work"
@@ -138,7 +165,7 @@ export function HomePageClient() {
                         : "hover:text-muted-foreground"
                   }`}
                 >
-                  {NAV_LINKS.work}
+                  {navLinks.work}
                 </Link>
                 <Link
                   href="#services"
@@ -153,13 +180,13 @@ export function HomePageClient() {
                         : "hover:text-muted-foreground"
                   }`}
                 >
-                  {NAV_LINKS.services}
+                  {navLinks.services}
                 </Link>
                 <Link
                   href="/blog"
                   className="min-w-0 rounded-full px-1.5 py-1.5 text-xs leading-none transition-colors hover:text-muted-foreground sm:shrink-0 sm:px-3 sm:text-xs md:text-sm"
                 >
-                  {NAV_LINKS.blog}
+                  {navLinks.blog}
                 </Link>
                 <Link
                   href="#about"
@@ -174,7 +201,7 @@ export function HomePageClient() {
                         : "hover:text-muted-foreground"
                   }`}
                 >
-                  {NAV_LINKS.about}
+                  {navLinks.about}
                 </Link>
               </div>
               <Link href="/work-together" className="hidden md:inline-flex md:shrink-0">
@@ -185,7 +212,8 @@ export function HomePageClient() {
                     isScrolled ? "px-3.5" : "px-3"
                   }`}
                 >
-                  {NAV_LINKS.workTogether}
+                  {navLinks.workTogether}
+                  
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Button>
               </Link>
@@ -201,11 +229,11 @@ export function HomePageClient() {
       >
         <div
           className="absolute -top-24 bottom-0 left-0 right-0 bg-cover bg-center bg-no-repeat max-[599px]:hidden"
-          style={{ backgroundImage: `url(${HERO_CONTENT.backgroundImage})` }}
+          style={{ backgroundImage: `url(${heroContent.backgroundImage})` }}
         />
         <div
           className="absolute -top-24 bottom-0 left-0 right-0 bg-cover bg-center bg-no-repeat min-[600px]:hidden"
-          style={{ backgroundImage: `url(${HERO_CONTENT.mobileBackgroundImage})` }}
+          style={{ backgroundImage: `url(${heroContent.mobileBackgroundImage})` }}
         />
         <div className="absolute -top-24 bottom-0 left-0 right-0 bg-gradient-to-b from-background via-transparent to-background" />
 
@@ -213,15 +241,15 @@ export function HomePageClient() {
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end md:gap-8">
             <div className="space-y-2 md:space-y-4">
               <h2 className="text-5xl font-bold tracking-tight md:text-7xl lg:text-9xl">
-                {HERO_CONTENT.title}
+                {heroContent.title}
               </h2>
               <p className="text-base text-muted-foreground md:text-xl">
-                {HERO_CONTENT.subtitle}
+                {heroContent.subtitle}
               </p>
             </div>
             <div className="text-left md:text-right">
               <p className="text-2xl font-light text-muted-foreground md:text-4xl">
-                {HERO_CONTENT.year}
+                {heroContent.year}
               </p>
             </div>
           </div>
@@ -241,10 +269,12 @@ export function HomePageClient() {
                 style={{ transitionDelay: `${700 + index * 100}ms` }}
               >
                 <div className="absolute inset-0 border border-border bg-gradient-to-br from-muted/30 via-muted/20 to-background/50 transition-all duration-500 group-hover:border-foreground/30">
-                  <img
+                  <Image
                     src={project.thumbnail}
                     alt={project.imageAlt ?? project.title}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 flex flex-col justify-between bg-background/90 p-4 opacity-0 transition-all duration-500 group-hover:opacity-100 md:p-6 backdrop-blur-sm">
                     <div className="space-y-2">
@@ -299,15 +329,15 @@ export function HomePageClient() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12">
             <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground md:text-sm">
-              {SERVICES_SECTION.subtitle}
+              {servicesSection.subtitle}
             </p>
             <h2 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              {SERVICES_SECTION.title}
+              {servicesSection.title}
             </h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
-            {SERVICES_SECTION.items.map((service) => (
+            {servicesSection.items.map((service) => (
               <div
                 key={service.id}
                 className="group border border-border p-6 transition-all duration-500 hover:border-foreground/30 md:p-8"
@@ -342,7 +372,7 @@ export function HomePageClient() {
           <div className="mt-12 text-center">
             <Link href="/work-together">
               <Button size="lg" className="group gap-2 px-8">
-                Start a Project
+                {locale === "ro" ? "Incepe un proiect" : "Start a Project"}
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>
             </Link>
@@ -354,22 +384,24 @@ export function HomePageClient() {
         <div className="mx-auto max-w-4xl space-y-8 md:space-y-12">
           <div className="flex flex-col items-start gap-6 md:flex-row md:gap-8">
             <div className="shrink-0">
-              <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-border bg-gradient-to-br from-muted via-muted/50 to-background md:h-32 md:w-32">
+              <div className="relative h-24 w-24 overflow-hidden rounded-full border-2 border-border bg-gradient-to-br from-muted via-muted/50 to-background md:h-32 md:w-32">
                 <div className="flex h-full w-full items-center justify-center text-5xl font-bold text-muted-foreground">
-                  <img
+                  <Image
                     src="/images/image2.webp"
                     alt="Bevel Graphics profile"
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="128px"
+                    className="object-cover"
                   />
                 </div>
               </div>
             </div>
             <div className="flex-1 space-y-3 md:space-y-4">
               <h2 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                {ABOUT_SECTION.title}
+                {aboutSection.title}
               </h2>
               <p className="text-base leading-relaxed text-muted-foreground md:text-xl">
-                {ABOUT_SECTION.bio}
+                {aboutSection.bio}
               </p>
             </div>
           </div>
@@ -377,30 +409,30 @@ export function HomePageClient() {
           <div className="grid gap-6 pt-6 md:grid-cols-3 md:gap-8 md:pt-8">
             <div className="space-y-3">
               <h3 className="text-xs uppercase tracking-wider text-muted-foreground md:text-sm">
-                {ABOUT_SECTION.skills.modeling.title}
+                {aboutSection.skills.modeling.title}
               </h3>
               <div className="space-y-2 text-xs md:text-sm">
-                {ABOUT_SECTION.skills.modeling.items.map((item, index) => (
+                {aboutSection.skills.modeling.items.map((item, index) => (
                   <p key={index}>{item}</p>
                 ))}
               </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-xs uppercase tracking-wider text-muted-foreground md:text-sm">
-                {ABOUT_SECTION.skills.rendering.title}
+                {aboutSection.skills.rendering.title}
               </h3>
               <div className="space-y-2 text-xs md:text-sm">
-                {ABOUT_SECTION.skills.rendering.items.map((item, index) => (
+                {aboutSection.skills.rendering.items.map((item, index) => (
                   <p key={index}>{item}</p>
                 ))}
               </div>
             </div>
             <div className="space-y-3">
               <h3 className="text-xs uppercase tracking-wider text-muted-foreground md:text-sm">
-                {ABOUT_SECTION.skills.postProduction.title}
+                {aboutSection.skills.postProduction.title}
               </h3>
               <div className="space-y-2 text-xs md:text-sm">
-                {ABOUT_SECTION.skills.postProduction.items.map((item, index) => (
+                {aboutSection.skills.postProduction.items.map((item, index) => (
                   <p key={index}>{item}</p>
                 ))}
               </div>
@@ -414,17 +446,17 @@ export function HomePageClient() {
           <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground md:text-sm">
-                {BLOG_CONTENT.hero.subtitle}
+                {blogContent.hero.subtitle}
               </p>
               <h2 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                {BLOG_CONTENT.hero.title}
+                {blogContent.hero.title}
               </h2>
             </div>
             <Link
               href="/blog"
               className="text-sm underline underline-offset-4 transition-colors hover:text-muted-foreground"
             >
-              View all articles
+              {locale === "ro" ? "Vezi toate articolele" : "View all articles"}
             </Link>
           </div>
 
@@ -442,10 +474,10 @@ export function HomePageClient() {
       >
         <div className="mx-auto max-w-4xl space-y-6 text-center md:space-y-8">
           <h2 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-            {CONTACT_SECTION.title}
+            {contactSection.title}
           </h2>
           <p className="mx-auto max-w-2xl text-base text-muted-foreground md:text-xl">
-            {CONTACT_SECTION.subtitle}
+            {contactSection.subtitle}
           </p>
           <div className="flex justify-center pt-4 md:pt-8">
             <Link href="/work-together">
@@ -453,7 +485,7 @@ export function HomePageClient() {
                 size="lg"
                 className="group gap-2 px-6 py-4 text-base md:px-8 md:py-6 md:text-lg"
               >
-                Start a Project
+                {locale === "ro" ? "Incepe un proiect" : "Start a Project"}
                 <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Button>
             </Link>
@@ -464,23 +496,23 @@ export function HomePageClient() {
       <footer className="border-t border-border px-4 py-6 md:px-6 md:py-8 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-muted-foreground md:text-sm">
-            {SITE_CONFIG.copyright}
+            {siteConfig.copyright}
           </p>
           <div className="flex items-center gap-6 md:gap-8">
             <Link
               href="/blog"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
-              Blog
+              {navLinks.blog}
             </Link>
             <Link
               href="/work-together"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
-              Work Together
+              {navLinks.workTogether}
             </Link>
             <a
-              href={SITE_CONFIG.social.instagram}
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
@@ -488,7 +520,7 @@ export function HomePageClient() {
               Instagram
             </a>
             <a
-              href={SITE_CONFIG.social.behance}
+              href={siteConfig.social.behance}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"

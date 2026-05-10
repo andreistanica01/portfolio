@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   siteUrl: "https://bevel.graphics",
   email: "bevel.graphics1@gmail.com",
   tagline: "Architectural Visualization Studio",
-  description: "Professional 3D architectural visualization services. Interior and exterior renders, 3D floor plans, and photorealistic imagery for architects, developers, and real estate.",
+  description: "Professional 3D architectural visualization services including residential interiors, exterior renders, office visualization, hospitality interiors, and photorealistic presentation imagery.",
   copyright: "2026 All rights reserved",
   social: {
     instagram: "https://www.instagram.com/bevel.graphics/",
@@ -166,14 +166,11 @@ export const BLOG_CONTENT = {
   categories: {
     all: "All Articles",
     workflow: "Workflow",
-    materials: "Materials",
-    lighting: "Lighting",
-    software: "Software",
-    business: "Business",
     "interior visualization": "Interior Visualization",
     "3D floor plans": "3D Floor Plans",
     "client guide": "Client Guide",
     "AI workflow": "AI Workflow",
+    lighting: "Lighting",
   },
   cta: {
     title: "Ready to Start Your Project?",

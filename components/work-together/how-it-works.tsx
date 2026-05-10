@@ -1,7 +1,8 @@
-import { WORK_TOGETHER_CONTENT } from "@/lib/content"
+import { useLocaleDictionary } from "@/components/locale-provider"
 
 export function HowItWorks() {
-  const { howItWorks } = WORK_TOGETHER_CONTENT
+  const { workTogetherContent } = useLocaleDictionary()
+  const { howItWorks } = workTogetherContent
 
   return (
     <section className="py-16 md:py-24 px-4 md:px-6 lg:px-12">

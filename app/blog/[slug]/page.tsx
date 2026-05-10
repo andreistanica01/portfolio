@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { NoiseOverlay } from "@/components/noise-overlay"
@@ -6,9 +7,14 @@ import { FAQBlock } from "@/components/blog/faq-block"
 import { ArticleCard } from "@/components/blog/article-card"
 import { SiteNavbar } from "@/components/site-navbar"
 import { Button } from "@/components/ui/button"
-import { BLOG_CONTENT, SITE_CONFIG } from "@/lib/content"
 import { BLOG_ARTICLES, getArticleBySlug } from "@/lib/blog-data"
-import { getAbsoluteUrl, getBlogArticleJsonLd } from "@/lib/seo"
+import { getRequestLocale } from "@/lib/i18n"
+import { getDictionary } from "@/lib/locale-dictionary"
+import {
+  getAbsoluteUrl,
+  getBlogArticleJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/lib/seo"
 import type { Metadata } from "next"
 
 interface PageProps {
@@ -32,23 +38,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${article.title} | Bevel Graphics Blog`,
-    description: article.excerpt,
+    title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
+    description: article.metaDescription ?? article.excerpt,
+    alternates: {
+      canonical: `/blog/${article.slug}`,
+    },
     openGraph: {
-      title: `${article.title} | Bevel Graphics Blog`,
-      description: article.excerpt,
+      type: "article",
+      title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
+      description: article.metaDescription ?? article.excerpt,
       url: getAbsoluteUrl(`/blog/${article.slug}`),
+      publishedTime: article.publishedAt,
       images: [
         {
           url: article.image,
-          alt: article.title,
+          alt: article.imageAlt ?? article.title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${article.title} | Bevel Graphics Blog`,
-      description: article.excerpt,
+      title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
+      description: article.metaDescription ?? article.excerpt,
       images: [article.image],
     },
   }
@@ -57,6 +68,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params
   const article = getArticleBySlug(slug)
+  const locale = await getRequestLocale()
+  const { blogContent, siteConfig } = getDictionary(locale)
 
   if (!article) {
     notFound()
@@ -67,6 +80,11 @@ export default async function ArticlePage({ params }: PageProps) {
     .filter((a) => a.category === article.category && a.slug !== article.slug)
     .slice(0, 2)
   const articleJsonLd = getBlogArticleJsonLd(article)
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: article.title, path: `/blog/${article.slug}` },
+  ])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -74,6 +92,10 @@ export default async function ArticlePage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <SiteNavbar activePage="blog" />
@@ -87,16 +109,16 @@ export default async function ArticlePage({ params }: PageProps) {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              Back to all articles
+              {locale === "ro" ? "Inapoi la toate articolele" : "Back to all articles"}
             </Link>
 
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <span className="uppercase tracking-wider">
-                {BLOG_CONTENT.categories[article.category]}
+                {blogContent.categories[article.category]}
               </span>
               <span className="w-1 h-1 rounded-full bg-muted-foreground" />
               <span>
-                {article.readTime} {BLOG_CONTENT.readTime}
+                {article.readTime} {blogContent.readTime}
               </span>
             </div>
 
@@ -113,11 +135,13 @@ export default async function ArticlePage({ params }: PageProps) {
         {/* Featured Image */}
         <div className="px-4 md:px-6 lg:px-12 pb-12">
           <div className="max-w-4xl mx-auto">
-            <div className="aspect-video overflow-hidden border border-border">
-              <img
+            <div className="relative aspect-video overflow-hidden border border-border">
+              <Image
                 src={article.image}
-                alt={article.title}
-                className="w-full h-full object-cover"
+                alt={article.imageAlt ?? article.title}
+                fill
+                sizes="(max-width: 1280px) 100vw, 1024px"
+                className="object-cover"
               />
             </div>
           </div>
@@ -168,15 +192,15 @@ export default async function ArticlePage({ params }: PageProps) {
       <section className="py-16 md:py-24 px-4 md:px-6 lg:px-12 bg-muted/10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            {BLOG_CONTENT.cta.title}
+            {blogContent.cta.title}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            {BLOG_CONTENT.cta.description}
+            {blogContent.cta.description}
           </p>
           <div className="pt-4">
             <Link href="/work-together">
               <Button size="lg" className="px-8">
-                {BLOG_CONTENT.cta.button}
+                {blogContent.cta.button}
               </Button>
             </Link>
           </div>
@@ -187,7 +211,9 @@ export default async function ArticlePage({ params }: PageProps) {
       {relatedArticles.length > 0 && (
         <section className="py-16 px-4 md:px-6 lg:px-12">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">Related Articles</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">
+              {locale === "ro" ? "Articole Similare" : "Related Articles"}
+            </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {relatedArticles.map((relatedArticle) => (
                 <ArticleCard key={relatedArticle.slug} article={relatedArticle} />
@@ -201,11 +227,11 @@ export default async function ArticlePage({ params }: PageProps) {
       <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs md:text-sm text-muted-foreground">
-            {SITE_CONFIG.copyright}
+            {siteConfig.copyright}
           </p>
           <div className="flex items-center gap-6 md:gap-8">
             <a
-              href={SITE_CONFIG.social.instagram}
+              href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -213,7 +239,7 @@ export default async function ArticlePage({ params }: PageProps) {
               Instagram
             </a>
             <a
-              href={SITE_CONFIG.social.behance}
+              href={siteConfig.social.behance}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors"
