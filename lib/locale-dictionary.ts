@@ -66,7 +66,7 @@ const romanianDictionary: LocalizedDictionary = {
     blog: "Blog",
     about: "Despre",
     contact: "Contact",
-    workTogether: "Lucram Impreuna",
+    workTogether: "Hai sa colaboram",
   },
   heroContent: {
     ...HERO_CONTENT,
@@ -141,7 +141,7 @@ const romanianDictionary: LocalizedDictionary = {
       title: "Vrei sa incepem proiectul?",
       description:
         "Hai sa discutam cum te pot ajuta sa iti prezinti proiectul prin vizualizari 3D de impact.",
-      button: "Lucram Impreuna",
+      button: "Hai sa colaboram",
     },
     readMore: "Citeste articolul",
     readTime: "min de citit",
