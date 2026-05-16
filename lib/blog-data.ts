@@ -10,6 +10,8 @@ export interface BlogArticle {
   excerpt: string
   metaTitle?: string
   metaDescription?: string
+  metaTitleRo?: string
+  metaDescriptionRo?: string
   category:
     | "workflow"
     | "lighting"
@@ -1418,6 +1420,28 @@ export function getLocalizedArticle(
     excerpt: article.excerptRo ?? article.excerpt,
     imageAlt: article.imageAltRo ?? article.imageAlt,
     content: article.contentRo ?? article.content,
+  }
+}
+
+export function getArticleMetadata(
+  article: BlogArticle,
+  locale: Locale = "en",
+) {
+  const localizedArticle = getLocalizedArticle(article, locale)
+
+  if (locale === "ro") {
+    return {
+      title:
+        article.metaTitleRo ??
+        `${localizedArticle.title} | Blog Vizualizare Arhitecturala`,
+      description:
+        article.metaDescriptionRo ?? localizedArticle.excerpt,
+    }
+  }
+
+  return {
+    title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
+    description: article.metaDescription ?? article.excerpt,
   }
 }
 

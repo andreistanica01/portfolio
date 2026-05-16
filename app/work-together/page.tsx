@@ -7,33 +7,49 @@ import { ProjectForm } from "@/components/work-together/project-form"
 import { SITE_CONFIG } from "@/lib/content"
 import { getRequestLocale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/locale-dictionary"
+import { getOpenGraphLocale } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Work Together",
-  description:
-    "Start your architectural visualization project and request a quote for residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation visuals.",
-  alternates: {
-    canonical: "/work-together",
-  },
-  openGraph: {
-    title: "Work Together | Bevel Graphics",
-    description:
-      "Request a quote for architectural visualization services including residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation visuals.",
-    url: `${SITE_CONFIG.siteUrl}/work-together`,
-    images: [
-      {
-        url: "/images/Project_Images/greenmarble1.webp",
-        alt: "Bevel Graphics architectural visualization inquiry page",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Work Together | Bevel Graphics",
-    description:
-      "Request a quote for architectural visualization services including residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation visuals.",
-    images: ["/images/Project_Images/greenmarble1.webp"],
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale()
+  const isRomanian = locale === "ro"
+
+  return {
+    title: isRomanian ? "Colaborare" : "Work Together",
+    description: isRomanian
+      ? "Porneste proiectul tau de vizualizare arhitecturala si cere o oferta pentru interioare rezidentiale, exterioare de lux, vizualizare office, randari hospitality si imagini de prezentare."
+      : "Start your architectural visualization project and request a quote for residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation visuals.",
+    alternates: {
+      canonical: "/work-together",
+    },
+    openGraph: {
+      locale: getOpenGraphLocale(locale),
+      title: isRomanian
+        ? "Colaborare | Bevel Graphics"
+        : "Work Together | Bevel Graphics",
+      description: isRomanian
+        ? "Cere o oferta pentru servicii de vizualizare arhitecturala, inclusiv interioare rezidentiale, exterioare de lux, office, hospitality si imagini fotorealiste de prezentare."
+        : "Request a quote for architectural visualization services including residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation visuals.",
+      url: `${SITE_CONFIG.siteUrl}/work-together`,
+      images: [
+        {
+          url: "/images/Project_Images/greenmarble1.webp",
+          alt: isRomanian
+            ? "Pagina Bevel Graphics pentru cereri de proiect"
+            : "Bevel Graphics architectural visualization inquiry page",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: isRomanian
+        ? "Colaborare | Bevel Graphics"
+        : "Work Together | Bevel Graphics",
+      description: isRomanian
+        ? "Cere o oferta pentru servicii de vizualizare arhitecturala, inclusiv interioare rezidentiale, exterioare de lux, office, hospitality si imagini fotorealiste de prezentare."
+        : "Request a quote for architectural visualization services including residential interiors, luxury exteriors, office visualization, hospitality renders, and presentation visuals.",
+      images: ["/images/Project_Images/greenmarble1.webp"],
+    },
+  }
 }
 
 export default async function WorkTogetherPage() {

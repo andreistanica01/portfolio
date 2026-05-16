@@ -12,6 +12,7 @@ import {
 } from "@/lib/projects"
 import {
   getAbsoluteUrl,
+  getOpenGraphLocale,
   getProjectJsonLd,
   getBreadcrumbJsonLd,
 } from "@/lib/seo"
@@ -32,16 +33,24 @@ export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params
+  const locale = await getRequestLocale()
   const project = getProjectBySlug(slug) ?? getProjectById(slug)
 
   if (!project) {
     return {
-      title: `Project Not Found | ${SITE_CONFIG.name}`,
-      description: "The requested portfolio project could not be found.",
+      title:
+        locale === "ro"
+          ? `Proiect Negasit | ${SITE_CONFIG.name}`
+          : `Project Not Found | ${SITE_CONFIG.name}`,
+      description:
+        locale === "ro"
+          ? "Proiectul de portofoliu solicitat nu a putut fi gasit."
+          : "The requested portfolio project could not be found.",
     }
   }
 
-  const metadata = getProjectMetadata(project)
+  const localizedProject = getLocalizedProject(project, locale)
+  const metadata = getProjectMetadata(project, locale)
 
   return {
     title: metadata.title,
@@ -51,13 +60,14 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
+      locale: getOpenGraphLocale(locale),
       title: metadata.title,
       description: metadata.description,
       url: getAbsoluteUrl(`/project/${project.slug}`),
       images: [
         {
           url: project.previewImage,
-          alt: project.imageAlt ?? project.title,
+          alt: localizedProject.imageAlt ?? localizedProject.title,
         },
       ],
     },
@@ -82,11 +92,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       .slice(0, 3)
       .map((candidate) => getLocalizedProject(candidate, locale))
     const localizedProject = getLocalizedProject(projectBySlug, locale)
-    const projectJsonLd = getProjectJsonLd(projectBySlug)
+    const projectJsonLd = getProjectJsonLd(projectBySlug, locale)
     const breadcrumbJsonLd = getBreadcrumbJsonLd([
-      { name: "Home", path: "/" },
-      { name: "Portfolio", path: "/" },
-      { name: projectBySlug.title, path: `/project/${projectBySlug.slug}` },
+      { name: locale === "ro" ? "Acasa" : "Home", path: "/" },
+      { name: locale === "ro" ? "Portofoliu" : "Portfolio", path: "/" },
+      { name: localizedProject.title, path: `/project/${projectBySlug.slug}` },
     ])
 
     return (

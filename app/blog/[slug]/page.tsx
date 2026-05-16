@@ -9,6 +9,7 @@ import { SiteNavbar } from "@/components/site-navbar"
 import { Button } from "@/components/ui/button"
 import {
   BLOG_ARTICLES,
+  getArticleMetadata,
   getArticleBySlug,
   getLocalizedArticle,
 } from "@/lib/blog-data"
@@ -18,6 +19,7 @@ import {
   getAbsoluteUrl,
   getBlogArticleJsonLd,
   getBreadcrumbJsonLd,
+  getOpenGraphLocale,
 } from "@/lib/seo"
 import type { Metadata } from "next"
 
@@ -33,37 +35,45 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
+  const locale = await getRequestLocale()
   const article = getArticleBySlug(slug)
 
   if (!article) {
     return {
-      title: "Article Not Found | Bevel Graphics",
+      title:
+        locale === "ro"
+          ? "Articol Negasit | Bevel Graphics"
+          : "Article Not Found | Bevel Graphics",
     }
   }
 
+  const localizedArticle = getLocalizedArticle(article, locale)
+  const metadata = getArticleMetadata(article, locale)
+
   return {
-    title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
-    description: article.metaDescription ?? article.excerpt,
+    title: metadata.title,
+    description: metadata.description,
     alternates: {
       canonical: `/blog/${article.slug}`,
     },
     openGraph: {
       type: "article",
-      title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
-      description: article.metaDescription ?? article.excerpt,
+      locale: getOpenGraphLocale(locale),
+      title: metadata.title,
+      description: metadata.description,
       url: getAbsoluteUrl(`/blog/${article.slug}`),
       publishedTime: article.publishedAt,
       images: [
         {
           url: article.image,
-          alt: article.imageAlt ?? article.title,
+          alt: localizedArticle.imageAlt ?? localizedArticle.title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
-      description: article.metaDescription ?? article.excerpt,
+      title: metadata.title,
+      description: metadata.description,
       images: [article.image],
     },
   }
@@ -85,11 +95,11 @@ export default async function ArticlePage({ params }: PageProps) {
     .filter((a) => a.category === articleRaw.category && a.slug !== articleRaw.slug)
     .map((related) => getLocalizedArticle(related, locale))
     .slice(0, 2)
-  const articleJsonLd = getBlogArticleJsonLd(articleRaw)
+  const articleJsonLd = getBlogArticleJsonLd(articleRaw, locale)
   const breadcrumbJsonLd = getBreadcrumbJsonLd([
-    { name: "Home", path: "/" },
+    { name: locale === "ro" ? "Acasa" : "Home", path: "/" },
     { name: "Blog", path: "/blog" },
-    { name: articleRaw.title, path: `/blog/${articleRaw.slug}` },
+    { name: article.title, path: `/blog/${articleRaw.slug}` },
   ])
 
   return (

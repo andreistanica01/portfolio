@@ -25,6 +25,8 @@ export type Project = {
   imageAlt?: string
   metaTitle?: string
   metaDescription?: string
+  metaTitleRo?: string
+  metaDescriptionRo?: string
   images: ProjectMediaItem[]
   titleRo?: string
   subtitleRo?: string
@@ -37,6 +39,11 @@ const defaultMetaTitle = (project: Project) =>
   `${project.title} | ${SITE_CONFIG.name}`
 
 const defaultMetaDescription = (project: Project) =>
+  project.description.length > 160
+    ? `${project.description.slice(0, 157).trimEnd()}...`
+    : project.description
+
+const defaultMetaDescriptionRo = (project: Project) =>
   project.description.length > 160
     ? `${project.description.slice(0, 157).trimEnd()}...`
     : project.description
@@ -862,7 +869,25 @@ export function getLocalizedProject(project: Project, locale: Locale): Project {
   }
 }
 
-export const getProjectMetadata = (project: Project) => ({
-  title: project.metaTitle ?? defaultMetaTitle(project),
-  description: project.metaDescription ?? defaultMetaDescription(project),
-})
+export const getProjectMetadata = (
+  project: Project,
+  locale: Locale = "en",
+) => {
+  const localizedProject = getLocalizedProject(project, locale)
+
+  if (locale === "ro") {
+    return {
+      title:
+        project.metaTitleRo ??
+        `${localizedProject.title} | Portofoliu Vizualizare Arhitecturala`,
+      description:
+        project.metaDescriptionRo ??
+        defaultMetaDescriptionRo(localizedProject),
+    }
+  }
+
+  return {
+    title: project.metaTitle ?? defaultMetaTitle(project),
+    description: project.metaDescription ?? defaultMetaDescription(project),
+  }
+}
