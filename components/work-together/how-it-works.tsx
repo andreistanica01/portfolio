@@ -1,3 +1,5 @@
+"use client"
+
 import { useLocaleDictionary } from "@/components/locale-provider"
 
 export function HowItWorks() {

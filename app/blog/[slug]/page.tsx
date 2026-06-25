@@ -196,6 +196,25 @@ export default async function ArticlePage({ params }: PageProps) {
                   )
                 case "faq":
                   return section.faqs ? <FAQBlock key={index} faqs={section.faqs} /> : null
+                case "image":
+                  return section.src ? (
+                    <figure key={index} className="my-8 space-y-3">
+                      <div className="relative aspect-video overflow-hidden border border-border bg-muted/20">
+                        <Image
+                          src={section.src}
+                          alt={section.alt ?? article.title}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 768px"
+                          className="object-cover"
+                        />
+                      </div>
+                      {section.caption ? (
+                        <figcaption className="text-sm text-muted-foreground leading-relaxed">
+                          {section.caption}
+                        </figcaption>
+                      ) : null}
+                    </figure>
+                  ) : null
                 default:
                   return null
               }

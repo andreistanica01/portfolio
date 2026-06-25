@@ -149,7 +149,7 @@ const romanianDictionary: LocalizedDictionary = {
   },
   workTogetherContent: {
     hero: {
-      title: "Lucram Impreuna",
+      title: "Hai sa colaboram",
       subtitle: "Hai sa transformam viziunea ta arhitecturala in imagini convingatoare",
     },
     howItWorks: {

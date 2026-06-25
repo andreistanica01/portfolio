@@ -32,13 +32,348 @@ export interface BlogArticle {
 }
 
 export interface BlogSection {
-  type: "paragraph" | "heading" | "list" | "quote" | "faq"
+  type: "paragraph" | "heading" | "list" | "quote" | "faq" | "image"
   content?: string
   items?: string[]
   faqs?: { question: string; answer: string }[]
+  src?: string
+  alt?: string
+  caption?: string
 }
 
 export const BLOG_ARTICLES: BlogArticle[] = [
+{
+  slug: "reel-director-blender-addon-for-3d-content-creators",
+  title:
+    "Reel Director Blender Addon for 3D Content Creators: Faster Social-Ready Motion, Clay Breakdowns, and Viewport Visuals",
+  titleRo:
+    "Addonul Reel Director pentru Blender: Miscari mai Rapide, Clay Breakdowns si Vizuale Pregatite pentru Social Media",
+  excerpt:
+    "Reel Director is a Blender addon built for 3D content creators who want faster reel formatting, camera moves, object animation, clay breakdowns, viewport looks, and cleaner short-form output from existing scenes.",
+  excerptRo:
+    "Reel Director este un addon Blender creat pentru artisti 3D care vor formatare rapida pentru reels, miscari de camera, animatii de obiecte, clay breakdowns, viewport looks si output mai curat pentru continut short-form din scene deja existente.",
+  metaTitle:
+    "Reel Director Blender Addon Review | Camera Moves, Clay Renders, Reel Output",
+  metaDescription:
+    "Explore Reel Director, a Blender addon for 3D content creators with reel formatting, 32+ camera moves, 19+ object animations, clay breakdowns, viewport looks, render optimization, and social-ready output tools.",
+  metaTitleRo:
+    "Reel Director pentru Blender | Miscari de Camera, Clay Renders si Output pentru Reels",
+  metaDescriptionRo:
+    "Descopera Reel Director, un addon Blender pentru creatori 3D cu formatare pentru reels, peste 32 de miscari de camera, peste 19 animatii de obiecte, clay breakdowns, viewport looks, optimizare de randare si output pregatit pentru social media.",
+  category: "workflow",
+  readTime: 7,
+  publishedAt: "2026-06-25",
+  featured: true,
+  image: "/images/secondary/reel-director-thumbnail.jpg",
+  imageAlt:
+    "Reel Director Blender addon promotional thumbnail showing social-ready 3D content workflow for reels, shorts, and camera-driven scene presentation",
+  imageAltRo:
+    "Thumbnail promotional pentru addonul Reel Director din Blender, care prezinta un workflow 3D pregatit pentru reels, shorts si prezentare dinamica de scena",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "Reel Director is a Blender addon built for 3D content creators who want to turn existing scenes into short-form content faster. Instead of rebuilding a workflow across separate tools, it brings reel formatting, camera motion, object animation, clay render breakdowns, viewport styling, render optimization, and output control into one focused panel.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "That makes it especially useful for artists who already have strong 3D scenes and want to extract more presentation value from them. Whether the scene is architectural visualization, product work, automotive content, or a stylized concept piece, the addon is designed to help convert a still scene into social-ready motion content with less setup friction.",
+    },
+    {
+      type: "heading",
+      content: "What Reel Director Does Inside Blender",
+    },
+    {
+      type: "list",
+      items: [
+        "Sets up reel-friendly formats for vertical, square, and landscape output",
+        "Provides more than 32 camera movement presets for faster motion exploration",
+        "Adds more than 19 object animation presets without rebuilding the scene",
+        "Creates clay render and reveal breakdowns for technical or social content",
+        "Applies stylized viewport solid looks for quick previews and graphic visuals",
+        "Includes render optimization and output cleanup tools in the same workflow",
+      ],
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-1.jpg",
+      alt: "Reel Director Blender addon interface showing reel format options for landscape, vertical, and square short-form content",
+      caption:
+        "Reel Format helps set the framing, aspect ratio, and timing for short-form content directly inside Blender.",
+    },
+    {
+      type: "heading",
+      content: "Built Around Short-Form Content, Not Just Final Renders",
+    },
+    {
+      type: "paragraph",
+      content:
+        "One of the strongest parts of Reel Director is that it is not limited to final polished renders. It is built around how artists actually publish content now: quick previews, behind-the-scenes visuals, motion tests, breakdowns, and social clips that keep a portfolio or product launch active between full hero renders.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "For Blender users, that means a single environment can now support both presentation quality and content velocity. A finished scene can become a vertical reel, a stylized clay clip, a viewport breakdown, or a camera-led teaser without forcing a completely separate production pipeline.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-2.jpg",
+      alt: "Reel Director camera movement browser in Blender showing multiple preset motion paths for cinematic 3D content creation",
+      caption:
+        "The camera movement system is built to generate faster shot variation for reels, previews, and cinematic product or archviz posts.",
+    },
+    {
+      type: "heading",
+      content: "Camera Moves and Object Animation Without Rebuilding the Scene",
+    },
+    {
+      type: "paragraph",
+      content:
+        "A common Blender bottleneck is that artists know the scene already looks good, but they lose time rebuilding motion just to make it publishable as video. Reel Director reduces that friction by giving access to curated camera movement presets, fresh randomization options, and object animation tools that work on top of existing work.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "This matters because fast iteration is often the difference between posting one polished still and publishing a full sequence of useful content. Instead of spending that extra time rigging a small teaser manually, artists can test motion direction quickly and keep the scene productive for more than one deliverable.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-3.jpg",
+      alt: "Reel Director object animation panel in Blender showing animation categories and timing controls for scene elements",
+      caption:
+        "Object animation presets make it easier to stage reveals, assemblies, drops, and layered motion without rebuilding the entire scene setup.",
+    },
+    {
+      type: "heading",
+      content: "Clay Breakdowns and Viewport Looks Add Real Content Value",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director also stands out because it supports content formats that audiences respond to well: clay render breakdowns, reveal transitions, wire overlays, and stylized viewport visuals. These are valuable not only as technical demonstrations, but also as attention-grabbing assets for Instagram, TikTok, YouTube Shorts, launch pages, and marketplace presentation.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "For artists working in architectural visualization, this is particularly useful. A villa, apartment, interior, or product scene can be repurposed into educational or promotional content that shows process, structure, and visual craft, not only the final frame.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-4.jpg",
+      alt: "Clay render settings in Reel Director for Blender with color, wireframe, and breakdown controls for technical presentation",
+      caption:
+        "Clay render controls are designed for breakdown content, reveal shots, and social posts that expose the structure behind the final image.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-5.jpg",
+      alt: "Reel Director viewport solid look controls in Blender with stylized matcap and wireframe presentation options",
+      caption:
+        "Viewport solid looks turn fast previews into stylized visuals that still feel intentional enough to publish.",
+    },
+    {
+      type: "heading",
+      content: "Who Reel Director Is Best For",
+    },
+    {
+      type: "list",
+      items: [
+        "Blender artists who want to publish more often from scenes they already built",
+        "Archviz artists creating reels, progress posts, and client-facing breakdowns",
+        "Product or automotive artists who need camera-led social content quickly",
+        "Creators launching addons, assets, or courses and needing stronger promo visuals",
+        "Anyone who wants faster motion tests and cleaner short-form output inside Blender",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Why the Addon Feels Useful in Practice",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Many addons promise speed, but Reel Director feels aligned with a real publishing workflow. It is not only about rendering faster. It is about reducing the friction between a finished 3D scene and the multiple kinds of content artists now need to stay visible online. That is where the reel formatting, motion presets, clay visuals, viewport looks, and cleanup tools start to work together as a system rather than as isolated features.",
+    },
+    {
+      type: "quote",
+      content:
+        "Reel Director is valuable because it helps artists build more content from the scenes they already made, without breaking the Blender workflow they already know.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "What is Reel Director for Blender?",
+          answer:
+            "Reel Director is a Blender addon designed to help 3D content creators produce short-form video content, clay breakdowns, viewport visuals, camera animations, and social-ready outputs from existing scenes.",
+        },
+        {
+          question: "Is Reel Director useful for architectural visualization artists?",
+          answer:
+            "Yes. Archviz artists can use it to turn villa, apartment, interior, and exterior scenes into reels, process breakdowns, and motion-led presentations without rebuilding the scene from scratch.",
+        },
+        {
+          question: "Does Reel Director replace final rendering?",
+          answer:
+            "No. It complements final rendering by making it easier to create additional content around the scene, including previews, motion clips, clay visuals, and social-ready formats.",
+        },
+      ],
+    },
+  ],
+  contentRo: [
+    {
+      type: "paragraph",
+      content:
+        "Reel Director este un addon Blender creat pentru artisti 3D care vor sa transforme mai rapid scenele existente in continut short-form. In loc sa imparti workflow-ul in mai multe tool-uri, addonul aduce in acelasi panou formatarea pentru reels, miscarea camerei, animatia obiectelor, clay render breakdowns, viewport styling, optimizarea randarii si controlul output-ului.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Asta il face util mai ales pentru artistii care au deja scene bune si vor sa scoata mai multa valoare de prezentare din ele. Fie ca scena este de archviz, produs, automotive sau concept stylized, addonul este gandit sa transforme un still intr-un continut video pregatit pentru social media cu mai putin efort de setup.",
+    },
+    {
+      type: "heading",
+      content: "Ce face Reel Director in Blender",
+    },
+    {
+      type: "list",
+      items: [
+        "Seteaza formate potrivite pentru reels in vertical, square si landscape",
+        "Ofera peste 32 de miscari de camera pentru explorare mai rapida",
+        "Adauga peste 19 preseturi de animatie de obiect fara sa refaci scena",
+        "Creeaza clay render breakdowns si reveal-uri pentru continut tehnic sau social",
+        "Aplica viewport solid looks stylized pentru previzualizari rapide si vizuale grafice",
+        "Include optimizare de randare si cleanup de output in acelasi workflow",
+      ],
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-1.jpg",
+      alt: "Interfata Reel Director din Blender care afiseaza optiuni de format pentru landscape, vertical si square",
+      caption:
+        "Reel Format ajuta la setarea incadrarii, aspect ratio-ului si timing-ului pentru continut short-form direct in Blender.",
+    },
+    {
+      type: "heading",
+      content: "Creat pentru continut short-form, nu doar pentru randarea finala",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Una dintre cele mai bune parti ale Reel Director este ca nu se limiteaza la randari finale polished. Este construit in jurul modului in care artistii publica astazi: quick previews, behind-the-scenes visuals, motion tests, breakdowns si social clips care mentin un portofoliu sau o lansare activa intre imaginile hero finale.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Pentru utilizatorii Blender, asta inseamna ca acelasi mediu poate sustine si calitatea prezentarii, si viteza de publicare. O scena finalizata poate deveni un vertical reel, un clip stylized clay, un viewport breakdown sau un teaser bazat pe camera, fara un pipeline complet separat.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-2.jpg",
+      alt: "Browser de miscari de camera din Reel Director pentru Blender, cu preseturi multiple pentru continut cinematic 3D",
+      caption:
+        "Sistemul de camera movements este facut pentru a genera mai repede variante de cadre pentru reels, previews si postari cinematice.",
+    },
+    {
+      type: "heading",
+      content: "Miscari de camera si animatii de obiect fara sa reconstruiesti scena",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Un blocaj frecvent in Blender este ca artistii stiu deja ca scena arata bine, dar pierd timp reconstruind miscarea doar ca sa o poata publica sub forma de video. Reel Director reduce aceasta frictiune prin preseturi de camera curate, optiuni de randomizare si tool-uri de animatie pentru obiecte care lucreaza peste munca deja existenta.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Asta conteaza pentru ca iteratia rapida face de multe ori diferenta dintre un singur still polished si o secventa completa de continut util. In loc sa pierzi timp rigging manual pentru un teaser scurt, poti testa rapid directia miscarii si poti mentine scena productiva pentru mai multe deliverables.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-3.jpg",
+      alt: "Panoul de object animation din Reel Director pentru Blender, cu categorii de animatie si controale de timing",
+      caption:
+        "Preseturile de object animation fac mai usoara construirea de reveals, assemblies, drops si motion layered fara sa refaci intreaga scena.",
+    },
+    {
+      type: "heading",
+      content: "Clay breakdowns si viewport looks care chiar adauga valoare",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director iese in evidenta si pentru ca sustine formate de continut la care publicul reactioneaza bine: clay render breakdowns, reveal transitions, wire overlays si viewport visuals stylized. Acestea sunt valoroase nu doar ca demonstratii tehnice, ci si ca asset-uri care atrag atentia pe Instagram, TikTok, YouTube Shorts, launch pages si marketplace presentation.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Pentru artistii care lucreaza in archviz, asta este foarte util. O scena de vila, apartament, interior sau produs poate fi refolosita in continut educational sau promotional care arata procesul, structura si craft-ul vizual, nu doar cadrul final.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-4.jpg",
+      alt: "Setarile clay render din Reel Director pentru Blender, cu controale pentru culoare, wireframe si breakdown tehnic",
+      caption:
+        "Controalele pentru clay render sunt gandite pentru breakdown content, reveal shots si postari sociale care expun structura din spatele imaginii finale.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-5.jpg",
+      alt: "Controale pentru viewport solid look in Reel Director pentru Blender, cu optiuni stylized matcap si wireframe",
+      caption:
+        "Viewport solid looks transforma preview-urile rapide in vizuale stylized care sunt suficient de intentionate pentru a fi publicate.",
+    },
+    {
+      type: "heading",
+      content: "Pentru cine este cel mai potrivit Reel Director",
+    },
+    {
+      type: "list",
+      items: [
+        "Artisti Blender care vor sa publice mai des din scene pe care deja le-au construit",
+        "Artisti archviz care creeaza reels, progress posts si breakdowns pentru clienti",
+        "Artisti de produs sau automotive care au nevoie rapid de continut social bazat pe camera",
+        "Creatori care lanseaza addonuri, asset-uri sau cursuri si au nevoie de vizuale promotionale mai bune",
+        "Oricine vrea motion tests mai rapide si output short-form mai curat direct din Blender",
+      ],
+    },
+    {
+      type: "heading",
+      content: "De ce addonul pare util in practica",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Multe addonuri promit viteza, dar Reel Director pare aliniat cu un workflow real de publicare. Nu este doar despre randare mai rapida. Este despre reducerea distantei dintre o scena 3D finalizata si multiplele tipuri de continut de care artistii au nevoie astazi ca sa ramana vizibili online. Acolo incep sa functioneze impreuna formatarea pentru reels, preseturile de motion, clay visuals, viewport looks si tool-urile de cleanup.",
+    },
+    {
+      type: "quote",
+      content:
+        "Reel Director este valoros pentru ca ii ajuta pe artisti sa construiasca mai mult continut din scenele pe care le-au facut deja, fara sa rupa workflow-ul Blender pe care il cunosc.",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Ce este Reel Director pentru Blender?",
+          answer:
+            "Reel Director este un addon Blender gandit pentru a ajuta creatorii 3D sa produca short-form video content, clay breakdowns, viewport visuals, animatii de camera si output-uri pregatite pentru social media din scene deja existente.",
+        },
+        {
+          question: "Este Reel Director util pentru artistii de vizualizare arhitecturala?",
+          answer:
+            "Da. Artistii archviz il pot folosi pentru a transforma scene de vile, apartamente, interioare sau exterioare in reels, process breakdowns si prezentari bazate pe miscare fara sa reconstruiasca scena de la zero.",
+        },
+        {
+          question: "Reel Director inlocuieste randarea finala?",
+          answer:
+            "Nu. El completeaza randarea finala si face mai usoara crearea de continut suplimentar in jurul scenei, inclusiv previews, motion clips, clay visuals si formate pregatite pentru social media.",
+        },
+      ],
+    },
+  ],
+},
 {
   slug: "office-interior-visualization-for-modern-workspaces",
   title: "Office Interior Visualization for Modern Workspaces: What Makes a Render Feel Premium?",

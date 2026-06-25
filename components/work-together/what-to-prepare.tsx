@@ -1,3 +1,5 @@
+"use client"
+
 import { FileText, Image, Palette, Camera } from "lucide-react"
 import { useLocaleDictionary } from "@/components/locale-provider"
 
