@@ -32,13 +32,14 @@ export interface BlogArticle {
 }
 
 export interface BlogSection {
-  type: "paragraph" | "heading" | "list" | "quote" | "faq" | "image"
+  type: "paragraph" | "heading" | "list" | "quote" | "faq" | "image" | "links"
   content?: string
   items?: string[]
   faqs?: { question: string; answer: string }[]
   src?: string
   alt?: string
   caption?: string
+  links?: { label: string; url: string }[]
 }
 
 export const BLOG_ARTICLES: BlogArticle[] = [
@@ -184,6 +185,24 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         "Product or automotive artists who need camera-led social content quickly",
         "Creators launching addons, assets, or courses and needing stronger promo visuals",
         "Anyone who wants faster motion tests and cleaner short-form output inside Blender",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Where to Get Reel Director",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director is available on Superhive Market and on Gumroad. If you want to check the official marketplace listing, the current public Superhive product page is linked below.",
+    },
+    {
+      type: "links",
+      links: [
+        {
+          label: "Reel Director on Superhive Market",
+          url: "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-?search_id=48212708",
+        },
       ],
     },
     {
@@ -336,6 +355,24 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         "Artisti de produs sau automotive care au nevoie rapid de continut social bazat pe camera",
         "Creatori care lanseaza addonuri, asset-uri sau cursuri si au nevoie de vizuale promotionale mai bune",
         "Oricine vrea motion tests mai rapide si output short-form mai curat direct din Blender",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Unde poti gasi Reel Director",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director este disponibil pe Superhive Market si pe Gumroad. Daca vrei sa verifici listingul oficial din marketplace, mai jos este linkul public actual de pe Superhive.",
+    },
+    {
+      type: "links",
+      links: [
+        {
+          label: "Reel Director pe Superhive Market",
+          url: "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-?search_id=48212708",
+        },
       ],
     },
     {

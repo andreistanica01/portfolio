@@ -215,6 +215,25 @@ export default async function ArticlePage({ params }: PageProps) {
                       ) : null}
                     </figure>
                   ) : null
+                case "links":
+                  return section.links?.length ? (
+                    <div key={index} className="mb-8">
+                      <ul className="space-y-3">
+                        {section.links.map((linkItem, i) => (
+                          <li key={i}>
+                            <a
+                              href={linkItem.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-base md:text-lg text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                            >
+                              {linkItem.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null
                 default:
                   return null
               }
