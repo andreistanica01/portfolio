@@ -65,7 +65,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 9,
   publishedAt: "2026-07-07",
   featured: true,
-  image: "/images/secondary/reel-director-thumbnail.jpg",
+  image: "/images/secondary/reel-director-thumbnail.webp",
   imageAlt:
     "Reel Director Blender addon promotional thumbnail showing social-ready 3D content workflow for reels, shorts, and camera-driven scene presentation",
   imageAltRo:
@@ -117,7 +117,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-1.jpg",
+      src: "/images/secondary/reel-director-1.webp",
       alt: "Reel Director Blender addon interface showing reel format options for landscape, vertical, and square short-form content",
       caption:
         "Reel Format helps set the framing, aspect ratio, and timing for short-form content directly inside Blender.",
@@ -138,7 +138,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-2.jpg",
+      src: "/images/secondary/reel-director-2.webp",
       alt: "Reel Director camera movement browser in Blender showing multiple preset motion paths for cinematic 3D content creation",
       caption:
         "The camera movement system is built to generate faster shot variation for reels, previews, and cinematic product or archviz posts.",
@@ -159,7 +159,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-3.jpg",
+      src: "/images/secondary/reel-director-3.webp",
       alt: "Reel Director object animation panel in Blender showing animation categories and timing controls for scene elements",
       caption:
         "Object animation presets make it easier to stage reveals, assemblies, drops, and layered motion without rebuilding the entire scene setup.",
@@ -180,14 +180,14 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-4.jpg",
+      src: "/images/secondary/reel-director-4.webp",
       alt: "Clay render settings in Reel Director for Blender with color, wireframe, and breakdown controls for technical presentation",
       caption:
         "Clay render controls are designed for breakdown content, reveal shots, and social posts that expose the structure behind the final image.",
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-5.jpg",
+      src: "/images/secondary/reel-director-5.webp",
       alt: "Reel Director viewport solid look controls in Blender with stylized matcap and wireframe presentation options",
       caption:
         "Viewport solid looks turn fast previews into stylized visuals that still feel intentional enough to publish.",
@@ -335,7 +335,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-1.jpg",
+      src: "/images/secondary/reel-director-1.webp",
       alt: "Interfata Reel Director din Blender care afiseaza optiuni de format pentru landscape, vertical si square",
       caption:
         "Reel Format ajuta la setarea incadrarii, aspect ratio-ului si timing-ului pentru continut short-form direct in Blender.",
@@ -356,7 +356,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-2.jpg",
+      src: "/images/secondary/reel-director-2.webp",
       alt: "Browser de miscari de camera din Reel Director pentru Blender, cu preseturi multiple pentru continut cinematic 3D",
       caption:
         "Sistemul de camera movements este facut pentru a genera mai repede variante de cadre pentru reels, previews si postari cinematice.",
@@ -377,7 +377,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-3.jpg",
+      src: "/images/secondary/reel-director-3.webp",
       alt: "Panoul de object animation din Reel Director pentru Blender, cu categorii de animatie si controale de timing",
       caption:
         "Preseturile de object animation fac mai usoara construirea de reveals, assemblies, drops si motion layered fara sa refaci intreaga scena.",
@@ -398,14 +398,14 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-4.jpg",
+      src: "/images/secondary/reel-director-4.webp",
       alt: "Setarile clay render din Reel Director pentru Blender, cu controale pentru culoare, wireframe si breakdown tehnic",
       caption:
         "Controalele pentru clay render sunt gandite pentru breakdown content, reveal shots si postari sociale care expun structura din spatele imaginii finale.",
     },
     {
       type: "image",
-      src: "/images/secondary/reel-director-5.jpg",
+      src: "/images/secondary/reel-director-5.webp",
       alt: "Controale pentru viewport solid look in Reel Director pentru Blender, cu optiuni stylized matcap si wireframe",
       caption:
         "Viewport solid looks transforma preview-urile rapide in vizuale stylized care sunt suficient de intentionate pentru a fi publicate.",
