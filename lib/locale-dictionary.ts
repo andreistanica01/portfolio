@@ -109,7 +109,7 @@ const romanianDictionary: LocalizedDictionary = {
       },
       rendering: {
         title: "Randare",
-        items: ["Blender Cycles", "Unreal Engine"],
+        items: ["Blender Cycles", "Unreal Engine", "D5 Render", "Twinmotion"],
       },
       postProduction: {
         title: "Post Productie",

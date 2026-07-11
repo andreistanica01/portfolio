@@ -68,7 +68,7 @@ export const ABOUT_SECTION = {
     },
     rendering: {
       title: "Rendering",
-      items: ["Blender Cycles", "Unreal Engine"],
+      items: ["Blender Cycles", "Unreal Engine", "D5 Render", "Twinmotion"],
     },
     postProduction: {
       title: "Post Production",
