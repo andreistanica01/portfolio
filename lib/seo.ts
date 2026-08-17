@@ -112,31 +112,65 @@ export const getBlogArticleJsonLd = (
 ) => {
   const localizedArticle = getLocalizedArticle(article, locale)
   const metadata = getArticleMetadata(article, locale)
+  const articleUrl = getAbsoluteUrl(`/blog/${article.slug}`)
+  const faqs = localizedArticle.content.flatMap((section) =>
+    section.type === "faq" ? section.faqs ?? [] : [],
+  )
 
-  return ({
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: localizedArticle.title,
-  description: metadata.description,
-  image: [getAbsoluteUrl(localizedArticle.image)],
-  datePublished: article.publishedAt,
-  mainEntityOfPage: getAbsoluteUrl(`/blog/${article.slug}`),
-  articleSection: article.category,
-  inLanguage: getLanguageTag(locale),
-  author: {
-    "@type": "Organization",
-    name: SITE_CONFIG.name,
-  },
-  publisher: {
-    "@type": "Organization",
-    name: SITE_CONFIG.name,
-    url: SITE_CONFIG.siteUrl,
-    logo: {
-      "@type": "ImageObject",
-      url: getAbsoluteUrl("/icon.svg"),
+  const articleNode = {
+    "@type": "Article",
+    "@id": `${articleUrl}#article`,
+    headline: localizedArticle.title,
+    description: metadata.description,
+    url: articleUrl,
+    image: [getAbsoluteUrl(localizedArticle.image)],
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    mainEntityOfPage: articleUrl,
+    articleSection: article.category,
+    keywords: localizedArticle.keywords,
+    about: localizedArticle.keywords?.slice(0, 6).map((name) => ({
+      "@type": "Thing",
+      name,
+    })),
+    isAccessibleForFree: true,
+    inLanguage: getLanguageTag(locale),
+    author: {
+      "@type": "Organization",
+      name: SITE_CONFIG.name,
     },
-  },
-})
+    publisher: {
+      "@type": "Organization",
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: getAbsoluteUrl("/icon.svg"),
+      },
+    },
+  }
+
+  const faqNode = faqs.length
+    ? {
+        "@type": "FAQPage",
+        "@id": `${articleUrl}#faq`,
+        url: articleUrl,
+        inLanguage: getLanguageTag(locale),
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
+    : null
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": faqNode ? [articleNode, faqNode] : [articleNode],
+  }
 }
 
 export const getProjectJsonLd = (

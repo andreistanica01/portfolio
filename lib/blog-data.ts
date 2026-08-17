@@ -12,6 +12,8 @@ export interface BlogArticle {
   metaDescription?: string
   metaTitleRo?: string
   metaDescriptionRo?: string
+  keywords?: string[]
+  keywordsRo?: string[]
   category:
     | "workflow"
     | "lighting"
@@ -43,6 +45,621 @@ export interface BlogSection {
 }
 
 export const BLOG_ARTICLES: BlogArticle[] = [
+{
+  slug: "reel-director-pro-wool-dynamics-blender-addon",
+  title:
+    "Reel Director Pro Wool Dynamics: A Blender 5.2 Addon for 3D Content Creators",
+  titleRo:
+    "Reel Director Pro Wool Dynamics: Addon Blender 5.2 pentru Creatori 3D",
+  excerpt:
+    "Reel Director Pro adds Wool Dynamics to Blender 5.2, helping 3D artists create adjustable wool-style surfaces, optional motion, and stronger social-ready visuals from existing scenes.",
+  excerptRo:
+    "Reel Director Pro adauga Wool Dynamics in Blender 5.2 si ii ajuta pe artistii 3D sa creeze suprafete reglabile de tip lana, miscare optionala si vizuale mai puternice pentru social media din scenele existente.",
+  metaTitle:
+    "Reel Director Pro Wool Dynamics for Blender 5.2",
+  metaDescription:
+    "Explore Reel Director Pro Wool Dynamics for Blender 5.2, plus Lattice Surface, Clay Studio, camera moves and compositor presets. Currently 25% off.",
+  metaTitleRo:
+    "Reel Director Pro Wool Dynamics pentru Blender 5.2",
+  metaDescriptionRo:
+    "Descopera Wool Dynamics din Reel Director Pro pentru Blender 5.2, plus Lattice Surface, Clay Studio, camere si preseturi de compositing. Acum 25% reducere.",
+  keywords: [
+    "Reel Director Pro",
+    "Wool Dynamics Blender",
+    "Blender 5.2 addon",
+    "Blender wool generator",
+    "Blender hair dynamics",
+    "3D content creation addon",
+    "Blender social media workflow",
+    "Blender camera animation addon",
+    "Lattice Surface Blender",
+    "Blender clay render addon",
+  ],
+  keywordsRo: [
+    "Reel Director Pro",
+    "Wool Dynamics Blender",
+    "addon Blender 5.2",
+    "generator lana Blender",
+    "dinamica par Blender",
+    "addon continut 3D",
+    "animatie camera Blender",
+    "Lattice Surface Blender",
+    "clay render Blender",
+  ],
+  category: "workflow",
+  readTime: 9,
+  publishedAt: "2026-08-17",
+  featured: false,
+  image: "/images/secondary/reel-director-pro-wool-dynamics.webp",
+  imageAlt:
+    "Reel Director Pro Wool Dynamics in Blender 5.2 with a green wool-style surface and adjustable controls",
+  imageAltRo:
+    "Reel Director Pro Wool Dynamics in Blender 5.2 cu o suprafata verde de tip lana si controale reglabile",
+  content: [
+    {
+      type: "paragraph",
+      content:
+        "Reel Director Pro is a Blender addon built for 3D artists who want to turn existing scenes into short-form content, process breakdowns, product shots, and stylized experiments without rebuilding the workflow in several applications. Its Wool Dynamics feature adds a new visual layer: selected objects can receive adjustable wool-style fibers and optional experimental motion directly inside Blender 5.2.",
+    },
+    {
+      type: "heading",
+      content: "Quick Answer: What Is Reel Director Pro Wool Dynamics?",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Wool Dynamics is a Reel Director Pro feature for Blender 5.2 that creates soft fiber-like surfaces on selected mesh objects with Blender-native hair tools. Artists can control wool count, viewport density, length, thickness, irregularity, frizz, seed, and color. Optional experimental XPBD dynamics can add movement, while live controls make it easier to refine the look without rebuilding it manually.",
+    },
+    {
+      type: "heading",
+      content: "Reel Director Pro at a Glance",
+    },
+    {
+      type: "list",
+      items: [
+        "Product: Reel Director Pro by Bevel Graphics",
+        "Category: Blender addon for 3D content creation and short-form video workflows",
+        "Wool Dynamics compatibility: Blender 5.2 only",
+        "General addon compatibility: Blender 4.2 through 5.2",
+        "Render engines: Cycles and Eevee",
+        "Core Pro tools: Wool Dynamics, Lattice Surface, Per-Object Clay Studio, premium camera moves, camera filters, and compositor presets",
+        "Marketplace: Superhive, formerly Blender Market",
+      ],
+    },
+    {
+      type: "quote",
+      content:
+        "Launch offer: Reel Director Pro is 25% off on Superhive at the time of publishing, reduced from $20 to $16. Marketplace promotions can change, so check the live product page for the current price.",
+    },
+    {
+      type: "links",
+      links: [
+        {
+          label: "View Reel Director Pro and the current 25% offer on Superhive",
+          url: "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-",
+        },
+      ],
+    },
+    {
+      type: "heading",
+      content: "What Wool Dynamics Does in Blender",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Wool Dynamics turns a selected mesh into a soft, irregular surface treatment that can be art-directed from the Reel Director Pro panel. The effect is useful when a normal shader is not enough and the object needs visible fiber, softness, or motion. Because the controls are exposed in one place, artists can move from a subtle fabric-like finish to a dense, exaggerated wool look while keeping the original object available for the rest of the scene.",
+    },
+    {
+      type: "list",
+      items: [
+        "Wool count controls the amount of generated fiber detail used for rendering",
+        "Viewport wool percentage keeps interactive previews lighter than the final render",
+        "Length and thickness define the overall character of the fibers",
+        "Irregularity and soft frizz break up uniform results for a more organic surface",
+        "Seed creates repeatable variations without redesigning the setup",
+        "Wool color can be adjusted directly for fast visual exploration",
+        "Auto-update controls let the selected wool object respond to changes from the panel",
+        "Experimental XPBD dynamics can add secondary movement when the shot benefits from animation",
+      ],
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-object-animation-workflow.webp",
+      alt: "Blender artist using Reel Director Pro object animation and content tools on a laptop",
+      caption:
+        "Reel Director Pro keeps surface effects, object animation, and content controls inside the same Blender workflow.",
+    },
+    {
+      type: "heading",
+      content: "Why Wool Dynamics Helps 3D Artists",
+    },
+    {
+      type: "paragraph",
+      content:
+        "For a 3D artist, the value is not only the wool effect itself. Wool Dynamics can turn a familiar model into a new visual hook. A chair, product, architectural element, abstract object, or character prop can become a soft, tactile version that feels immediately different in a reel or carousel. That gives creators another way to reuse finished work instead of waiting for an entirely new project before publishing again.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "The effect is especially useful for short-form content because viewers can understand the transformation quickly: clean mesh, wool generation, movement, then final styled shot. This sequence creates a clear before-and-after story for Instagram Reels, TikTok, YouTube Shorts, portfolio breakdowns, and marketplace launch content.",
+    },
+    {
+      type: "heading",
+      content: "Practical Uses for Wool-Style Surfaces",
+    },
+    {
+      type: "list",
+      items: [
+        "Soft product and furniture concepts that need visible tactile detail",
+        "Stylized architectural elements, installations, and experimental facades",
+        "Abstract motion graphics where fiber movement becomes the main hook",
+        "Clay-to-wool or material-to-wool transitions for process reels",
+        "Playful variations of existing portfolio assets",
+        "Close-up shots where surface detail is more important than a complex environment",
+      ],
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-viewport-workflow.webp",
+      alt: "Reel Director Pro viewport workflow in Blender with a stylized green scene",
+      caption:
+        "The addon is designed to help artists create alternate looks and social-ready breakdowns from scenes they already have.",
+    },
+    {
+      type: "heading",
+      content: "Wool Dynamics Compatibility and Performance",
+    },
+    {
+      type: "paragraph",
+      content:
+        "The full Reel Director Pro addon supports Blender 4.2 to 5.2, but Wool Dynamics specifically requires Blender 5.2. The feature uses native hair tools and includes a separate viewport percentage so artists can work with fewer visible fibers before using the final render count. Experimental XPBD dynamics should be treated as an optional motion tool and tested with the actual scene, object scale, and shot length.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "This distinction matters for search and purchase decisions: artists on older supported Blender versions can still use the broader Reel Director Pro workflow, but they need Blender 5.2 for Wool Dynamics. The Superhive listing includes 12 months of product support and updates.",
+    },
+    {
+      type: "heading",
+      content: "Other Reel Director Pro Functions",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Wool Dynamics sits inside a larger production toolkit. Reel Director Pro includes the complete Reel Director workflow and adds deeper camera, surface, clay, and finishing controls for artists who want more variations from one Blender scene.",
+    },
+    {
+      type: "list",
+      items: [
+        "Reel formats for vertical 9:16, Instagram 3:4 and 4:5, square 1:1, and landscape 16:9 output",
+        "36 total camera moves in Pro, including hero shots, reveals, orbits, architecture moves, and premium motion presets",
+        "17 object animations for build, reveal, assemble, explode, slide, scale, and float-style sequences",
+        "Per-Object Clay Studio with independent clay, wire, glass, texture, ambient occlusion, and thickness controls",
+        "Built-in and seeded clay or glass looks, plus custom presets stored in the Blender file",
+        "Reversible Cinematic, Warm, Cool, and Bleach Bypass camera filters",
+        "More than 20 viewport styles with MatCaps, cavity, shadows, outline, and X-ray options",
+        "Four render optimization presets from fast social previews to cleaner final renders",
+        "Output tools for image sequences, MP4 where Blender supports it, HDR EXR, hero frames, and cleanup",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Lattice Surface for Geometric Breakdowns",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Lattice Surface is the second major Pro surface tool. It generates triangle or quad structures on selected mesh objects with controls for density, strut thickness, interior layers, spacing, color, frame limits, and optional preservation of the original shell. It is useful for technical breakdowns, procedural design studies, and bold visual transitions that contrast well with the softness of Wool Dynamics.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-lattice-surface.webp",
+      alt: "Reel Director Pro Lattice Surface controls creating colored geometric structures in Blender",
+      caption:
+        "Lattice Surface creates adjustable geometric treatments for selected objects and can be combined with the wider animation workflow.",
+    },
+    {
+      type: "heading",
+      content: "Compositing Presets for the Final Look",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director Pro also includes reversible compositor looks for finishing a shot inside Blender. Presets include Print Film Finish, Black Pro-Mist, Luxury Low-Key, High-Key Beauty, Anamorphic Streak, Interior Window Balance, Fine Detail Finish, and Fine 35mm Grain. Artists can adjust the effect intensity and remove the look without replacing the original compositor connection.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-compositing-presets.webp",
+      alt: "Reel Director Pro compositing presets panel with cinematic finishing looks in Blender",
+      caption:
+        "Reversible compositor presets help move a reel or hero frame from viewport experiment to a more polished final look.",
+    },
+    {
+      type: "heading",
+      content: "One Blender Scene, More Publishable Content",
+    },
+    {
+      type: "paragraph",
+      content:
+        "The strongest reason to use Reel Director Pro is the connection between its features. Wool Dynamics can supply the visual hook, a premium camera move can reveal the form, object animation can add timing, a clay or viewport look can explain the process, and a compositor preset can finish the shot. The tools are most valuable when they are treated as one content workflow instead of isolated effects.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-camera-workflow.webp",
+      alt: "Reel Director Pro camera and viewport workflow used for a neon Blender scene",
+      caption:
+        "Camera movement, alternate viewport looks, and surface styling help one Blender scene produce several distinct content pieces.",
+    },
+    {
+      type: "heading",
+      content: "Who Is Reel Director Pro For?",
+    },
+    {
+      type: "list",
+      items: [
+        "Blender artists who want to create more social content from existing scenes",
+        "Architectural visualization artists making reels, design studies, and process breakdowns",
+        "Product and automotive artists who need repeatable camera-led presentations",
+        "Motion designers exploring wool, lattice, clay, wireframe, and viewport transformations",
+        "Creators launching 3D assets, addons, tutorials, or courses on visual marketplaces",
+        "Studios that want a faster path from a finished scene to multiple promotional variations",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Reel Director vs Reel Director Pro",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director includes the core creator workflow: formats, 32 camera moves, 17 object animations, clay breakdowns, viewport styles, render optimization, output, and cleanup. Reel Director Pro includes all of that and adds 36 total camera moves, Per-Object Clay Studio, saved and seeded looks, camera filters, Wool Dynamics, Lattice Surface, and modern compositor presets. Pro is the better fit when advanced styling and repeatable surface variation are central to the content.",
+    },
+    {
+      type: "links",
+      links: [
+        {
+          label: "Read the complete guide to Reel Director",
+          url: "/blog/reel-director-blender-addon-for-3d-content-creators",
+        },
+        {
+          label: "Learn how clay renders improve visual hooks for 3D artists",
+          url: "/blog/how-clay-renders-improve-visual-hooks-for-3d-artists",
+        },
+      ],
+    },
+    {
+      type: "heading",
+      content: "Frequently Asked Questions",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "What is Reel Director Pro?",
+          answer:
+            "Reel Director Pro is a Blender addon by Bevel Graphics for turning existing 3D scenes into social-ready content. It combines reel formats, camera moves, object animations, clay and viewport looks, surface tools, render presets, compositing, output, and cleanup in one workflow.",
+        },
+        {
+          question: "What is Wool Dynamics in Reel Director Pro?",
+          answer:
+            "Wool Dynamics is a Pro feature that uses Blender-native hair tools to create adjustable wool-style fibers on selected mesh objects. It includes controls for count, viewport percentage, length, thickness, irregularity, frizz, seed, color, and optional experimental XPBD movement.",
+        },
+        {
+          question: "Which Blender version is required for Wool Dynamics?",
+          answer:
+            "Wool Dynamics requires Blender 5.2. The wider Reel Director Pro addon supports Blender 4.2 through 5.2, but the wool feature itself is available in Blender 5.2 only.",
+        },
+        {
+          question: "Does Wool Dynamics work with animation?",
+          answer:
+            "Yes. Wool-style surfaces can be used with the addon\'s camera and object animation workflow. Reel Director Pro also provides optional experimental XPBD dynamics for secondary wool movement in Blender 5.2.",
+        },
+        {
+          question: "What is the difference between Wool Dynamics and Lattice Surface?",
+          answer:
+            "Wool Dynamics creates soft fiber-like detail, while Lattice Surface creates geometric triangle or quad structures. Both are Pro surface tools for selected objects, but they produce very different visual hooks.",
+        },
+        {
+          question: "Is Reel Director Pro 25% off?",
+          answer:
+            "At the time this article was published, Reel Director Pro was 25% off on Superhive at $16 instead of $20. Check the live Superhive listing because marketplace pricing and promotions can change.",
+        },
+        {
+          question: "Is Reel Director Pro useful for archviz artists?",
+          answer:
+            "Yes. Archviz artists can use it for camera reveals, object animation, clay and wireframe breakdowns, viewport looks, wool or lattice design studies, render optimization, and vertical social content from existing architectural scenes.",
+        },
+      ],
+    },
+    {
+      type: "quote",
+      content:
+        "Reel Director Pro is most useful when Wool Dynamics, camera movement, object animation, clay breakdowns, and finishing presets work together to turn one Blender scene into several strong pieces of content.",
+    },
+  ],
+  contentRo: [
+    {
+      type: "paragraph",
+      content:
+        "Reel Director Pro este un addon Blender creat pentru artistii 3D care vor sa transforme scenele existente in continut short-form, process breakdowns, prezentari de produs si experimente stilizate fara sa reconstruiasca workflow-ul in mai multe aplicatii. Functia Wool Dynamics adauga un nou strat vizual: obiectele selectate pot primi fibre reglabile de tip lana si miscare experimentala optionala direct in Blender 5.2.",
+    },
+    {
+      type: "heading",
+      content: "Raspuns rapid: ce este Wool Dynamics din Reel Director Pro?",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Wool Dynamics este o functie Reel Director Pro pentru Blender 5.2 care creeaza suprafete moi, cu aspect de fibre, pe obiectele mesh selectate, folosind sistemele native de hair din Blender. Artistii pot controla numarul de fibre, densitatea din viewport, lungimea, grosimea, neregularitatea, frizz-ul, seed-ul si culoarea. Dinamica experimentala XPBD poate adauga miscare, iar controalele live permit ajustarea aspectului fara reconstruire manuala.",
+    },
+    {
+      type: "heading",
+      content: "Reel Director Pro pe scurt",
+    },
+    {
+      type: "list",
+      items: [
+        "Produs: Reel Director Pro de la Bevel Graphics",
+        "Categorie: addon Blender pentru continut 3D si workflow-uri video short-form",
+        "Compatibilitate Wool Dynamics: doar Blender 5.2",
+        "Compatibilitate generala addon: Blender 4.2 pana la 5.2",
+        "Motoare de randare: Cycles si Eevee",
+        "Unelte Pro principale: Wool Dynamics, Lattice Surface, Per-Object Clay Studio, miscari de camera premium, filtre de camera si preseturi de compositing",
+        "Marketplace: Superhive, cunoscut anterior ca Blender Market",
+      ],
+    },
+    {
+      type: "quote",
+      content:
+        "Oferta de lansare: Reel Director Pro are reducere de 25% pe Superhive la data publicarii, de la 20 USD la 16 USD. Promotiile marketplace-ului se pot schimba, asa ca verifica pagina live pentru pretul actual.",
+    },
+    {
+      type: "links",
+      links: [
+        {
+          label: "Vezi Reel Director Pro si oferta actuala de 25% pe Superhive",
+          url: "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-",
+        },
+      ],
+    },
+    {
+      type: "heading",
+      content: "Ce face Wool Dynamics in Blender",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Wool Dynamics transforma un mesh selectat intr-un tratament de suprafata moale si neregulat, care poate fi directionat artistic din panoul Reel Director Pro. Efectul este util atunci cand un shader normal nu este suficient, iar obiectul are nevoie de fibra vizibila, senzatie de moale sau miscare. Pentru ca toate controalele sunt intr-un singur loc, artistii pot trece de la un finisaj subtil de material textil la un aspect dens si exagerat de lana, pastrand obiectul original disponibil in scena.",
+    },
+    {
+      type: "list",
+      items: [
+        "Wool count controleaza cantitatea de detaliu de fibra folosita la randare",
+        "Viewport wool percentage pastreaza preview-ul interactiv mai usor decat randarea finala",
+        "Lungimea si grosimea definesc caracterul general al fibrelor",
+        "Irregularity si soft frizz reduc uniformitatea pentru o suprafata mai organica",
+        "Seed-ul creeaza variatii repetabile fara refacerea setup-ului",
+        "Culoarea lanii poate fi ajustata direct pentru explorare vizuala rapida",
+        "Controalele auto-update actualizeaza obiectul selectat direct din panou",
+        "Dinamica experimentala XPBD poate adauga miscare secundara atunci cand animatia o cere",
+      ],
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-object-animation-workflow.webp",
+      alt: "Artist Blender folosind Reel Director Pro pentru animatie de obiect si continut 3D pe laptop",
+      caption:
+        "Reel Director Pro pastreaza efectele de suprafata, animatia obiectelor si controalele de continut in acelasi workflow Blender.",
+    },
+    {
+      type: "heading",
+      content: "De ce ajuta Wool Dynamics artistii 3D",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Pentru un artist 3D, valoarea nu este doar efectul de lana. Wool Dynamics poate transforma un model familiar intr-un hook vizual nou. Un fotoliu, un produs, un element arhitectural, un obiect abstract sau un prop poate deveni o versiune moale si tactila care arata imediat diferit intr-un reel sau carusel. Astfel, creatorii pot refolosi lucrari terminate fara sa astepte un proiect complet nou inainte sa publice din nou.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Efectul este util mai ales pentru continut short-form, pentru ca transformarea se intelege rapid: mesh curat, generare de lana, miscare si apoi cadrul final stilizat. Secventa creeaza o poveste before-and-after clara pentru Instagram Reels, TikTok, YouTube Shorts, breakdown-uri de portofoliu si continut de lansare pe marketplace-uri.",
+    },
+    {
+      type: "heading",
+      content: "Utilizari practice pentru suprafete de tip lana",
+    },
+    {
+      type: "list",
+      items: [
+        "Concepte de produs si mobilier care au nevoie de detaliu tactil vizibil",
+        "Elemente arhitecturale stilizate, instalatii si fatade experimentale",
+        "Motion graphics abstracte in care miscarea fibrelor devine hook-ul principal",
+        "Tranzitii clay-to-wool sau material-to-wool pentru reels de proces",
+        "Variatii jucause ale asset-urilor existente din portofoliu",
+        "Cadre close-up in care detaliul suprafetei este mai important decat un mediu complex",
+      ],
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-viewport-workflow.webp",
+      alt: "Workflow Reel Director Pro in viewport-ul Blender cu o scena verde stilizata",
+      caption:
+        "Addon-ul este gandit sa ajute artistii sa creeze look-uri alternative si breakdown-uri pregatite pentru social media din scenele deja realizate.",
+    },
+    {
+      type: "heading",
+      content: "Compatibilitatea si performanta Wool Dynamics",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Addon-ul complet Reel Director Pro functioneaza cu Blender 4.2 pana la 5.2, dar Wool Dynamics necesita in mod specific Blender 5.2. Functia foloseste uneltele native de hair si include un procent separat pentru viewport, astfel incat artistii sa poata lucra cu mai putine fibre vizibile inainte de count-ul final de randare. Dinamica experimentala XPBD trebuie tratata ca unealta optionala si testata cu scena, scara obiectului si durata cadrului real.",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Distinctia este importanta pentru cautare si pentru decizia de cumparare: artistii care folosesc versiuni Blender mai vechi, dar compatibile, pot utiliza restul workflow-ului Reel Director Pro, insa au nevoie de Blender 5.2 pentru Wool Dynamics. Listarea Superhive include 12 luni de suport si actualizari de produs.",
+    },
+    {
+      type: "heading",
+      content: "Alte functii Reel Director Pro",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Wool Dynamics face parte dintr-un toolkit de productie mai mare. Reel Director Pro include workflow-ul complet Reel Director si adauga controale mai avansate pentru camera, suprafete, clay si finisare, astfel incat artistii sa poata obtine mai multe variatii dintr-o singura scena Blender.",
+    },
+    {
+      type: "list",
+      items: [
+        "Formate pentru vertical 9:16, Instagram 3:4 si 4:5, patrat 1:1 si landscape 16:9",
+        "36 de miscari de camera in versiunea Pro, inclusiv hero shots, reveals, orbits, miscari pentru arhitectura si preseturi premium",
+        "17 animatii de obiect pentru build, reveal, assemble, explode, slide, scale si float",
+        "Per-Object Clay Studio cu controale independente pentru clay, wire, glass, texturi, ambient occlusion si grosime",
+        "Look-uri clay si glass incluse sau generate prin seed, plus preseturi custom salvate in fisierul Blender",
+        "Filtre reversibile Cinematic, Warm, Cool si Bleach Bypass",
+        "Peste 20 de stiluri viewport cu MatCaps, cavity, shadows, outline si X-ray",
+        "Patru preseturi de optimizare a randarii, de la preview-uri social rapide la randari finale mai curate",
+        "Unelte de output pentru secvente de imagini, MP4 unde Blender permite, HDR EXR, hero frames si cleanup",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Lattice Surface pentru breakdown-uri geometrice",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Lattice Surface este a doua unealta Pro importanta pentru suprafete. Genereaza structuri triunghiulare sau quad pe obiectele mesh selectate, cu controale pentru densitate, grosimea struturilor, straturi interioare, spatiere, culoare, limite de frame si pastrarea optionala a shell-ului original. Este utila pentru breakdown-uri tehnice, studii de design procedural si tranzitii vizuale puternice care contrasteaza bine cu aspectul moale al Wool Dynamics.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-lattice-surface.webp",
+      alt: "Controale Reel Director Pro Lattice Surface care creeaza structuri geometrice colorate in Blender",
+      caption:
+        "Lattice Surface creeaza tratamente geometrice reglabile pentru obiectele selectate si poate fi combinata cu workflow-ul complet de animatie.",
+    },
+    {
+      type: "heading",
+      content: "Preseturi de compositing pentru look-ul final",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director Pro include si look-uri reversibile de compositor pentru finisarea unui cadru direct in Blender. Preseturile includ Print Film Finish, Black Pro-Mist, Luxury Low-Key, High-Key Beauty, Anamorphic Streak, Interior Window Balance, Fine Detail Finish si Fine 35mm Grain. Artistii pot regla intensitatea si pot elimina look-ul fara sa inlocuiasca legatura originala din compositor.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-compositing-presets.webp",
+      alt: "Panoul de compositing presets Reel Director Pro cu look-uri cinematice in Blender",
+      caption:
+        "Preset-urile reversibile de compositor ajuta un reel sau un hero frame sa treaca de la experiment de viewport la un look final mai finisat.",
+    },
+    {
+      type: "heading",
+      content: "O scena Blender, mai mult continut publicabil",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Cel mai puternic motiv pentru folosirea Reel Director Pro este legatura dintre functii. Wool Dynamics poate oferi hook-ul vizual, o miscare premium de camera poate dezvalui forma, animatia obiectelor poate adauga timing, un look clay sau de viewport poate explica procesul, iar un preset de compositor poate finisa cadrul. Uneltele sunt cele mai valoroase atunci cand sunt folosite ca un singur workflow de continut, nu ca efecte izolate.",
+    },
+    {
+      type: "image",
+      src: "/images/secondary/reel-director-pro-camera-workflow.webp",
+      alt: "Workflow de camera si viewport Reel Director Pro folosit pentru o scena neon in Blender",
+      caption:
+        "Miscarea camerei, look-urile alternative de viewport si stilizarea suprafetelor ajuta o singura scena Blender sa produca mai multe piese distincte de continut.",
+    },
+    {
+      type: "heading",
+      content: "Pentru cine este Reel Director Pro?",
+    },
+    {
+      type: "list",
+      items: [
+        "Artisti Blender care vor mai mult continut social din scene existente",
+        "Artisti de vizualizare arhitecturala care creeaza reels, studii de design si process breakdowns",
+        "Artisti de produs si automotive care au nevoie de prezentari repetabile bazate pe camera",
+        "Motion designers care exploreaza transformari wool, lattice, clay, wireframe si viewport",
+        "Creatori care lanseaza asset-uri 3D, addon-uri, tutoriale sau cursuri pe marketplace-uri vizuale",
+        "Studiouri care vor un drum mai rapid de la o scena finalizata la mai multe variatii promotionale",
+      ],
+    },
+    {
+      type: "heading",
+      content: "Reel Director vs Reel Director Pro",
+    },
+    {
+      type: "paragraph",
+      content:
+        "Reel Director include workflow-ul principal pentru creatori: formate, 32 de miscari de camera, 17 animatii de obiect, clay breakdowns, stiluri viewport, optimizare de randare, output si cleanup. Reel Director Pro include tot si adauga 36 de miscari de camera in total, Per-Object Clay Studio, look-uri salvate si generate prin seed, filtre de camera, Wool Dynamics, Lattice Surface si preseturi moderne de compositor. Pro este alegerea mai potrivita atunci cand stilizarea avansata si variatiile repetabile de suprafata sunt esentiale pentru continut.",
+    },
+    {
+      type: "links",
+      links: [
+        {
+          label: "Citeste ghidul complet despre Reel Director",
+          url: "/blog/reel-director-blender-addon-for-3d-content-creators",
+        },
+        {
+          label: "Afla cum clay renders imbunatatesc hook-urile vizuale pentru artisti 3D",
+          url: "/blog/how-clay-renders-improve-visual-hooks-for-3d-artists",
+        },
+      ],
+    },
+    {
+      type: "heading",
+      content: "Intrebari frecvente",
+    },
+    {
+      type: "faq",
+      faqs: [
+        {
+          question: "Ce este Reel Director Pro?",
+          answer:
+            "Reel Director Pro este un addon Blender de la Bevel Graphics pentru transformarea scenelor 3D existente in continut pregatit pentru social media. Combina formate de reel, miscari de camera, animatii de obiect, look-uri clay si viewport, unelte de suprafata, preseturi de randare, compositing, output si cleanup intr-un singur workflow.",
+        },
+        {
+          question: "Ce este Wool Dynamics in Reel Director Pro?",
+          answer:
+            "Wool Dynamics este o functie Pro care foloseste uneltele native de hair din Blender pentru a crea fibre reglabile de tip lana pe obiectele mesh selectate. Include controale pentru count, procent viewport, lungime, grosime, neregularitate, frizz, seed, culoare si miscare XPBD experimentala optionala.",
+        },
+        {
+          question: "Ce versiune Blender este necesara pentru Wool Dynamics?",
+          answer:
+            "Wool Dynamics necesita Blender 5.2. Addon-ul Reel Director Pro functioneaza in general cu Blender 4.2 pana la 5.2, dar functia de lana este disponibila doar in Blender 5.2.",
+        },
+        {
+          question: "Wool Dynamics functioneaza cu animatie?",
+          answer:
+            "Da. Suprafetele de tip lana pot fi folosite cu workflow-ul de camera si animatie de obiect al addon-ului. Reel Director Pro ofera si dinamica XPBD experimentala optionala pentru miscarea secundara a lanii in Blender 5.2.",
+        },
+        {
+          question: "Care este diferenta dintre Wool Dynamics si Lattice Surface?",
+          answer:
+            "Wool Dynamics creeaza detaliu moale de tip fibra, iar Lattice Surface creeaza structuri geometrice triunghiulare sau quad. Ambele sunt unelte Pro pentru suprafata obiectelor selectate, dar produc hook-uri vizuale foarte diferite.",
+        },
+        {
+          question: "Reel Director Pro are reducere de 25%?",
+          answer:
+            "La data publicarii articolului, Reel Director Pro avea reducere de 25% pe Superhive, la 16 USD in loc de 20 USD. Verifica listarea live Superhive deoarece preturile si promotiile marketplace-ului se pot schimba.",
+        },
+        {
+          question: "Reel Director Pro este util pentru artistii archviz?",
+          answer:
+            "Da. Artistii archviz il pot folosi pentru camera reveals, animatie de obiect, breakdown-uri clay si wireframe, look-uri viewport, studii de design wool sau lattice, optimizare de randare si continut vertical din scene arhitecturale existente.",
+        },
+      ],
+    },
+    {
+      type: "quote",
+      content:
+        "Reel Director Pro este cel mai util atunci cand Wool Dynamics, miscarea camerei, animatia obiectelor, clay breakdowns si preset-urile de finisare lucreaza impreuna pentru a transforma o scena Blender in mai multe piese puternice de continut.",
+    },
+  ],
+},
 {
   slug: "how-clay-renders-improve-visual-hooks-for-3d-artists",
   title:
@@ -2175,6 +2792,7 @@ export function getLocalizedArticle(
     excerpt: article.excerptRo ?? article.excerpt,
     imageAlt: article.imageAltRo ?? article.imageAlt,
     content: article.contentRo ?? article.content,
+    keywords: article.keywordsRo ?? article.keywords,
   }
 }
 

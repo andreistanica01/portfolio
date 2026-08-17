@@ -53,6 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: metadata.title,
     description: metadata.description,
+    keywords: localizedArticle.keywords,
     alternates: {
       canonical: `/blog/${article.slug}`,
     },
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: article.publishedAt,
       images: [
         {
-          url: article.image,
+          url: getAbsoluteUrl(article.image),
           alt: localizedArticle.imageAlt ?? localizedArticle.title,
         },
       ],
@@ -74,7 +75,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: "summary_large_image",
       title: metadata.title,
       description: metadata.description,
-      images: [article.image],
+      images: [getAbsoluteUrl(article.image)],
     },
   }
 }
@@ -219,18 +220,30 @@ export default async function ArticlePage({ params }: PageProps) {
                   return section.links?.length ? (
                     <div key={index} className="mb-8">
                       <ul className="space-y-3">
-                        {section.links.map((linkItem, i) => (
-                          <li key={i}>
-                            <a
-                              href={linkItem.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-base md:text-lg text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
-                            >
-                              {linkItem.label}
-                            </a>
-                          </li>
-                        ))}
+                        {section.links.map((linkItem, i) => {
+                          const linkClassName =
+                            "text-base md:text-lg text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                          const isExternal = /^https?:\/\//.test(linkItem.url)
+
+                          return (
+                            <li key={i}>
+                              {isExternal ? (
+                                <a
+                                  href={linkItem.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={linkClassName}
+                                >
+                                  {linkItem.label}
+                                </a>
+                              ) : (
+                                <Link href={linkItem.url} className={linkClassName}>
+                                  {linkItem.label}
+                                </Link>
+                              )}
+                            </li>
+                          )
+                        })}
                       </ul>
                     </div>
                   ) : null
