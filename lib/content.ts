@@ -60,7 +60,7 @@ export const SERVICES_SECTION = {
 
 export const ABOUT_SECTION = {
   title: "About",
-  bio: "Dedicated 3D artist with nearly 2 years of experience in Blender, specializing in hard-surface modeling and exterior and interior architectural rendering. I focus on blueprint-based modeling accuracy, ensuring precise proportions and clean topology in every project, supported by working knowledge of AutoCAD for building accurate layouts. With strong attention to detail, I create high-quality, production-ready assets enhanced by realistic materials and professional lighting setups. My goal is to deliver visually striking renders, further refined through post-production.",
+  bio: "Dedicated 3D artist with 2 years of experience in Blender, specializing in hard-surface modeling and exterior and interior architectural rendering. I focus on blueprint-based modeling accuracy, ensuring precise proportions and clean topology in every project, supported by working knowledge of AutoCAD for building accurate layouts. With strong attention to detail, I create high-quality, production-ready assets enhanced by realistic materials and professional lighting setups. My goal is to deliver visually striking renders, further refined through post-production.",
   skills: {
     modeling: {
       title: "Modeling",

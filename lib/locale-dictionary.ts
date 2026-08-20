@@ -101,7 +101,7 @@ const romanianDictionary: LocalizedDictionary = {
   },
   aboutSection: {
     title: "Despre",
-    bio: "Sunt un artist 3D dedicat, cu aproape 2 ani de experienta in Blender, specializat in modelare hard-surface si randari arhitecturale de exterior si interior. Ma concentrez pe acuratetea modelarii bazate pe planuri, pentru a pastra proportii precise si topologie curata in fiecare proiect, sustinuta de cunostinte practice de AutoCAD pentru realizarea layout-urilor corecte. Cu atentie puternica la detalii, creez imagini de calitate, sustinute de materiale realiste, iluminare profesionala si post-productie bine controlata.",
+    bio: "Sunt un artist 3D dedicat, cu 2 ani de experienta in Blender, specializat in modelare hard-surface si randari arhitecturale de exterior si interior. Ma concentrez pe acuratetea modelarii bazate pe planuri, pentru a pastra proportii precise si topologie curata in fiecare proiect, sustinuta de cunostinte practice de AutoCAD pentru realizarea layout-urilor corecte. Cu atentie puternica la detalii, creez imagini de calitate, sustinute de materiale realiste, iluminare profesionala si post-productie bine controlata.",
     skills: {
       modeling: {
         title: "Modelare",

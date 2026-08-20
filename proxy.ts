@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 const GEO_COOKIE_MAX_AGE = 60 * 60 * 24 * 30
-const SUPPORTED_LOCALES = new Set(["en", "ro"])
+const DEFAULT_LOCALE = "en"
 
 export function proxy(request: NextRequest) {
   const response = NextResponse.next()
@@ -10,24 +10,11 @@ export function proxy(request: NextRequest) {
   const country = request.headers.get("x-vercel-ip-country")
   const region = request.headers.get("x-vercel-ip-country-region")
   const city = request.headers.get("x-vercel-ip-city")
-  const existingLocale = request.cookies.get("preferred-locale")?.value
-  const localeOverride = request.nextUrl.searchParams.get("lang")
-
-  if (localeOverride && SUPPORTED_LOCALES.has(localeOverride)) {
-    response.cookies.set("preferred-locale", localeOverride, {
-      path: "/",
-      maxAge: GEO_COOKIE_MAX_AGE,
-      sameSite: "lax",
-    })
-  } else if (!existingLocale || !SUPPORTED_LOCALES.has(existingLocale)) {
-    const autoDetectedLocale = country?.toUpperCase() === "RO" ? "ro" : "en"
-
-    response.cookies.set("preferred-locale", autoDetectedLocale, {
-      path: "/",
-      maxAge: GEO_COOKIE_MAX_AGE,
-      sameSite: "lax",
-    })
-  }
+  response.cookies.set("preferred-locale", DEFAULT_LOCALE, {
+    path: "/",
+    maxAge: GEO_COOKIE_MAX_AGE,
+    sameSite: "lax",
+  })
 
   if (country) {
     response.cookies.set("visitor-country", country, {

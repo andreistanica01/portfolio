@@ -696,7 +696,7 @@ export const PROJECTS: Project[] = [
     descriptionRo:
       "Julietta H6 a fost creata cu atentie mare la proportiile reale, tranzitiile curate ale suprafetelor si modelarea detaliata bazata pe referinte corecte. Accentul este pus pe liniile precise ale caroseriei, materiale realiste si iluminare controlata pentru un rezultat auto profesional, potrivit pentru prezentare si marketing.",
     tools: ["Blender", "Affinity Photo"],
-    year: "2026",
+    year: "2025",
     type: "Automotive",
     typeRo: "Automotive",
     imageAlt:
@@ -724,8 +724,8 @@ export const PROJECTS: Project[] = [
     thumbnail: "/images/Project_Images/steering1.webp",
     heroImage: "/images/Project_Images/steering1.webp",
     previewImage: "/images/Project_Images/steering1.webp",
-    title: "R8 Steering Wheel",
-    titleRo: "Volan R8",
+    title: "Audi R8 Steering Wheel",
+    titleRo: "Volan Audi R8",
     subtitle: "Personal Project",
     subtitleRo: "Proiect Personal",
     description:
@@ -733,14 +733,14 @@ export const PROJECTS: Project[] = [
     descriptionRo:
       "Volanul inspirat de Audi R8 este modelat cu atentie ridicata la detalii si tehnici precise de hard-surface. M-am concentrat pe proportii foarte exacte, tranzitii ferme ale suprafetelor si elemente mecanice mici pentru a obtine un rezultat realist si la nivel de productie.",
     tools: ["Blender", "Affinity Photo"],
-    year: "2026",
+    year: "2025",
     type: "Automotive Interior Part / Product Visualization",
     typeRo: "Piesa Auto de Interior / Vizualizare de Produs",
     imageAlt:
       "Detailed Audi R8 steering wheel visualization with precise hard-surface modeling, metallic finishes, and close-up product presentation lighting",
     imageAltRo:
       "Vizualizare detaliata a unui volan inspirat de Audi R8, cu modelare hard-surface precisa, finisaje metalice si iluminare de produs",
-    metaTitle: "R8 Steering Wheel | Hard-Surface Visualization Project",
+    metaTitle: "Audi R8 Steering Wheel | Hard-Surface Visualization Project",
     metaDescription:
       "High-detail steering wheel visualization inspired by the Audi R8, created with precise hard-surface modeling, realistic materials, and premium close-up presentation lighting.",
     images: [
