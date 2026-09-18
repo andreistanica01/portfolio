@@ -8,7 +8,6 @@
       "has": [
         {
           "type": "host",
-          "key": "host",
           "value": "reel.bevelgraphics.com"
         }
       ]
