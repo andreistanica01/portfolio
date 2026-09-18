@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "host",
+          "key": "host",
+          "value": "reel.bevelgraphics.com"
+        }
+      ]
+    }
+  ]
+}
