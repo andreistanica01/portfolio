@@ -135,8 +135,8 @@ export function HomePageClient() {
               <div
                 className={`flex items-center self-start border border-transparent transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:self-auto ${
                   isScrolled
-                    ? "mx-auto grid w-full grid-cols-5 items-center justify-items-center gap-0.5 rounded-[1.2rem] bg-muted/55 p-1 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-1.5 sm:rounded-full sm:px-2 sm:py-1.5 md:mx-0 md:w-auto"
-                    : "mx-auto grid w-full grid-cols-5 items-center justify-items-center gap-0.5 sm:flex sm:w-fit sm:flex-wrap sm:justify-center md:mx-0 md:w-auto md:gap-8"
+                    ? "mx-auto grid w-full grid-cols-6 items-center justify-items-center gap-0.5 rounded-[1.2rem] bg-muted/55 p-1 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-1.5 sm:rounded-full sm:px-2 sm:py-1.5 md:mx-0 md:w-auto"
+                    : "mx-auto grid w-full grid-cols-6 items-center justify-items-center gap-0.5 sm:flex sm:w-fit sm:flex-wrap sm:justify-center md:mx-0 md:w-auto md:gap-6"
                 }`}
               >
                 <a
@@ -189,6 +189,12 @@ export function HomePageClient() {
                   className="min-w-0 rounded-full px-1.5 py-1.5 text-xs leading-none transition-colors hover:text-muted-foreground sm:shrink-0 sm:px-3 sm:text-xs md:text-sm"
                 >
                   {navLinks.blog}
+                </Link>
+                <Link
+                  href="/shop/reel-director"
+                  className="min-w-0 rounded-full px-1.5 py-1.5 text-xs leading-none transition-colors hover:text-muted-foreground sm:shrink-0 sm:px-3 sm:text-xs md:text-sm"
+                >
+                  {navLinks.shop}
                 </Link>
                 <Link
                   href="#about"

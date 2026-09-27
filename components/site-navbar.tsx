@@ -45,6 +45,7 @@ export function SiteNavbar({ activePage }: SiteNavbarProps) {
     { href: "/#work", label: navLinks.work, active: false },
     { href: "/#services", label: navLinks.services, active: false },
     { href: "/blog", label: navLinks.blog, active: activePage === "blog" || activePage === "project" },
+    { href: "/shop/reel-director", label: navLinks.shop, active: false },
     { href: "/#about", label: navLinks.about, active: false },
   ]
 
@@ -94,8 +95,8 @@ export function SiteNavbar({ activePage }: SiteNavbarProps) {
               <div
               className={`flex items-center self-start border border-transparent transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:self-auto ${
                 isScrolled
-                  ? "mx-auto grid w-full grid-cols-5 items-center justify-items-center gap-0.5 rounded-[1.2rem] bg-muted/55 p-1 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-1.5 sm:rounded-full sm:px-2 sm:py-1.5 md:mx-0 md:w-auto"
-                  : "mx-auto grid w-full grid-cols-5 items-center justify-items-center gap-0.5 sm:flex sm:w-fit sm:flex-wrap sm:justify-center md:mx-0 md:w-auto md:gap-8"
+                  ? "mx-auto grid w-full grid-cols-6 items-center justify-items-center gap-0.5 rounded-[1.2rem] bg-muted/55 p-1 sm:flex sm:w-auto sm:flex-wrap sm:justify-center sm:gap-1.5 sm:rounded-full sm:px-2 sm:py-1.5 md:mx-0 md:w-auto"
+                  : "mx-auto grid w-full grid-cols-6 items-center justify-items-center gap-0.5 sm:flex sm:w-fit sm:flex-wrap sm:justify-center md:mx-0 md:w-auto md:gap-6"
               }`}
             >
               {navItems.map((item) => (

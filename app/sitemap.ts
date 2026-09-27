@@ -6,6 +6,12 @@ import { PROJECTS } from "@/lib/projects"
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
+      url: `${SITE_CONFIG.siteUrl}/shop/reel-director`,
+      lastModified: new Date("2026-09-27"),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
       url: SITE_CONFIG.siteUrl,
       lastModified: new Date(),
       changeFrequency: "weekly",

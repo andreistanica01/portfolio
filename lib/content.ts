@@ -4,7 +4,7 @@
 
 export const SITE_CONFIG = {
   name: "Bevel Graphics",
-  siteUrl: "https://bevel.graphics",
+  siteUrl: "https://bevelgraphics.com",
   email: "bevel.graphics1@gmail.com",
   tagline: "Architectural Visualization Studio",
   description: "Professional 3D architectural visualization services including residential interiors, exterior renders, office visualization, hospitality interiors, and photorealistic presentation imagery.",
@@ -20,6 +20,7 @@ export const NAV_LINKS = {
   work: "Work",
   services: "Services",
   blog: "Blog",
+  shop: "Shop",
   about: "About",
   contact: "Contact",
   workTogether: "Work Together",

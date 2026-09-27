@@ -1,0 +1,49 @@
+# Reel Director direct shop
+
+The landing page is `/shop/reel-director`. `/shop` redirects there. The portfolio navigation includes Shop, and the existing `reel.bevelgraphics.com` redirect points to the new page.
+
+## Prices and content
+
+`lib/shop/catalog.ts` is the source for both displayed prices and the server-side PayPal order amounts. Superhive prices checked on 27 September 2026: Standard USD 12 (regular USD 16), Pro USD 16.50 (regular USD 22), a 25% promotion. These are a snapshot, not a live marketplace feed. Update both editions, sale copy and prices when the offer ends. Never take a price from the browser.
+
+Product facts come from the current creator listing, local addon documentation and existing portfolio articles. Compatibility: Blender 4.2-5.2; Wool Dynamics requires Blender 5.2 and its optional dynamics are experimental. The local Pro manifest specifies GPL-3.0-or-later. Product images are WebP, including the on-demand showreel.
+
+## Connect PayPal
+
+Use `.env.example` for the configuration fields. In deployment, enter secrets into the hosting provider's environment settings, not source files or chat. No live account credentials are included in this repository.
+
+1. Create a REST app under your own PayPal Business account in the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/applications). Start with Sandbox credentials.
+2. Set `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_ENVIRONMENT=sandbox` and a random `SHOP_SESSION_SECRET` of at least 32 characters. For example, `node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"` generates a secret locally.
+3. Set `SHOP_SITE_URL` to the exact origin used by the customer. Locally this is `http://127.0.0.1:3000`. In production use the canonical HTTPS domain, `https://bevelgraphics.com`. The previous site-wide `bevel.graphics` setting was corrected to the verified live domain. Do not use a path or a different alias: origin checks and PayPal return URLs must match.
+4. Set the verified legal seller name and address. These are rendered on `/shop/terms`. Review those terms, support coverage, consumer disclosures and the correct tax-inclusive selling totals for the seller's circumstances before accepting payments. PayPal is a processor; this integration does not calculate VAT, issue tax invoices, or establish the seller's Romanian registration status.
+5. Upload the correct release ZIPs to private storage with stable HTTPS `HEAD` and `GET` endpoints. Set `REEL_DIRECTOR_DOWNLOAD_URL` and `REEL_DIRECTOR_PRO_DOWNLOAD_URL`. If storage uses bearer authentication, set `SHOP_DOWNLOAD_BEARER_TOKEN`; unauthenticated access must be denied. Do not use ordinary public URLs, expiring URLs that will break later, HTML sharing pages or redirecting endpoints. Do not place release ZIPs in `public/` or commit them.
+6. Set `SHOP_CHECKOUT_ENABLED=true`, restart, and complete a Sandbox purchase of each edition using a separate Sandbox buyer. Verify the actual correct ZIP downloads, cancel/retry behavior, and that no download works before payment. Test an issued refund and confirm it blocks new downloads.
+7. Switch to the app's Live credentials and `PAYPAL_ENVIRONMENT=live` only after account, delivery and selling requirements are ready. Sandbox checkout is visibly marked. Live checkout requires HTTPS. Missing credentials, seller details or a configured edition file keep direct checkout unavailable; the actual Superhive listing remains a purchasing fallback.
+
+The release files found locally were `Desktop/RD/Reel Director - Blender Addon v0.0.4.zip` and `Desktop/RD PRO/Reel Director PRO - Blender Addon v0.0.3.zip`. Confirm which builds you want to ship before uploading. They have deliberately not been copied into public assets.
+
+## Payment and delivery design
+
+- The buyer chooses an edition and accepts purchase terms. A same-origin POST creates a PayPal CAPTURE order with the catalog amount and a digital-goods line item. A storage HEAD request must succeed first.
+- The site redirects to PayPal's hosted approval page. Card details never pass through this site; guest/card eligibility is controlled by PayPal.
+- PayPal returns the buyer to `/shop/reel-director/checkout`. A signed HttpOnly cookie binds the order, edition, price, currency and payment environment. A POST verifies those details with PayPal and captures an approved order using a deterministic idempotency key. Pending, mismatched or failed payments never unlock a file.
+- A second signed HttpOnly cookie grants download access for 7 days in that browser. Each download rechecks the capture status with PayPal, including amount and currency, so refunded payments are rejected. The private file is streamed server-side without exposing its storage URL or bearer token.
+- PayPal stores the transaction record. This initial implementation has no separate customer account, order database, automatic email delivery, tax invoice generator or webhook fulfillment. The buyer returns to the verified receipt page to download. If a callback or network response fails, retrying the same order recovers the capture without charging twice. The checkout session lasts 3 hours; later recovery, cross-device access and updates are handled by seller support using the PayPal receipt. The UI explains this.
+- Large ZIPs are streamed, with a 300-second route duration setting. Verify your hosting plan's duration/bandwidth limits with the actual 140-180 MB release files. For higher volume, replace streaming with short-lived object-store signed downloads after the same server-side payment verification.
+
+## Verification
+
+`node --test tests/shop.test.mjs` runs isolated mocked PayPal and storage tests. It does not move money or contact PayPal. `node scripts/check-reel-ui.mjs` uses a running local server for responsive screenshots and interaction checks; Playwright must be installed or available from the bundled workspace runtime.
+
+Before live activation, a real Sandbox transaction and hosted ZIP delivery test are still required. Local mocked tests do not establish account eligibility or production payment readiness.
+
+## References
+
+- [Current creator listing](https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-)
+- [PayPal Standard integration](https://developer.paypal.com/studio/checkout/standard/integrate)
+- [PayPal Orders API](https://developer.paypal.com/api/orders/v2)
+- [PayPal Romania User Agreement](https://www.paypal.com/ro/legalhub/paypal/useragreement-full)
+- [Stripe Services Agreement](https://stripe.com/en-ro/legal/ssa)
+- [Romanian OUG 44/2008](https://legislatie.just.ro/Public/DetaliiDocument/91808)
+
+Having a PayPal Business account does not by itself settle registration, tax, invoicing or consumer obligations. Obtain Romanian accounting/legal guidance for the actual software sales arrangement. Stripe has not been added to this version.

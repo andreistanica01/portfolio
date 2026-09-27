@@ -64,6 +64,7 @@ const romanianDictionary: LocalizedDictionary = {
     work: "Portofoliu",
     services: "Servicii",
     blog: "Blog",
+    shop: "Shop",
     about: "Despre Mine",
     contact: "Contact",
     workTogether: "Hai sa colaboram",
