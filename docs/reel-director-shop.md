@@ -2,6 +2,18 @@
 
 The landing page is `/shop/reel-director`. `/shop` redirects there. The portfolio navigation includes Shop, and the existing `reel.bevelgraphics.com` redirect points to the new page.
 
+## Configuration status (29 September 2026)
+
+- Dedicated live PayPal app created: `Bevel Graphics Reel Director`. Existing third-party apps were not modified.
+- Production hosting moved to Netlify project `bevelgraphics`, linked to `andreistanica01/portfolio` on the `main` branch. The Vercel deployment remains available as a rollback while migration settles.
+- `bevelgraphics.com` remains registered and DNS-hosted at Vercel. The apex ALIAS points to `apex-loadbalancer.netlify.com`, while `www` is a CNAME to `bevelgraphics.netlify.app`. The separate `reel.bevelgraphics.com` setup was preserved.
+- Netlify issued a renewable Let's Encrypt certificate for `bevelgraphics.com` and `www.bevelgraphics.com`. Both names work over HTTPS, and `www` redirects to the apex domain.
+- Netlify production config: `PAYPAL_ENVIRONMENT=live`, `SHOP_SITE_URL=https://bevelgraphics.com`, and `SHOP_CHECKOUT_ENABLED=false`.
+- The dedicated PayPal Live client ID and secret are stored as protected, Production-only Netlify variables. A unique protected `SHOP_SESSION_SECRET` is also configured. Secret values were not written to this repository or local environment files.
+- No private release storage is connected to Netlify. Confirm the release ZIPs before uploading them, and confirm the public legal seller name and address before setting seller fields.
+- Sandbox credentials, end-to-end purchases for both editions, actual ZIP delivery, cancellation/retry and refund tests are still pending. Never use the live credentials in a sandbox configuration or expose them to preview deployments.
+- Local verification: all 14 mocked checkout tests and TypeScript checks pass. These do not confirm PayPal connectivity or live readiness.
+
 ## Prices and content
 
 `lib/shop/catalog.ts` is the source for both displayed prices and the server-side PayPal order amounts. Superhive prices checked on 27 September 2026: Standard USD 12 (regular USD 16), Pro USD 16.50 (regular USD 22), a 25% promotion. These are a snapshot, not a live marketplace feed. Update both editions, sale copy and prices when the offer ends. Never take a price from the browser.
@@ -34,6 +46,8 @@ The release files found locally were `Desktop/RD/Reel Director - Blender Addon v
 ## Verification
 
 `node --test tests/shop.test.mjs` runs isolated mocked PayPal and storage tests. It does not move money or contact PayPal. `node scripts/check-reel-ui.mjs` uses a running local server for responsive screenshots and interaction checks; Playwright must be installed or available from the bundled workspace runtime.
+
+Production verification on 29 September 2026 confirmed that `https://bevelgraphics.com`, the secure `www` redirect, and `https://bevelgraphics.com/shop/reel-director` are served by Netlify. Netlify reports HTTPS enabled for both custom domains. Deploy `6abb92131481cf0ef40eabe7` successfully rebuilt the site after adding the protected PayPal Live credentials and checkout session secret. Direct checkout remains intentionally disabled until private release storage, seller details, and Sandbox purchase tests are complete.
 
 Before live activation, a real Sandbox transaction and hosted ZIP delivery test are still required. Local mocked tests do not establish account eligibility or production payment readiness.
 
