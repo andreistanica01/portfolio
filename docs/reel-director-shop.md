@@ -11,10 +11,10 @@ The landing page is `/shop/reel-director`. `/shop` redirects there. The portfoli
 - Netlify production config: `PAYPAL_ENVIRONMENT=live`, `SHOP_SITE_URL=https://bevelgraphics.com`, and `SHOP_CHECKOUT_ENABLED=false`.
 - The dedicated PayPal Live client ID and secret are stored as protected, Production-only Netlify variables. A unique protected `SHOP_SESSION_SECRET` is also configured. Secret values were not written to this repository or local environment files.
 - The creator confirmed Standard v0.0.4 and Pro v0.0.3. Both archives are uploaded to the private Netlify Blobs store `reel-director-releases`; authenticated read-back SHA-256 checks match the originals (141,845,903 bytes and 180,883,450 bytes respectively). They are not public assets or Git files.
-- Production now has `SHOP_DOWNLOAD_PROVIDER=netlify-blobs`, `REEL_DIRECTOR_BLOB_KEY=standard/0.0.4/reel-director.zip` and `REEL_DIRECTOR_PRO_BLOB_KEY=pro/0.0.3/reel-director-pro.zip`. The edge delivery implementation still requires deployment verification. Checkout remains disabled.
+- Production now has `SHOP_DOWNLOAD_PROVIDER=netlify-blobs`, `REEL_DIRECTOR_BLOB_KEY=standard/0.0.4/reel-director.zip` and `REEL_DIRECTOR_PRO_BLOB_KEY=pro/0.0.3/reel-director-pro.zip`. Deploy `6abc1dcc9296fc0009f6f3fb` published the edge delivery implementation successfully. Hosted authorization checks pass; a complete paid Sandbox download remains to be tested. Checkout remains disabled.
 - The public legal seller name and address have not been supplied. Do not infer them from account profiles or publish placeholder details in production.
 - Sandbox credentials, end-to-end purchases for both editions, actual ZIP delivery, cancellation/retry and refund tests are still pending. Never use the live credentials in a sandbox configuration or expose them to preview deployments.
-- Local checkout tests cover payment validation, private file availability, seller/enablement gates, edge authorization and large streams. These do not confirm PayPal connectivity or hosted delivery readiness.
+- All 22 local checkout tests, TypeScript, lint and Netlify edge packaging pass. Tests cover payment validation, private file availability, seller/enablement gates, edge authorization and large streams. These do not confirm PayPal connectivity or full hosted delivery readiness.
 
 ## Prices and content
 
@@ -49,7 +49,9 @@ The confirmed release files are `Desktop/RD/Reel Director - Blender Addon v0.0.4
 
 `node --test tests/shop.test.mjs` runs isolated mocked PayPal and storage tests. It does not move money or contact PayPal. `node scripts/check-reel-ui.mjs` uses a running local server for responsive screenshots and interaction checks; Playwright must be installed or available from the bundled workspace runtime.
 
-Production verification on 29 September 2026 confirmed that `https://bevelgraphics.com`, the secure `www` redirect, and `https://bevelgraphics.com/shop/reel-director` are served by Netlify. Netlify reports HTTPS enabled for both custom domains. Deploy `6abb92131481cf0ef40eabe7` successfully rebuilt the site after adding the protected PayPal Live credentials and checkout session secret. Direct checkout remains intentionally disabled until private release storage, seller details, and Sandbox purchase tests are complete.
+Production verification on 29 September 2026 confirmed that `https://bevelgraphics.com`, the secure `www` redirect, and `https://bevelgraphics.com/shop/reel-director` are served by Netlify. Netlify reports HTTPS enabled for both custom domains. Deploy `6abc1dcc9296fc0009f6f3fb` (commit `0f92bd0`) published the private edge delivery update. Both edition download routes return 401 for anonymous and forged-receipt requests, the edge route rejects POST with 405, and responses are non-cacheable. The shop returns 200 and still shows direct checkout as unavailable. Public seller details and Sandbox purchase tests are still required before activation.
+
+The full Netlify build succeeds in the cloud. A local Windows Netlify build hit OS symbolic-link permission restrictions; the edge function was separately packaged successfully using Netlify's official edge bundler. Its relative TypeScript imports require explicit `.ts` extensions.
 
 Before live activation, a real Sandbox transaction and hosted ZIP delivery test are still required. Local mocked tests do not establish account eligibility or production payment readiness.
 
@@ -58,6 +60,9 @@ Before live activation, a real Sandbox transaction and hosted ZIP delivery test 
 - [Current creator listing](https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-)
 - [PayPal Standard integration](https://developer.paypal.com/studio/checkout/standard/integrate)
 - [PayPal Orders API](https://developer.paypal.com/api/orders/v2)
+- [Netlify Blobs](https://docs.netlify.com/build/data-and-storage/netlify-blobs/)
+- [Netlify Functions limits](https://docs.netlify.com/build/functions/configuration/)
+- [Netlify Edge Functions limits](https://docs.netlify.com/build/edge-functions/limits/)
 - [PayPal Romania User Agreement](https://www.paypal.com/ro/legalhub/paypal/useragreement-full)
 - [Stripe Services Agreement](https://stripe.com/en-ro/legal/ssa)
 - [Romanian OUG 44/2008](https://legislatie.just.ro/Public/DetaliiDocument/91808)
