@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { getEdition, REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
 import { isPayPalApprovalUrl, signSession, type PayPalOrder } from "@/lib/shop/security"
-import { CHECKOUT_COOKIE, checkoutAvailability, cookieOptions, fetchDownload, noStoreHeaders, paypalEnvironment, paypalRequest, shopOrigin, shopSecret } from "@/lib/shop/paypal"
+import { CHECKOUT_COOKIE, checkoutAvailability, cookieOptions, releaseAvailable, noStoreHeaders, paypalEnvironment, paypalRequest, shopOrigin, shopSecret } from "@/lib/shop/paypal"
 
 export const runtime = "nodejs"
 const inputSchema = z.object({ edition: z.enum(["standard", "pro"]), acceptedTerms: z.literal(true) }).strict()
@@ -20,8 +20,7 @@ export async function POST(request: NextRequest) {
   }
   try {
     // Check delivery before asking a customer to pay.
-    const file = await fetchDownload(edition.id, "HEAD")
-    if (!file.ok || file.headers.get("content-type")?.includes("text/html")) throw new Error("Download unavailable")
+    if (!await releaseAvailable(edition.id)) throw new Error("Download unavailable")
     const order = await paypalRequest<PayPalOrder>("/v2/checkout/orders", {
       requestId: randomUUID(),
       body: {

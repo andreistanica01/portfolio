@@ -1,6 +1,8 @@
 import "server-only"
 import { SITE_CONFIG } from "@/lib/content"
 import { getEdition, type EditionId } from "@/lib/shop/catalog"
+import { getStore } from "@netlify/blobs"
+import { BLOB_PROVIDER, RELEASE_STORE } from "@/lib/shop/delivery"
 
 export const CHECKOUT_COOKIE = "rd_checkout"
 export const RECEIPT_MAX_AGE = 60 * 60 * 24 * 7
@@ -22,6 +24,26 @@ export function downloadSource(edition: EditionId) {
   } catch { return null }
 }
 
+export function releaseBlobKey(edition: EditionId) {
+  const value = process.env[getEdition(edition)!.blobKeyEnv]
+  return value && /^[a-zA-Z0-9][a-zA-Z0-9/._-]{0,599}$/.test(value) ? value : null
+}
+
+function downloadConfigured(edition: EditionId) {
+  return process.env.SHOP_DOWNLOAD_PROVIDER === BLOB_PROVIDER
+    ? Boolean(releaseBlobKey(edition))
+    : Boolean(downloadSource(edition))
+}
+
+export async function releaseAvailable(edition: EditionId) {
+  if (process.env.SHOP_DOWNLOAD_PROVIDER === BLOB_PROVIDER) {
+    const key = releaseBlobKey(edition)
+    return Boolean(key && await getStore({ name: RELEASE_STORE, consistency: "strong" }).getMetadata(key))
+  }
+  const file = await fetchDownload(edition, "HEAD")
+  return file.ok && !file.headers.get("content-type")?.includes("text/html")
+}
+
 export function checkoutAvailability() {
   const connected = process.env.SHOP_CHECKOUT_ENABLED === "true" &&
     Boolean(process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET) &&
@@ -30,8 +52,8 @@ export function checkoutAvailability() {
     (paypalEnvironment() !== "live" || shopOrigin().startsWith("https://"))
   return {
     environment: paypalEnvironment(),
-    standard: connected && Boolean(downloadSource("standard")),
-    pro: connected && Boolean(downloadSource("pro")),
+    standard: connected && downloadConfigured("standard"),
+    pro: connected && downloadConfigured("pro"),
   }
 }
 

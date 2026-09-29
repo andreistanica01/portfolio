@@ -16,6 +16,7 @@ export const REEL_EDITIONS = [
     currency: "USD",
     description: "Your everyday toolkit for turning finished scenes into fresh content.",
     downloadEnv: "REEL_DIRECTOR_DOWNLOAD_URL",
+    blobKeyEnv: "REEL_DIRECTOR_BLOB_KEY",
     filename: "reel-director.zip",
     features: [
       "32 camera movement presets",
@@ -34,6 +35,7 @@ export const REEL_EDITIONS = [
     currency: "USD",
     description: "The full toolkit, with more control over every shot and surface.",
     downloadEnv: "REEL_DIRECTOR_PRO_DOWNLOAD_URL",
+    blobKeyEnv: "REEL_DIRECTOR_PRO_BLOB_KEY",
     filename: "reel-director-pro.zip",
     features: [
       "Everything in Standard",

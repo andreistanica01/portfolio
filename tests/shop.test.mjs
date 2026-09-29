@@ -9,13 +9,20 @@ import ts from "typescript"
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const require = createRequire(import.meta.url)
 const cache = new Map()
+const blobStore = { getMetadata: async () => null, get: async () => null }
 function load(relative) {
   const filename = path.join(root, relative)
   if (cache.has(filename)) return cache.get(filename)
   const { outputText } = ts.transpileModule(fs.readFileSync(filename, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } })
   const exports = {}
   cache.set(filename, exports)
-  new Function("require", "exports", outputText)((name) => name === "server-only" ? {} : name.startsWith("@/") ? load(`${name.slice(2)}.ts`) : require(name), exports)
+  new Function("require", "exports", outputText)((name) => {
+    if (name === "server-only") return {}
+    if (name === "@netlify/blobs") return { getStore: () => blobStore }
+    if (name.startsWith("@/")) return load(`${name.slice(2)}.ts`)
+    if (name.startsWith(".")) return load(path.relative(root, path.resolve(path.dirname(filename), `${name}.ts`)))
+    return require(name)
+  }, exports)
   return exports
 }
 
@@ -23,15 +30,18 @@ const security = load("lib/shop/security.ts")
 const createOrder = load("app/api/shop/paypal/route.ts").POST
 const captureOrder = load("app/api/shop/paypal/capture/route.ts").POST
 const download = load("app/api/shop/download/route.ts").GET
+const edgeDownload = load("netlify/edge-functions/shop-download.ts").default
 const { NextRequest } = require("next/server")
 const originalFetch = globalThis.fetch
 const originalEnv = { ...process.env }
+const originalNetlify = globalThis.Netlify
 const secret = "test-only-strong-secret-not-a-real-credential-123456789"
 const orderId = "TESTORDER123456789"
 const captureId = "TESTCAPTURE1234567"
 const baseSession = { kind: "checkout", orderId, edition: "pro", amount: "16.50", currency: "USD", environment: "sandbox", expires: Date.now() + 3600000 }
 
 function configure() {
+  delete process.env.SHOP_DOWNLOAD_PROVIDER
   Object.assign(process.env, {
     SHOP_CHECKOUT_ENABLED: "true", SHOP_SITE_URL: "https://shop.example.com", PAYPAL_ENVIRONMENT: "sandbox",
     PAYPAL_CLIENT_ID: "test-client", PAYPAL_CLIENT_SECRET: "test-secret", SHOP_SESSION_SECRET: secret,
@@ -55,7 +65,14 @@ function mockNetwork(handler) {
   }
 }
 
-afterEach(() => { globalThis.fetch = originalFetch; for (const key of Object.keys(process.env)) if (!(key in originalEnv)) delete process.env[key]; Object.assign(process.env, originalEnv) })
+afterEach(() => {
+  globalThis.fetch = originalFetch
+  globalThis.Netlify = originalNetlify
+  blobStore.getMetadata = async () => null
+  blobStore.get = async () => null
+  for (const key of Object.keys(process.env)) if (!(key in originalEnv)) delete process.env[key]
+  Object.assign(process.env, originalEnv)
+})
 
 test("signed sessions reject tampering, expiry, wrong secrets and weak signing keys", () => {
   const token = security.signSession(baseSession, secret)
@@ -205,4 +222,117 @@ test("payment environment changes invalidate old checkout sessions", async () =>
   configure()
   process.env.PAYPAL_ENVIRONMENT = "live"
   assert.equal((await captureOrder(request("/api/shop/paypal/capture", { orderId }, checkoutCookie()))).status, 401)
+})
+
+function configureBlobs() {
+  configure()
+  process.env.SHOP_DOWNLOAD_PROVIDER = "netlify-blobs"
+  process.env.REEL_DIRECTOR_PRO_BLOB_KEY = "pro/0.0.3/reel-director-pro.zip"
+  globalThis.Netlify = { env: { get: (name) => process.env[name] } }
+  mockNetwork(async () => Response.json({ id: captureId, status: "COMPLETED", amount: { value: "16.50", currency_code: "USD" } }))
+}
+
+test("private release storage must exist before creating a PayPal order", async () => {
+  configureBlobs()
+  let calls = 0
+  mockNetwork(async () => { calls++; throw new Error("PayPal must not be called") })
+  const response = await createOrder(request("/api/shop/paypal", { edition: "pro", acceptedTerms: true }))
+  assert.equal(response.status, 502)
+  assert.equal(calls, 0)
+})
+
+test("private storage cannot bypass the checkout switch or seller details", async () => {
+  for (const missing of ["SHOP_CHECKOUT_ENABLED", "SHOP_SELLER_NAME", "SHOP_SELLER_ADDRESS", "REEL_DIRECTOR_PRO_BLOB_KEY"]) {
+    configureBlobs()
+    delete process.env[missing]
+    globalThis.fetch = () => { throw new Error("No payment call allowed") }
+    assert.equal((await createOrder(request("/api/shop/paypal", { edition: "pro", acceptedTerms: true }))).status, 503)
+  }
+})
+
+test("an available private release permits a correctly priced sandbox order", async () => {
+  configureBlobs()
+  let checked = false
+  blobStore.getMetadata = async (key) => {
+    assert.equal(key, process.env.REEL_DIRECTOR_PRO_BLOB_KEY)
+    checked = true
+    return { etag: "test-release", metadata: {} }
+  }
+  mockNetwork(async (url, options) => {
+    assert.equal(checked, true)
+    assert.equal(url, "https://api-m.sandbox.paypal.com/v2/checkout/orders")
+    assert.equal(JSON.parse(options.body).purchase_units[0].amount.value, "16.50")
+    return Response.json({ id: orderId, links: [{ rel: "payer-action", href: `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}` }] })
+  })
+  assert.equal((await createOrder(request("/api/shop/paypal", { edition: "pro", acceptedTerms: true }))).status, 200)
+})
+
+test("only verified receipts authorize edge delivery", async () => {
+  configureBlobs()
+  const response = await download(request("/api/shop/download?edition=pro", null, receiptCookie()))
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get("x-reel-delivery"), "netlify-blobs")
+  assert.deepEqual(await response.json(), { edition: "pro", key: process.env.REEL_DIRECTOR_PRO_BLOB_KEY })
+  assert.equal((await download(request("/api/shop/download?edition=pro"))).status, 401)
+  mockNetwork(async () => Response.json({ id: captureId, status: "REFUNDED", amount: { value: "16.50", currency_code: "USD" } }))
+  assert.equal((await download(request("/api/shop/download?edition=pro", null, receiptCookie()))).status, 403)
+})
+
+test("edge delivery returns authorization failures without accessing files", async () => {
+  configureBlobs()
+  let reads = 0
+  blobStore.get = async () => { reads++; throw new Error("No file access allowed") }
+  const input = request("/api/shop/download?edition=pro")
+  const response = await edgeDownload(input, { next: () => download(input) })
+  assert.equal(response.status, 401)
+  assert.equal(reads, 0)
+  const post = await edgeDownload(request("/api/shop/download?edition=pro", {}), { next: () => { throw new Error("No POST allowed") } })
+  assert.equal(post.status, 405)
+})
+
+test("edge delivery rejects mismatched editions and storage keys", async () => {
+  configureBlobs()
+  for (const payload of [
+    { edition: "standard", key: process.env.REEL_DIRECTOR_PRO_BLOB_KEY },
+    { edition: "pro", key: "another-private-file.zip" },
+  ]) {
+    const response = await edgeDownload(request("/api/shop/download?edition=pro"), {
+      next: async () => Response.json(payload, { headers: { "X-Reel-Delivery": "netlify-blobs" } }),
+    })
+    assert.equal(response.status, 502)
+  }
+})
+
+test("edge delivery fails privately if the release disappears after purchase", async () => {
+  configureBlobs()
+  const input = request("/api/shop/download?edition=pro", null, receiptCookie())
+  const response = await edgeDownload(input, { next: () => download(input) })
+  assert.equal(response.status, 502)
+  assert.equal(response.headers.get("cache-control"), "private, no-store")
+  assert.match((await response.json()).error, /Do not purchase again/)
+})
+
+test("edge delivery streams a release larger than the regular function limit", async () => {
+  configureBlobs()
+  const size = 24 * 1024 * 1024
+  let remaining = size
+  blobStore.get = async (key, options) => {
+    assert.equal(key, process.env.REEL_DIRECTOR_PRO_BLOB_KEY)
+    assert.equal(options.type, "stream")
+    return new ReadableStream({ pull(controller) {
+      if (!remaining) return controller.close()
+      const length = Math.min(remaining, 65536)
+      remaining -= length
+      controller.enqueue(new Uint8Array(length))
+    } })
+  }
+  const input = request("/api/shop/download?edition=pro", null, receiptCookie())
+  const response = await edgeDownload(input, { next: () => download(input) })
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get("cache-control"), "private, no-store")
+  assert.equal(response.headers.get("content-type"), "application/zip")
+  assert.equal(response.headers.get("content-disposition"), 'attachment; filename="reel-director-pro.zip"')
+  let received = 0
+  for await (const chunk of response.body) received += chunk.byteLength
+  assert.equal(received, size)
 })

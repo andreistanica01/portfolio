@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getEdition } from "@/lib/shop/catalog"
 import { readSession, validReceiptCapture, type PayPalCapture } from "@/lib/shop/security"
-import { fetchDownload, noStoreHeaders, paypalEnvironment, paypalRequest, receiptCookie, shopSecret } from "@/lib/shop/paypal"
+import { fetchDownload, noStoreHeaders, paypalEnvironment, paypalRequest, receiptCookie, releaseBlobKey, shopSecret } from "@/lib/shop/paypal"
+import { BLOB_PROVIDER, DELIVERY_HEADER, privateDownloadHeaders } from "@/lib/shop/delivery"
 
 export const runtime = "nodejs"
-export const maxDuration = 300
+export const maxDuration = 60
 
 export async function GET(request: NextRequest) {
   const edition = getEdition(request.nextUrl.searchParams.get("edition") || "")
@@ -15,6 +16,14 @@ export async function GET(request: NextRequest) {
   try {
     const capture = await paypalRequest<PayPalCapture>(`/v2/payments/captures/${session.captureId}`)
     if (!validReceiptCapture(capture, session)) return NextResponse.json({ error: "This payment is not eligible for a download. Please contact support." }, { status: 403, headers: noStoreHeaders })
+    if (process.env.SHOP_DOWNLOAD_PROVIDER === BLOB_PROVIDER) {
+      const key = releaseBlobKey(edition.id)
+      if (!key) throw new Error("Download unavailable")
+      // The Netlify edge route streams the archive after this payment check.
+      return NextResponse.json({ edition: edition.id, key }, {
+        headers: { ...privateDownloadHeaders, [DELIVERY_HEADER]: BLOB_PROVIDER },
+      })
+    }
     const file = await fetchDownload(edition.id, "GET")
     if (!file.ok || !file.body || file.headers.get("content-type")?.includes("text/html")) throw new Error("Download unavailable")
     return new Response(file.body, { headers: {
