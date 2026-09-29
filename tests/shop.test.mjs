@@ -20,7 +20,7 @@ function load(relative) {
     if (name === "server-only") return {}
     if (name === "@netlify/blobs") return { getStore: () => blobStore }
     if (name.startsWith("@/")) return load(`${name.slice(2)}.ts`)
-    if (name.startsWith(".")) return load(path.relative(root, path.resolve(path.dirname(filename), `${name}.ts`)))
+    if (name.startsWith(".")) return load(path.relative(root, path.resolve(path.dirname(filename), name.endsWith(".ts") ? name : `${name}.ts`)))
     return require(name)
   }, exports)
   return exports

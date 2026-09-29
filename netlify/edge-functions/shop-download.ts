@@ -1,7 +1,7 @@
 import { getStore } from "@netlify/blobs"
 import type { Config, Context } from "@netlify/edge-functions"
-import { getEdition } from "../../lib/shop/catalog"
-import { BLOB_PROVIDER, DELIVERY_HEADER, RELEASE_STORE, privateDownloadHeaders } from "../../lib/shop/delivery"
+import { getEdition } from "../../lib/shop/catalog.ts"
+import { BLOB_PROVIDER, DELIVERY_HEADER, RELEASE_STORE, privateDownloadHeaders } from "../../lib/shop/delivery.ts"
 
 export default async function download(request: Request, context: Context) {
   if (request.method !== "GET") {
