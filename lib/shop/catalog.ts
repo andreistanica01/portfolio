@@ -1,4 +1,6 @@
 export const REEL_DIRECTOR_PATH = "/shop/reel-director"
+export const REEL_CONTENT_UPDATED_AT = "2026-09-29"
+export const REEL_DESCRIPTION = "Reel Director is a Blender addon by Bevel Graphics for turning existing 3D scenes into Instagram Reels, TikTok videos, YouTube Shorts and portfolio breakdowns. It combines camera animation, object animation, clay renders, viewport styles and output tools in one panel."
 export const SUPERHIVE_URL =
   "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-"
 
@@ -55,7 +57,7 @@ export function formatPrice(value: string) {
 export const REEL_FAQS = [
   {
     question: "What is Reel Director?",
-    answer: "Reel Director is a Blender addon by Bevel Graphics for making short-form 3D content from existing scenes. It combines camera moves, object animation, clay breakdowns, viewport looks, render presets and output tools in one panel. Use it for Instagram Reels, TikTok, YouTube Shorts and portfolio breakdowns.",
+    answer: REEL_DESCRIPTION,
   },
   {
     question: "What is the difference between Standard and Pro?",
@@ -66,12 +68,20 @@ export const REEL_FAQS = [
     answer: "The current releases support Blender 4.2 through 5.2 and work with Cycles and Eevee. Wool Dynamics (also called Native Wool Style) requires Blender 5.2. Its optional XPBD dynamics are experimental. Check the requirements of your chosen feature before purchasing.",
   },
   {
+    question: "What does Wool Dynamics do in Reel Director Pro?",
+    answer: "Wool Dynamics, also called Native Wool Style, creates wool-style fibers on selected mesh objects in Blender 5.2. Adjust fiber count, viewport percentage, length, thickness, irregularity, frizz, seed and color. Optional XPBD dynamics are experimental. Wool Dynamics is included in Pro, not Standard.",
+  },
+  {
+    question: "Can I use Reel Director for architectural visualization?",
+    answer: "Yes. Use camera moves for interior walkthrough-style shots, exterior reveals and product orbits, then create clay or wireframe breakdowns from the same scene. Both editions include format presets for vertical, square and landscape output. Reel Director prepares and renders content in Blender; it does not automatically publish videos to social platforms.",
+  },
+  {
     question: "Is this a subscription?",
     answer: "No. Each edition is a one-time purchase. It includes the addon and 12 months of product updates and support. Your purchased version does not expire when the support period ends.",
   },
   {
     question: "How do payment and delivery work?",
-    answer: "Direct purchases use PayPal's hosted checkout. You approve payment on PayPal, then return here for a verified download of your chosen edition. Card availability is determined by PayPal for your location and account. No Superhive account is needed for a direct purchase. Keep your PayPal receipt for support or download recovery.",
+    answer: "When direct checkout is available, purchases use PayPal's hosted checkout. You approve payment on PayPal, then return here for a verified download of your chosen edition. Card availability depends on PayPal. When direct checkout is unavailable, use the linked Superhive listing. Keep your payment receipt for support or download recovery.",
   },
   {
     question: "Can I use the addon for client projects?",

@@ -12,6 +12,7 @@ import {
   getOpenGraphLocale,
   getOrganizationJsonLd,
   getWebsiteJsonLd,
+  serializeJsonLd,
 } from "@/lib/seo"
 import './globals.css'
 
@@ -55,9 +56,6 @@ function getLocalizedRootMetadata(locale: Locale): Metadata {
           "real estate presentation renders",
           "architectural presentation visuals",
         ],
-    alternates: {
-      canonical: "/",
-    },
     openGraph: {
       type: "website",
       locale: getOpenGraphLocale(locale),
@@ -148,11 +146,11 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <script
               type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+              dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteJsonLd) }}
             />
             <script
               type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+              dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd) }}
             />
             {children}
           </ThemeProvider>

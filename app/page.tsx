@@ -4,7 +4,7 @@ import { SITE_CONFIG } from "@/lib/content"
 import { getRequestLocale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/locale-dictionary"
 import { PROJECTS } from "@/lib/projects"
-import { getCollectionPageJsonLd, getOpenGraphLocale } from "@/lib/seo"
+import { getCollectionPageJsonLd, getOpenGraphLocale, serializeJsonLd } from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale()
@@ -69,7 +69,7 @@ export default async function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(portfolioJsonLd) }}
       />
       <HomePageClient />
     </>

@@ -22,15 +22,12 @@ export function HomePageClient() {
     blogContent,
     locale,
   } = useLocaleDictionary()
-  const [isLoaded, setIsLoaded] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [activeNav, setActiveNav] = useState("home")
   const [viewportWidth, setViewportWidth] = useState(1440)
 
   useEffect(() => {
-    setIsLoaded(true)
-
     const handleScroll = () => {
       const rawProgress = Math.min(window.scrollY / 360, 1)
       const easedProgress = 1 - Math.pow(1 - rawProgress, 3)
@@ -75,23 +72,8 @@ export function HomePageClient() {
     <div className="min-h-screen bg-background text-foreground">
       <NoiseOverlay />
 
-      <div
-        className={`fixed inset-0 z-50 flex items-center justify-center bg-background transition-all duration-1000 ${
-          isLoaded ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
-      >
-            <div className="space-y-4 text-center md:space-y-6">
-              <h1 className="animate-pulse text-4xl font-bold tracking-tighter md:text-6xl lg:text-8xl">
-            {siteConfig.name}
-              </h1>
-          <div className="mx-auto h-1 w-24 animate-pulse bg-foreground md:w-32" />
-        </div>
-      </div>
-
       <nav
-        className={`fixed left-0 right-0 top-0 z-40 transition-all duration-700 delay-300 ${
-          isLoaded ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        }`}
+        className="fixed left-0 right-0 top-0 z-40 transition-all duration-700"
       >
         <div
           className="transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -118,9 +100,9 @@ export function HomePageClient() {
               }`}
             >
               <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-start md:pr-6">
-                <h1 className="cursor-pointer whitespace-nowrap text-sm font-bold tracking-tight transition-colors hover:text-muted-foreground sm:text-base md:text-lg">
+                <Link href="/" className="whitespace-nowrap text-sm font-bold tracking-tight transition-colors hover:text-muted-foreground sm:text-base md:text-lg">
                   {siteConfig.name}
-                </h1>
+                </Link>
                 <Link href="/work-together" className="shrink-0 md:hidden">
                   <Button
                     variant="default"
@@ -230,10 +212,9 @@ export function HomePageClient() {
         </div>
       </nav>
 
+      <main>
       <section
-        className={`relative flex min-h-screen flex-col justify-end px-4 pb-12 md:px-6 md:pb-20 lg:px-12 transition-all duration-1000 delay-500 ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-        }`}
+        className="relative flex min-h-screen flex-col justify-end px-4 pb-12 md:px-6 md:pb-20 lg:px-12"
       >
         <div
           className="absolute -top-24 bottom-0 left-0 right-0 bg-cover bg-center bg-no-repeat max-[599px]:hidden"
@@ -248,9 +229,9 @@ export function HomePageClient() {
         <div className="relative z-10 mx-auto w-full max-w-7xl">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end md:gap-8">
             <div className="space-y-2 md:space-y-4">
-              <h2 className="text-5xl font-bold tracking-tight md:text-7xl lg:text-9xl">
+              <h1 className="text-5xl font-bold tracking-tight md:text-7xl lg:text-9xl">
                 {heroContent.title}
-              </h2>
+              </h1>
               <p className="text-base text-muted-foreground md:text-xl">
                 {heroContent.subtitle}
               </p>
@@ -267,14 +248,11 @@ export function HomePageClient() {
       <section id="work" className="scroll-mt-32 px-4 py-8 md:px-6 md:py-12 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <Link
                 href={`/project/${project.slug}`}
                 key={project.id}
-                className={`group relative aspect-[4/3] cursor-pointer overflow-hidden transition-all duration-700 ${
-                  isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                }`}
-                style={{ transitionDelay: `${700 + index * 100}ms` }}
+                className="group relative aspect-[4/3] cursor-pointer overflow-hidden transition-all duration-700"
               >
                 <div className="absolute inset-0 border border-border bg-gradient-to-br from-muted/30 via-muted/20 to-background/50 transition-all duration-500 group-hover:border-foreground/30">
                   <Image
@@ -501,6 +479,7 @@ export function HomePageClient() {
         </div>
       </section>
 
+      </main>
       <footer className="border-t border-border px-4 py-6 md:px-6 md:py-8 lg:px-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-muted-foreground md:text-sm">
@@ -533,7 +512,7 @@ export function HomePageClient() {
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
-              Behance
+              ArtStation
             </a>
           </div>
         </div>

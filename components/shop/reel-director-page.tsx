@@ -7,7 +7,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Box, Camera, Check, ChevronDown, C
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SITE_CONFIG } from "@/lib/content"
-import { REEL_EDITIONS, REEL_FAQS, SUPERHIVE_URL, formatPrice, getEdition, type EditionId } from "@/lib/shop/catalog"
+import { REEL_DESCRIPTION, REEL_EDITIONS, REEL_FAQS, SUPERHIVE_URL, formatPrice, getEdition, type EditionId } from "@/lib/shop/catalog"
 
 type Availability = { standard: boolean; pro: boolean; environment: "sandbox" | "live" }
 const imagePath = "/images/reel-director/"
@@ -46,7 +46,6 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
   const checkoutTrigger = useRef<HTMLElement | null>(null)
   const demoTrigger = useRef<HTMLElement | null>(null)
   const selected = edition ? getEdition(edition)! : null
-  const feature = workflows.find((item) => item.id === workflow)!
 
   function openCheckout(id: EditionId) {
     checkoutTrigger.current = document.activeElement as HTMLElement | null
@@ -96,7 +95,7 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
             <a href="#pricing" className="rd-button">Get Reel Director <ArrowUpRight size={19} /></a>
             <button className="rd-button rd-button-glass" onClick={(event) => { demoTrigger.current = event.currentTarget; setDemoOpen(true) }}><Play size={16} fill="currentColor" /> Watch it in action</button>
           </div>
-          <p className="rd-hero-footnote">Blender 4.2-5.2 <span>/</span> One-time purchase <span>/</span> From $12</p>
+          <p className="rd-hero-footnote">Blender 4.2-5.2 <span>/</span> One-time purchase <span>/</span> From {formatPrice(REEL_EDITIONS[0].price)}</p>
         </div>
         <div className="rd-hero-bottom rd-container">
           <a href="#features" className="rd-scroll-link"><ArrowDown size={17} /> Explore the toolkit</a>
@@ -114,15 +113,15 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
       </section>
 
       <section id="features" className="rd-section rd-container">
-        <div className="rd-section-heading"><div><p className="rd-eyebrow">01 / THE TOOLKIT</p><h2>You made the scene.<br /><span>Now make more of it.</span></h2></div><p>Reel Director brings motion, styling and output into one Blender panel. Less time setting up. More ways to show your work.</p></div>
+        <div className="rd-section-heading"><div><p className="rd-eyebrow">01 / THE TOOLKIT</p><h2>You made the scene.<br /><span>Now make more of it.</span></h2></div><p>{REEL_DESCRIPTION}</p></div>
         <Tabs value={workflow} onValueChange={setWorkflow} className="rd-workflow-tabs">
           <TabsList className="rd-tabs-list" aria-label="Explore Reel Director features">{workflows.map(({ id, label, icon: Icon, pro }) => <TabsTrigger className="rd-tab" key={id} value={id}><Icon size={17} /><span>{label}</span>{pro && <small>PRO</small>}</TabsTrigger>)}</TabsList>
-        <TabsContent value={workflow}>
+        {workflows.map((feature) => <TabsContent key={feature.id} value={feature.id} forceMount hidden={workflow !== feature.id}>
         <div className="rd-feature" id={`feature-${feature.id}`} aria-live="polite">
           <div className="rd-feature-media"><Image src={`${imagePath}${feature.image}`} width={2400} height={1200} alt={feature.alt} sizes="(max-width: 800px) 100vw, 65vw" /></div>
           <div className="rd-feature-copy"><span className="rd-detail">{feature.pro ? "REEL DIRECTOR PRO" : "IN BOTH EDITIONS"}</span><h3>{feature.title}</h3><p>{feature.text}</p><span className="rd-feature-note">{feature.detail}</span><a href="#pricing" className="rd-text-link">Find your edition <ArrowUpRight size={17} /></a></div>
         </div>
-        </TabsContent>
+        </TabsContent>)}
         </Tabs>
         <div className="rd-workflow-strip">
           <div><span>01</span><h3>Frame it.</h3><p>Vertical, square or landscape. Set the format, frame rate and duration.</p></div>
@@ -151,7 +150,7 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
       <section id="pricing" className="rd-pricing-section">
         <div className="rd-container">
           <div className="rd-pricing-heading"><p className="rd-eyebrow">03 / MAKE IT PART OF YOUR WORKFLOW</p><h2>Choose your Reel Director.</h2><p>Buy directly from the artist who built it.</p><span className="rd-sale">25% off both editions</span></div>
-          <div className="rd-pricing-grid">{REEL_EDITIONS.map((item) => <article key={item.id} className={`rd-price-card ${item.id === "pro" ? "rd-price-pro" : ""}`}>
+          <div className="rd-pricing-grid">{REEL_EDITIONS.map((item) => <article key={item.id} id={item.id} className={`rd-price-card ${item.id === "pro" ? "rd-price-pro" : ""}`}>
             <div className="rd-price-top"><span>{item.id === "pro" ? "THE COMPLETE CREATIVE TOOLKIT" : "THE EVERYDAY CONTENT TOOLKIT"}</span>{item.id === "pro" && <Sparkles size={21} />}</div>
             <h3>{item.name}</h3><p className="rd-price-description">{item.description}</p>
             <div className="rd-price"><strong>{formatPrice(item.price)}</strong><div><del>{formatPrice(item.regularPrice)}</del><span>USD / one-time</span></div></div>
@@ -160,7 +159,7 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
             <p className="rd-support-note">12 months of support and product updates</p>
           </article>)}</div>
           <div className="rd-checkout-trust"><span><LockKeyhole size={16} /> Checkout with PayPal</span><span><Download size={16} /> Digital download</span><span><ShieldCheck size={16} /> No subscription</span></div>
-          <p className="rd-pricing-note">Prices in USD. Any currency conversion is shown by PayPal. <a href={SUPERHIVE_URL} target="_blank" rel="noopener noreferrer">Also available on Superhive <ArrowUpRight size={13} /></a></p>
+          <p className="rd-pricing-note">{!availability.standard && !availability.pro && "Direct checkout is temporarily unavailable. Both editions are available on Superhive. "}Prices in USD. Any currency conversion is shown by PayPal. <a href={SUPERHIVE_URL} target="_blank" rel="noopener noreferrer">View the Superhive listing <ArrowUpRight size={13} /></a></p>
           <details className="rd-compare"><summary>Compare every feature <ChevronDown size={19} /></summary><div className="rd-table-scroll"><table><caption className="sr-only">Reel Director Standard and Pro feature comparison</caption><thead><tr><th scope="col">The toolkit</th><th scope="col">Standard</th><th scope="col">Pro</th></tr></thead><tbody>{comparison.map(([name, standard, pro]) => <tr key={name}><th scope="row">{name}</th>{[standard, pro].map((value, index) => <td key={index}>{typeof value === "boolean" ? value ? <><Check size={17} /><span className="sr-only">Included</span></> : <><X size={15} /><span className="sr-only">Not included</span></> : value}</td>)}</tr>)}</tbody></table></div></details>
         </div>
       </section>

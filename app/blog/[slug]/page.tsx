@@ -15,11 +15,13 @@ import {
 } from "@/lib/blog-data"
 import { getRequestLocale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/locale-dictionary"
+import { REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
 import {
   getAbsoluteUrl,
   getBlogArticleJsonLd,
   getBreadcrumbJsonLd,
   getOpenGraphLocale,
+  serializeJsonLd,
 } from "@/lib/seo"
 import type { Metadata } from "next"
 
@@ -64,6 +66,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: metadata.description,
       url: getAbsoluteUrl(`/blog/${article.slug}`),
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt ?? article.publishedAt,
+      authors: [getAbsoluteUrl("/#about")],
       images: [
         {
           url: getAbsoluteUrl(article.image),
@@ -90,6 +94,9 @@ export default async function ArticlePage({ params }: PageProps) {
     notFound()
   }
   const article = getLocalizedArticle(articleRaw, locale)
+  const formatDate = (date: string) => new Intl.DateTimeFormat(locale === "ro" ? "ro-RO" : "en-GB", {
+    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+  }).format(new Date(date))
 
   // Get related articles (same category, excluding current)
   const relatedArticles = BLOG_ARTICLES
@@ -108,16 +115,17 @@ export default async function ArticlePage({ params }: PageProps) {
       <NoiseOverlay />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
       <SiteNavbar activePage="blog" />
 
       {/* Article Header */}
+      <main>
       <article>
         <header className="pt-32 md:pt-40 pb-8 md:pb-12 px-4 md:px-6 lg:px-12">
           <div className="max-w-3xl mx-auto space-y-6">
@@ -146,6 +154,11 @@ export default async function ArticlePage({ params }: PageProps) {
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               {article.excerpt}
             </p>
+            <p className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+              <Link href="/#about" className="underline underline-offset-4">By {siteConfig.name}</Link>
+              <span>Published <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time></span>
+              {article.updatedAt && <span>Updated <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time></span>}
+            </p>
           </div>
         </header>
 
@@ -157,6 +170,7 @@ export default async function ArticlePage({ params }: PageProps) {
                 src={article.image}
                 alt={article.imageAlt ?? article.title}
                 fill
+                priority
                 sizes="(max-width: 1280px) 100vw, 1024px"
                 className="object-cover"
               />
@@ -251,6 +265,11 @@ export default async function ArticlePage({ params }: PageProps) {
                   return null
               }
             })}
+            {article.relatedProduct && <aside className="mt-10 border-t border-border pt-6 space-y-3" aria-label="Reel Director product information">
+              <h2 className="text-xl font-bold">Reel Director by Bevel Graphics</h2>
+              <p className="text-muted-foreground">Compare Standard and Pro, check Blender compatibility, and see the current purchase options on the official product page.</p>
+              <Link href={REEL_DIRECTOR_PATH} className="inline-block underline underline-offset-4">Explore Reel Director features and editions</Link>
+            </aside>}
           </div>
         </div>
       </article>
@@ -289,6 +308,7 @@ export default async function ArticlePage({ params }: PageProps) {
           </div>
         </section>
       )}
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-border py-6 md:py-8 px-4 md:px-6 lg:px-12">
@@ -311,7 +331,7 @@ export default async function ArticlePage({ params }: PageProps) {
               rel="noopener noreferrer"
               className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Behance
+              ArtStation
             </a>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import { redirect } from "next/navigation"
+import { permanentRedirect } from "next/navigation"
 import { REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
 
 export default function ShopPage() {
-  redirect(REEL_DIRECTOR_PATH)
+  permanentRedirect(REEL_DIRECTOR_PATH)
 }

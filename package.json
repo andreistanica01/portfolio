@@ -8,6 +8,7 @@
     "dev": "next dev",
     "lint": "eslint .",
     "test:shop": "node --test tests/shop.test.mjs",
+    "test:seo": "node scripts/check-seo.mjs",
     "start": "next start"
   },
   "dependencies": {

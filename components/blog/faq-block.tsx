@@ -1,11 +1,6 @@
 "use client"
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { ChevronDown } from "lucide-react"
 import { useLocaleDictionary } from "@/components/locale-provider"
 
 interface FAQ {
@@ -27,18 +22,18 @@ export function FAQBlock({ faqs }: FAQBlockProps) {
           {faqHeading}
         </h3>
       </div>
-      <Accordion type="single" collapsible className="px-6">
+      <div className="px-6">
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`faq-${index}`}>
-            <AccordionTrigger className="text-left text-base font-medium">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground leading-relaxed">
+          <details key={index} className="group border-b border-border last:border-b-0">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-left text-base font-medium [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span><ChevronDown size={16} className="shrink-0 transition-transform group-open:rotate-180" />
+            </summary>
+            <p className="pb-4 text-sm text-muted-foreground leading-relaxed">
               {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
+            </p>
+          </details>
         ))}
-      </Accordion>
+      </div>
     </div>
   )
 }

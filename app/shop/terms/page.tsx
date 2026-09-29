@@ -4,7 +4,11 @@ import { ArrowLeft } from "lucide-react"
 import { SITE_CONFIG } from "@/lib/content"
 import { REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
 
-export const metadata: Metadata = { title: "Shop Purchase Terms & Privacy", robots: { index: false, follow: true } }
+export const metadata: Metadata = {
+  title: "Shop Purchase Terms & Privacy",
+  alternates: { canonical: "/shop/terms" },
+  robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+}
 export const dynamic = "force-dynamic"
 
 export default function ShopTerms() {

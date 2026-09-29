@@ -127,7 +127,7 @@ export function BlogPageClient() {
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
-              Behance
+              ArtStation
             </a>
           </div>
         </div>

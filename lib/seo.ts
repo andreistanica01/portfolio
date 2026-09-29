@@ -4,9 +4,16 @@ import { getArticleMetadata, getLocalizedArticle } from "@/lib/blog-data"
 import type { Locale } from "@/lib/i18n"
 import type { Project } from "@/lib/projects"
 import { getLocalizedProject, getProjectMetadata } from "@/lib/projects"
+import { REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
 
 export const getAbsoluteUrl = (path = "/") =>
   new URL(path, SITE_CONFIG.siteUrl).toString()
+
+export const ORGANIZATION_ID = getAbsoluteUrl("/#organization")
+export const WEBSITE_ID = getAbsoluteUrl("/#website")
+
+export const serializeJsonLd = (value: unknown) =>
+  JSON.stringify(value).replace(/</g, "\\u003c")
 
 const getLanguageTag = (locale: Locale) => (locale === "ro" ? "ro-RO" : "en")
 export const getOpenGraphLocale = (locale: Locale) =>
@@ -21,10 +28,12 @@ export const getWebsiteJsonLd = ({
 }) => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": WEBSITE_ID,
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.siteUrl,
   description,
   inLanguage: getLanguageTag(locale),
+  publisher: { "@id": ORGANIZATION_ID },
 })
 
 export const getOrganizationJsonLd = ({
@@ -36,9 +45,11 @@ export const getOrganizationJsonLd = ({
 }) => ({
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": ORGANIZATION_ID,
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.siteUrl,
   email: SITE_CONFIG.email,
+  logo: getAbsoluteUrl("/apple-icon.png"),
   description,
   areaServed: "Worldwide",
   knowsAbout: [
@@ -58,10 +69,12 @@ export const getOrganizationJsonLd = ({
           "3D floor plans",
           "Office visualization",
           "Hospitality visualization",
+          "Blender addons",
+          "Reel Director",
+          "3D content creation",
         ]),
   ],
-  inLanguage: getLanguageTag(locale),
-  sameAs: [SITE_CONFIG.social.instagram, SITE_CONFIG.social.behance],
+  sameAs: [SITE_CONFIG.social.instagram, SITE_CONFIG.social.behance, SITE_CONFIG.social.superhive],
 })
 
 export const getBreadcrumbJsonLd = (
@@ -92,9 +105,12 @@ export const getCollectionPageJsonLd = ({
 }) => ({
   "@context": "https://schema.org",
   "@type": "CollectionPage",
+  "@id": `${getAbsoluteUrl(path)}#webpage`,
   name,
   description,
   url: getAbsoluteUrl(path),
+  isPartOf: { "@id": WEBSITE_ID },
+  publisher: { "@id": ORGANIZATION_ID },
   inLanguage: getLanguageTag(locale),
   mainEntity: {
     "@type": "ItemList",
@@ -118,18 +134,23 @@ export const getBlogArticleJsonLd = (
   )
 
   const articleNode = {
-    "@type": "Article",
+    "@type": "BlogPosting",
     "@id": `${articleUrl}#article`,
     headline: localizedArticle.title,
     description: metadata.description,
     url: articleUrl,
     image: [getAbsoluteUrl(localizedArticle.image)],
     datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     mainEntityOfPage: articleUrl,
     articleSection: article.category,
     keywords: localizedArticle.keywords,
-    about: localizedArticle.keywords?.slice(0, 6).map((name) => ({
+    about: article.relatedProduct ? [{
+      "@type": "SoftwareApplication",
+      "@id": getAbsoluteUrl(`${REEL_DIRECTOR_PATH}#${article.relatedProduct}`),
+      name: article.relatedProduct === "pro" ? "Reel Director Pro" : "Reel Director",
+      url: getAbsoluteUrl(REEL_DIRECTOR_PATH),
+    }] : localizedArticle.keywords?.slice(0, 6).map((name) => ({
       "@type": "Thing",
       name,
     })),
@@ -137,15 +158,18 @@ export const getBlogArticleJsonLd = (
     inLanguage: getLanguageTag(locale),
     author: {
       "@type": "Organization",
+      "@id": ORGANIZATION_ID,
       name: SITE_CONFIG.name,
+      url: getAbsoluteUrl("/#about"),
     },
     publisher: {
       "@type": "Organization",
+      "@id": ORGANIZATION_ID,
       name: SITE_CONFIG.name,
       url: SITE_CONFIG.siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: getAbsoluteUrl("/icon.svg"),
+        url: getAbsoluteUrl("/apple-icon.png"),
       },
     },
   }
@@ -183,6 +207,7 @@ export const getProjectJsonLd = (
   return ({
   "@context": "https://schema.org",
   "@type": "CreativeWork",
+  "@id": getAbsoluteUrl(`/project/${project.slug}#project`),
   name: localizedProject.title,
   description: metadata.description,
   url: getAbsoluteUrl(`/project/${project.slug}`),
@@ -191,17 +216,16 @@ export const getProjectJsonLd = (
   keywords: [
     ...localizedProject.tools,
     localizedProject.type,
-    ...(locale === "ro"
-      ? ["vizualizare arhitecturala"]
-      : ["architectural visualization"]),
   ],
   inLanguage: getLanguageTag(locale),
   creator: {
     "@type": "Organization",
+    "@id": ORGANIZATION_ID,
     name: SITE_CONFIG.name,
   },
   publisher: {
     "@type": "Organization",
+    "@id": ORGANIZATION_ID,
     name: SITE_CONFIG.name,
     url: SITE_CONFIG.siteUrl,
   },

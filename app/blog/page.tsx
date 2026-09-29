@@ -4,17 +4,17 @@ import { SITE_CONFIG } from "@/lib/content"
 import { BLOG_ARTICLES } from "@/lib/blog-data"
 import { getRequestLocale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/locale-dictionary"
-import { getCollectionPageJsonLd, getOpenGraphLocale } from "@/lib/seo"
+import { getCollectionPageJsonLd, getOpenGraphLocale, serializeJsonLd } from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale()
   const isRomanian = locale === "ro"
 
   return {
-    title: "Blog",
+    title: "Blender & Architectural Visualization Blog",
     description: isRomanian
       ? "Blog de vizualizare arhitecturala cu ghiduri despre vizualizare de interior, office si hospitality, planuri 3D, pregatirea materialelor clientului si workflow de randare realista."
-      : "Architectural visualization blog with guides on interior visualization, office and hospitality presentation, 3D floor plans, client preparation, and realistic render workflow.",
+      : "Blender and architectural visualization guides by Bevel Graphics. Explore Reel Director, Wool Dynamics, clay renders, lighting and 3D project workflows.",
     alternates: {
       canonical: "/blog",
     },
@@ -22,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: getOpenGraphLocale(locale),
       title: isRomanian
         ? `${SITE_CONFIG.name} Blog | Ghiduri de Vizualizare Arhitecturala`
-        : `${SITE_CONFIG.name} Blog | Architectural Visualization Guides`,
+        : `${SITE_CONFIG.name} Blog | Blender & Architectural Visualization`,
       description: isRomanian
         ? "Citeste ghiduri de vizualizare arhitecturala despre concepte de interior, prezentare office si hospitality, planuri 3D, pregatirea clientului si workflow de randare realista."
-        : "Read architectural visualization guides about interior concepts, office and hospitality presentation, 3D floor plans, client preparation, and realistic render workflow.",
+        : "Explore Reel Director, Wool Dynamics, clay renders, lighting and architectural visualization workflows from Bevel Graphics.",
       url: `${SITE_CONFIG.siteUrl}/blog`,
       images: [
         {
@@ -40,10 +40,10 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: isRomanian
         ? `${SITE_CONFIG.name} Blog | Ghiduri de Vizualizare Arhitecturala`
-        : `${SITE_CONFIG.name} Blog | Architectural Visualization Guides`,
+        : `${SITE_CONFIG.name} Blog | Blender & Architectural Visualization`,
       description: isRomanian
         ? "Citeste ghiduri de vizualizare arhitecturala despre concepte de interior, prezentare office si hospitality, planuri 3D, pregatirea clientului si workflow de randare realista."
-        : "Read architectural visualization guides about interior concepts, office and hospitality presentation, 3D floor plans, client preparation, and realistic render workflow.",
+        : "Explore Reel Director, Wool Dynamics, clay renders, lighting and architectural visualization workflows from Bevel Graphics.",
       images: ["/images/Project_Images/exteriorsunset2.webp"],
     },
   }
@@ -64,7 +64,7 @@ export default async function BlogPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogCollectionJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(blogCollectionJsonLd) }}
       />
       <BlogPageClient />
     </>

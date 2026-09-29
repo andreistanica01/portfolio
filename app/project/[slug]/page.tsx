@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { notFound, redirect } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import { ProjectPageClient } from "@/components/project/project-page-client"
 import { SITE_CONFIG } from "@/lib/content"
 import { getRequestLocale } from "@/lib/i18n"
@@ -15,6 +15,7 @@ import {
   getOpenGraphLocale,
   getProjectJsonLd,
   getBreadcrumbJsonLd,
+  serializeJsonLd,
 } from "@/lib/seo"
 
 type ProjectPageProps = {
@@ -103,11 +104,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(projectJsonLd) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
         />
         <ProjectPageClient
           project={localizedProject}
@@ -120,7 +121,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const legacyProject = getProjectById(slug)
 
   if (legacyProject) {
-    redirect(`/project/${legacyProject.slug}`)
+    permanentRedirect(`/project/${legacyProject.slug}`)
   }
 
   notFound()

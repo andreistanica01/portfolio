@@ -7,7 +7,8 @@ import { REEL_EDITIONS } from "@/lib/shop/catalog"
 
 export const metadata: Metadata = {
   title: "Reel Director Checkout",
-  robots: { index: false, follow: false },
+  alternates: { canonical: "/shop/reel-director/checkout" },
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
   referrer: "no-referrer",
 }
 

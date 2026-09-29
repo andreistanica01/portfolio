@@ -119,7 +119,7 @@ export default async function WorkTogetherPage() {
               rel="noopener noreferrer"
               className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Behance
+              ArtStation
             </a>
           </div>
         </div>

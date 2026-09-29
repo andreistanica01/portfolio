@@ -12,6 +12,7 @@ export const SITE_CONFIG = {
   social: {
     instagram: "https://www.instagram.com/bevel.graphics/",
     behance: "https://www.artstation.com/bevelgraphics",
+    superhive: "https://superhivemarket.com/creators/bevelgraphics",
   },
 }
 
@@ -88,7 +89,7 @@ export const FOOTER_CONTENT = {
   copyright: SITE_CONFIG.copyright,
   socialLinks: {
     instagram: "Instagram",
-    behance: "Behance",
+    behance: "ArtStation",
   },
 }
 
@@ -162,7 +163,7 @@ export const WORK_TOGETHER_CONTENT = {
 export const BLOG_CONTENT = {
   hero: {
     title: "3D Visualization Guides",
-    subtitle: "Tips, tutorials, and insights for architects and developers working with 3D visualization",
+    subtitle: "Blender workflows, Reel Director guides, and architectural visualization insights from Bevel Graphics.",
   },
   categories: {
     all: "All Articles",

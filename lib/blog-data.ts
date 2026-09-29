@@ -23,6 +23,8 @@ export interface BlogArticle {
     | "AI workflow"
   readTime: number
   publishedAt: string
+  updatedAt?: string
+  relatedProduct?: "standard" | "pro"
   featured: boolean
   image: string
   imageAlt?: string
@@ -47,6 +49,8 @@ export interface BlogSection {
 export const BLOG_ARTICLES: BlogArticle[] = [
 {
   slug: "reel-director-pro-wool-dynamics-blender-addon",
+  relatedProduct: "pro",
+  updatedAt: "2026-09-29",
   title:
     "Reel Director Pro Wool Dynamics: A Blender 5.2 Addon for 3D Content Creators",
   titleRo:
@@ -58,11 +62,11 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   metaTitle:
     "Reel Director Pro Wool Dynamics for Blender 5.2",
   metaDescription:
-    "Explore Reel Director Pro Wool Dynamics for Blender 5.2, plus Lattice Surface, Clay Studio, camera moves and compositor presets. Currently 25% off.",
+    "Create wool-style surfaces in Blender 5.2 with Reel Director Pro. Explore Wool Dynamics controls, compatibility, Clay Studio and camera animation workflows.",
   metaTitleRo:
     "Reel Director Pro Wool Dynamics pentru Blender 5.2",
   metaDescriptionRo:
-    "Descopera Wool Dynamics din Reel Director Pro pentru Blender 5.2, plus Lattice Surface, Clay Studio, camere si preseturi de compositing. Acum 25% reducere.",
+    "Creeaza suprafete de tip lana in Blender 5.2 cu Reel Director Pro. Descopera Wool Dynamics, compatibilitatea, Clay Studio si animatia camerei.",
   keywords: [
     "Reel Director Pro",
     "Wool Dynamics Blender",
@@ -129,13 +133,13 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
       type: "quote",
       content:
-        "Launch offer: Reel Director Pro is 25% off on Superhive at the time of publishing, reduced from $20 to $16. Marketplace promotions can change, so check the live product page for the current price.",
+        "Price checked on 29 September 2026: Reel Director Pro is 25% off on Superhive at $16.50 instead of $22. Standard is $12 instead of $16. Marketplace promotions can change; check the product page for the current offer before buying.",
     },
     {
       type: "links",
       links: [
         {
-          label: "View Reel Director Pro and the current 25% offer on Superhive",
+          label: "Check Reel Director Pro pricing on Superhive",
           url: "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-",
         },
       ],
@@ -362,7 +366,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         {
           question: "Is Reel Director Pro 25% off?",
           answer:
-            "At the time this article was published, Reel Director Pro was 25% off on Superhive at $16 instead of $20. Check the live Superhive listing because marketplace pricing and promotions can change.",
+            "On 29 September 2026, the Superhive listing showed Reel Director Pro at $16.50 instead of $22, a 25% discount. Check the live Superhive listing because marketplace pricing and promotions can change.",
         },
         {
           question: "Is Reel Director Pro useful for archviz artists?",
@@ -411,13 +415,13 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
       type: "quote",
       content:
-        "Oferta de lansare: Reel Director Pro are reducere de 25% pe Superhive la data publicarii, de la 20 USD la 16 USD. Promotiile marketplace-ului se pot schimba, asa ca verifica pagina live pentru pretul actual.",
+        "Pret verificat la 29 septembrie 2026: Reel Director Pro are reducere de 25% pe Superhive, la 16,50 USD in loc de 22 USD. Standard costa 12 USD in loc de 16 USD. Promotiile se pot schimba; verifica pagina produsului inainte de cumparare.",
     },
     {
       type: "links",
       links: [
         {
-          label: "Vezi Reel Director Pro si oferta actuala de 25% pe Superhive",
+          label: "Verifica pretul Reel Director Pro pe Superhive",
           url: "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-",
         },
       ],
@@ -644,7 +648,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         {
           question: "Reel Director Pro are reducere de 25%?",
           answer:
-            "La data publicarii articolului, Reel Director Pro avea reducere de 25% pe Superhive, la 16 USD in loc de 20 USD. Verifica listarea live Superhive deoarece preturile si promotiile marketplace-ului se pot schimba.",
+            "La 29 septembrie 2026, listarea Superhive afisa Reel Director Pro la 16,50 USD in loc de 22 USD, o reducere de 25%. Verifica listarea live deoarece preturile si promotiile se pot schimba.",
         },
         {
           question: "Reel Director Pro este util pentru artistii archviz?",
@@ -978,6 +982,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
 },
 {
   slug: "reel-director-blender-addon-for-3d-content-creators",
+  relatedProduct: "standard",
   title:
     "What Is Reel Director? Blender Addon for Reels, Camera Moves, Clay Renders, and Social-Ready 3D Content",
   titleRo:
@@ -2119,7 +2124,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
   readTime: 5,
   publishedAt: "2026-04-28",
   featured: true,
-  image: "/images/Project_Images/bedroom1.webp",
+  image: "/images/Project_Images/bedroom2.webp",
   imageAlt:
     "Bedroom interior render used for a client guide about preparing files for an architectural visualization project",
   imageAltRo:
@@ -2813,7 +2818,7 @@ export function getArticleMetadata(
   }
 
   return {
-    title: article.metaTitle ?? `${article.title} | Bevel Graphics Blog`,
+    title: article.metaTitle ?? article.title,
     description: article.metaDescription ?? article.excerpt,
   }
 }

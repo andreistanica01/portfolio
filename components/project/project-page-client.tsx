@@ -296,7 +296,7 @@ export function ProjectPageClient({
               href={siteConfig.social.behance}
               className="text-xs text-muted-foreground transition-colors hover:text-foreground md:text-sm"
             >
-              Behance
+              ArtStation
             </a>
           </div>
         </div>

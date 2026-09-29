@@ -1,5 +1,4 @@
 import type { Locale } from "@/lib/i18n"
-import { SITE_CONFIG } from "@/lib/content"
 
 export type ProjectMediaItem = {
   type: "image" | "video"
@@ -35,8 +34,7 @@ export type Project = {
   imageAltRo?: string
 }
 
-const defaultMetaTitle = (project: Project) =>
-  `${project.title} | ${SITE_CONFIG.name}`
+const defaultMetaTitle = (project: Project) => project.title
 
 const defaultMetaDescription = (project: Project) =>
   project.description.length > 160
