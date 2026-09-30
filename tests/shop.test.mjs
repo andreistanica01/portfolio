@@ -13,7 +13,7 @@ const blobStore = { getMetadata: async () => null, get: async () => null }
 function load(relative) {
   const filename = path.join(root, relative)
   if (cache.has(filename)) return cache.get(filename)
-  const { outputText } = ts.transpileModule(fs.readFileSync(filename, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } })
+  const { outputText } = ts.transpileModule(fs.readFileSync(filename, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true } })
   const exports = {}
   cache.set(filename, exports)
   new Function("require", "exports", outputText)((name) => {
@@ -31,6 +31,8 @@ const createOrder = load("app/api/shop/paypal/route.ts").POST
 const captureOrder = load("app/api/shop/paypal/capture/route.ts").POST
 const download = load("app/api/shop/download/route.ts").GET
 const edgeDownload = load("netlify/edge-functions/shop-download.ts").default
+const ShopTerms = load("app/shop/terms/page.tsx").default
+const { renderToStaticMarkup } = require("react-dom/server")
 const { NextRequest } = require("next/server")
 const originalFetch = globalThis.fetch
 const originalEnv = { ...process.env }
@@ -45,7 +47,6 @@ function configure() {
   Object.assign(process.env, {
     SHOP_CHECKOUT_ENABLED: "true", SHOP_SITE_URL: "https://shop.example.com", PAYPAL_ENVIRONMENT: "sandbox",
     PAYPAL_CLIENT_ID: "test-client", PAYPAL_CLIENT_SECRET: "test-secret", SHOP_SESSION_SECRET: secret,
-    SHOP_SELLER_NAME: "Test Seller", SHOP_SELLER_ADDRESS: "Test address",
     REEL_DIRECTOR_DOWNLOAD_URL: "https://storage.example.com/standard.zip",
     REEL_DIRECTOR_PRO_DOWNLOAD_URL: "https://storage.example.com/pro.zip",
   })
@@ -241,8 +242,8 @@ test("private release storage must exist before creating a PayPal order", async 
   assert.equal(calls, 0)
 })
 
-test("private storage cannot bypass the checkout switch or seller details", async () => {
-  for (const missing of ["SHOP_CHECKOUT_ENABLED", "SHOP_SELLER_NAME", "SHOP_SELLER_ADDRESS", "REEL_DIRECTOR_PRO_BLOB_KEY"]) {
+test("private storage cannot bypass the checkout switch or delivery configuration", async () => {
+  for (const missing of ["SHOP_CHECKOUT_ENABLED", "REEL_DIRECTOR_PRO_BLOB_KEY"]) {
     configureBlobs()
     delete process.env[missing]
     globalThis.fetch = () => { throw new Error("No payment call allowed") }
@@ -250,8 +251,10 @@ test("private storage cannot bypass the checkout switch or seller details", asyn
   }
 })
 
-test("an available private release permits a correctly priced sandbox order", async () => {
+test("a configured sandbox order does not require personal seller fields", async () => {
   configureBlobs()
+  delete process.env.SHOP_SELLER_NAME
+  delete process.env.SHOP_SELLER_ADDRESS
   let checked = false
   blobStore.getMetadata = async (key) => {
     assert.equal(key, process.env.REEL_DIRECTOR_PRO_BLOB_KEY)
@@ -265,6 +268,15 @@ test("an available private release permits a correctly priced sandbox order", as
     return Response.json({ id: orderId, links: [{ rel: "payer-action", href: `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}` }] })
   })
   assert.equal((await createOrder(request("/api/shop/paypal", { edition: "pro", acceptedTerms: true }))).status, 200)
+})
+
+test("purchase terms never publish legacy personal seller fields", () => {
+  process.env.SHOP_SELLER_NAME = "Private Seller Fixture"
+  process.env.SHOP_SELLER_ADDRESS = "Private Address Fixture"
+  const html = renderToStaticMarkup(ShopTerms())
+  assert.match(html, /Bevel Graphics/)
+  assert.match(html, /bevel\.graphics1@gmail\.com/)
+  assert.doesNotMatch(html, /Private Seller Fixture|Private Address Fixture/)
 })
 
 test("only verified receipts authorize edge delivery", async () => {

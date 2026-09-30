@@ -16,8 +16,8 @@ export default function ShopTerms() {
     <Link href={REEL_DIRECTOR_PATH} className="rd-text-link"><ArrowLeft size={16} /> Reel Director</Link>
     <h1>Purchase terms & privacy</h1>
     <p>These terms apply to direct purchases of Reel Director and Reel Director Pro from Bevel Graphics. Marketplace purchases remain subject to the relevant marketplace terms.</p>
-    <h2>Seller and contact</h2>
-    <p>{process.env.SHOP_SELLER_NAME || SITE_CONFIG.name}<br />{process.env.SHOP_SELLER_ADDRESS}<br /><a href={`mailto:${SITE_CONFIG.email}`}>{SITE_CONFIG.email}</a></p>
+    <h2>Contact</h2>
+    <p>{SITE_CONFIG.name}<br /><a href={`mailto:${SITE_CONFIG.email}`}>{SITE_CONFIG.email}</a></p>
     <h2>Your purchase</h2>
     <p>You are purchasing a digital Blender addon, supplied as a ZIP download. The selected edition and the total in USD are displayed before you approve payment. There is no recurring subscription. Any conversion applied by your payment provider is shown by that provider.</p>
     <p>Both editions include 12 months of product updates and support from the date of purchase. The purchased version remains usable after this period. Promotional renders and demonstration scenes are not part of the purchase unless explicitly included in the download.</p>

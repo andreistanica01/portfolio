@@ -48,7 +48,6 @@ export function checkoutAvailability() {
   const connected = process.env.SHOP_CHECKOUT_ENABLED === "true" &&
     Boolean(process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET) &&
     shopSecret().length >= 32 &&
-    Boolean(process.env.SHOP_SELLER_NAME && process.env.SHOP_SELLER_ADDRESS) &&
     (paypalEnvironment() !== "live" || shopOrigin().startsWith("https://"))
   return {
     environment: paypalEnvironment(),
