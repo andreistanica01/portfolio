@@ -13,7 +13,11 @@ The landing page is `/shop/reel-director`. `/shop` redirects there. The portfoli
 - The creator confirmed Standard v0.0.4 and Pro v0.0.3. Both archives are uploaded to the private Netlify Blobs store `reel-director-releases`; authenticated read-back SHA-256 checks match the originals (141,845,903 bytes and 180,883,450 bytes respectively). They are not public assets or Git files.
 - Production now has `SHOP_DOWNLOAD_PROVIDER=netlify-blobs`, `REEL_DIRECTOR_BLOB_KEY=standard/0.0.4/reel-director.zip` and `REEL_DIRECTOR_PRO_BLOB_KEY=pro/0.0.3/reel-director-pro.zip`. Deploy `6abc1dcc9296fc0009f6f3fb` published the edge delivery implementation successfully. Hosted authorization checks pass; a complete paid Sandbox download remains to be tested. Checkout remains disabled.
 - The owner requested that personal seller name/address not be published. Both production environment fields are removed; `/shop/terms` uses the Bevel Graphics brand and existing support email only. The code no longer reads those fields or makes them technical checkout prerequisites. This privacy preference does not establish compliance with applicable seller-disclosure requirements; those remain a separate matter for professional review.
-- Sandbox credentials, end-to-end purchases for both editions, actual ZIP delivery, cancellation/retry and refund tests are still pending. Never use the live credentials in a sandbox configuration or expose them to preview deployments.
+- The existing PayPal Default Application sandbox credentials and a separate session secret are protected in Netlify's `branch:codex/paypal-sandbox` context only. Live credentials are unchanged. The test branch uses `PAYPAL_ENVIRONMENT=sandbox`, checkout enabled, and the exact origin `https://codex-paypal-sandbox--bevelgraphics.netlify.app`.
+- Sandbox delivery points only to synthetic archives at `sandbox/2026-09-30/standard-test.zip` and `sandbox/2026-09-30/pro-test.zip` in the private store. They contain a test notice and padding, not paid addon code. Their sizes exceed the real releases: 141,846,245 and 180,883,792 bytes. Keep these branch overrides separate from production.
+- Hosted sandbox order creation succeeds for both editions and redirects to `www.sandbox.paypal.com`. Cancelling a Standard order returns to the cancellation page; checking that unpaid order reports payment not confirmed without unlocking a download. Anonymous downloads return 401 for both editions.
+- Sandbox deploy `6abd2a50fd279a5549f59074` (commit `82372e5`) serves `X-Robots-Tag: noindex, nofollow, nosnippet` and a robots file disallowing all paths. The Netlify TOML header alone did not cover Next.js pages, so the test branch applies the header in Next.js too. Do not merge sandbox-only configuration into production.
+- End-to-end payment approval, actual full-sized ZIP delivery, interrupted-payment recovery and refund tests remain pending. PayPal Developer signed out before access to the sandbox buyer account; no sandbox payment or live charge was completed. Never use live credentials in a sandbox configuration or expose them to preview deployments.
 - Local checkout tests cover payment validation, private file availability, enablement gates, edge authorization, large streams and non-publication of legacy personal seller fields. These do not confirm PayPal connectivity or full hosted delivery readiness.
 
 ## Prices and content
@@ -54,6 +58,11 @@ Production verification on 29 September 2026 confirmed that `https://bevelgraphi
 The full Netlify build succeeds in the cloud. A local Windows Netlify build hit OS symbolic-link permission restrictions; the edge function was separately packaged successfully using Netlify's official edge bundler. Its relative TypeScript imports require explicit `.ts` extensions.
 
 Before live activation, a real Sandbox transaction and hosted ZIP delivery test are still required. Local mocked tests do not establish account eligibility or production payment readiness.
+
+On 30 September 2026, `npm run test:shop` passed all 23 tests, `npm exec -- tsc --noEmit` passed, and `npm run lint` passed. The hosted sandbox checks listed above are partial integration checks, not completed purchases. Production remains disabled at deploy `6abcddc67aca3000086806e5` (commit `41da330`). The next step is to use an existing personal sandbox buyer account from the PayPal Developer dashboard, approve a sandbox purchase of each edition, and verify the received test ZIPs against these hashes:
+
+- Standard SHA-256: `AB5B3AF264CAC40C175A9EC1D1232358559D8C62DAC38E6278249EC816A800F7`
+- Pro SHA-256: `89387E254E4B14938BA639BE60C6031518896E14F6BBAECCAABEB04C806E6748`
 
 ## References
 
