@@ -8,7 +8,7 @@ const nextConfig = {
   },
   async headers() {
     return [{
-      source: "/api/:path*",
+      source: process.env.PAYPAL_ENVIRONMENT === "sandbox" ? "/:path*" : "/api/:path*",
       headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, nosnippet" }],
     }]
   },
