@@ -149,11 +149,11 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
 
       <section id="pricing" className="rd-pricing-section">
         <div className="rd-container">
-          <div className="rd-pricing-heading"><p className="rd-eyebrow">03 / MAKE IT PART OF YOUR WORKFLOW</p><h2>Choose your Reel Director.</h2><p>Buy directly from the artist who built it.</p><span className="rd-sale">25% off both editions</span></div>
+          <div className="rd-pricing-heading"><p className="rd-eyebrow">03 / MAKE IT PART OF YOUR WORKFLOW</p><h2>Choose your Reel Director.</h2><p>Buy directly from the artist who built it.</p></div>
           <div className="rd-pricing-grid">{REEL_EDITIONS.map((item) => <article key={item.id} id={item.id} className={`rd-price-card ${item.id === "pro" ? "rd-price-pro" : ""}`}>
             <div className="rd-price-top"><span>{item.id === "pro" ? "THE COMPLETE CREATIVE TOOLKIT" : "THE EVERYDAY CONTENT TOOLKIT"}</span>{item.id === "pro" && <Sparkles size={21} />}</div>
             <h3>{item.name}</h3><p className="rd-price-description">{item.description}</p>
-            <div className="rd-price"><strong>{formatPrice(item.price)}</strong><div><del>{formatPrice(item.regularPrice)}</del><span>USD / one-time</span></div></div>
+            <div className="rd-price"><strong>{formatPrice(item.price)}</strong><div><span>USD / one-time</span></div></div>
             <button className={`rd-button rd-buy ${item.id === "standard" ? "rd-button-outline" : ""}`} onClick={() => openCheckout(item.id)}>Buy {item.name} <ArrowUpRight size={19} /></button>
             <ul>{item.features.map((text) => <li key={text}><Check size={17} /><span>{text}</span></li>)}</ul>
             <p className="rd-support-note">12 months of support and product updates</p>

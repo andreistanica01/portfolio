@@ -27,6 +27,7 @@ function load(relative) {
 }
 
 const security = load("lib/shop/security.ts")
+const { REEL_EDITIONS } = load("lib/shop/catalog.ts")
 const createOrder = load("app/api/shop/paypal/route.ts").POST
 const captureOrder = load("app/api/shop/paypal/capture/route.ts").POST
 const download = load("app/api/shop/download/route.ts").GET
@@ -73,6 +74,14 @@ afterEach(() => {
   blobStore.get = async () => null
   for (const key of Object.keys(process.env)) if (!(key in originalEnv)) delete process.env[key]
   Object.assign(process.env, originalEnv)
+})
+
+test("direct-store editions use regular prices without sale pricing", () => {
+  assert.deepEqual(REEL_EDITIONS.map(({ id, price }) => ({ id, price })), [
+    { id: "standard", price: "16.00" },
+    { id: "pro", price: "22.00" },
+  ])
+  assert.ok(REEL_EDITIONS.every(edition => !("regularPrice" in edition)))
 })
 
 test("signed sessions reject tampering, expiry, wrong secrets and weak signing keys", () => {
@@ -128,7 +137,7 @@ test("create order uses the catalog price and sets an HttpOnly signed session", 
     if (url.startsWith("https://storage.example.com")) return new Response(null, { headers: { "Content-Type": "application/zip" } })
     assert.equal(url, "https://api-m.sandbox.paypal.com/v2/checkout/orders")
     const sent = JSON.parse(options.body)
-    assert.equal(sent.purchase_units[0].amount.value, "16.50")
+    assert.equal(sent.purchase_units[0].amount.value, "22.00")
     assert.equal(sent.purchase_units[0].amount.currency_code, "USD")
     assert.equal(sent.purchase_units[0].items[0].category, "DIGITAL_GOODS")
     assert.equal(sent.payment_source.paypal.experience_context.return_url, "https://shop.example.com/shop/reel-director/checkout")
@@ -139,7 +148,7 @@ test("create order uses the catalog price and sets an HttpOnly signed session", 
   assert.equal(response.status, 200)
   assert.match(response.headers.get("set-cookie"), /HttpOnly/)
   assert.match(response.headers.get("set-cookie"), /Secure/)
-  assert.equal(security.readSession(response.cookies.get("rd_checkout").value, secret).amount, "16.50")
+  assert.equal(security.readSession(response.cookies.get("rd_checkout").value, secret).amount, "22.00")
 })
 
 test("capture cannot be triggered by an order ID without its valid session", async () => {
@@ -264,7 +273,7 @@ test("a configured sandbox order does not require personal seller fields", async
   mockNetwork(async (url, options) => {
     assert.equal(checked, true)
     assert.equal(url, "https://api-m.sandbox.paypal.com/v2/checkout/orders")
-    assert.equal(JSON.parse(options.body).purchase_units[0].amount.value, "16.50")
+    assert.equal(JSON.parse(options.body).purchase_units[0].amount.value, "22.00")
     return Response.json({ id: orderId, links: [{ rel: "payer-action", href: `https://www.sandbox.paypal.com/checkoutnow?token=${orderId}` }] })
   })
   assert.equal((await createOrder(request("/api/shop/paypal", { edition: "pro", acceptedTerms: true }))).status, 200)

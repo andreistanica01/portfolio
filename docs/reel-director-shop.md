@@ -26,7 +26,7 @@ The landing page is `/shop/reel-director`. `/shop` redirects there. The portfoli
 
 ## Prices and content
 
-`lib/shop/catalog.ts` is the source for both displayed prices and the server-side PayPal order amounts. Superhive prices checked on 27 September 2026: Standard USD 12 (regular USD 16), Pro USD 16.50 (regular USD 22), a 25% promotion. These are a snapshot, not a live marketplace feed. Update both editions, sale copy and prices when the offer ends. Never take a price from the browser.
+`lib/shop/catalog.ts` is the source for displayed prices, structured product metadata and server-side PayPal order amounts. The owner removed the website sale on 1 October 2026: Standard is USD 16 and Pro is USD 22. The sale badge, crossed-out prices and promotional blog copy were removed. Superhive was not changed. Historical test transactions below retain their original amounts; existing verified receipts remain valid. Never take a price from the browser.
 
 Product facts come from the current creator listing, local addon documentation and existing portfolio articles. Compatibility: Blender 4.2-5.2; Wool Dynamics requires Blender 5.2 and its optional dynamics are experimental. The local Pro manifest specifies GPL-3.0-or-later. Product images are WebP, including the on-demand showreel.
 

@@ -133,7 +133,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
       type: "quote",
       content:
-        "Price checked on 29 September 2026: Reel Director Pro is 25% off on Superhive at $16.50 instead of $22. Standard is $12 instead of $16. Marketplace promotions can change; check the product page for the current offer before buying.",
+        "Reel Director is available directly from Bevel Graphics: Standard costs $16 USD and Pro costs $22 USD, each as a one-time purchase. The addon is also available on Superhive; marketplace pricing may differ.",
     },
     {
       type: "links",
@@ -364,9 +364,9 @@ export const BLOG_ARTICLES: BlogArticle[] = [
             "Wool Dynamics creates soft fiber-like detail, while Lattice Surface creates geometric triangle or quad structures. Both are Pro surface tools for selected objects, but they produce very different visual hooks.",
         },
         {
-          question: "Is Reel Director Pro 25% off?",
+          question: "How much does Reel Director Pro cost?",
           answer:
-            "On 29 September 2026, the Superhive listing showed Reel Director Pro at $16.50 instead of $22, a 25% discount. Check the live Superhive listing because marketplace pricing and promotions can change.",
+            "Reel Director Pro costs $22 USD as a one-time purchase from the Bevel Graphics shop. Standard costs $16 USD. The addon is also available on Superhive, where marketplace pricing may differ.",
         },
         {
           question: "Is Reel Director Pro useful for archviz artists?",
@@ -415,7 +415,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
       type: "quote",
       content:
-        "Pret verificat la 29 septembrie 2026: Reel Director Pro are reducere de 25% pe Superhive, la 16,50 USD in loc de 22 USD. Standard costa 12 USD in loc de 16 USD. Promotiile se pot schimba; verifica pagina produsului inainte de cumparare.",
+        "Reel Director este disponibil direct de la Bevel Graphics: Standard costa 16 USD, iar Pro costa 22 USD, fiecare cu plata unica. Addonul este disponibil si pe Superhive, unde preturile pot fi diferite.",
     },
     {
       type: "links",
@@ -646,9 +646,9 @@ export const BLOG_ARTICLES: BlogArticle[] = [
             "Wool Dynamics creeaza detaliu moale de tip fibra, iar Lattice Surface creeaza structuri geometrice triunghiulare sau quad. Ambele sunt unelte Pro pentru suprafata obiectelor selectate, dar produc hook-uri vizuale foarte diferite.",
         },
         {
-          question: "Reel Director Pro are reducere de 25%?",
+          question: "Cat costa Reel Director Pro?",
           answer:
-            "La 29 septembrie 2026, listarea Superhive afisa Reel Director Pro la 16,50 USD in loc de 22 USD, o reducere de 25%. Verifica listarea live deoarece preturile si promotiile se pot schimba.",
+            "Reel Director Pro costa 22 USD cu plata unica in magazinul Bevel Graphics. Standard costa 16 USD. Addonul este disponibil si pe Superhive, unde preturile pot fi diferite.",
         },
         {
           question: "Reel Director Pro este util pentru artistii archviz?",

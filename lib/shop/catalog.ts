@@ -1,18 +1,16 @@
 export const REEL_DIRECTOR_PATH = "/shop/reel-director"
-export const REEL_CONTENT_UPDATED_AT = "2026-09-29"
+export const REEL_CONTENT_UPDATED_AT = "2026-10-01"
 export const REEL_DESCRIPTION = "Reel Director is a Blender addon by Bevel Graphics for turning existing 3D scenes into Instagram Reels, TikTok videos, YouTube Shorts and portfolio breakdowns. It combines camera animation, object animation, clay renders, viewport styles and output tools in one panel."
 export const SUPERHIVE_URL =
   "https://superhivemarket.com/products/reel-director-automate-instagram-tiktok-yt-shorts-"
 
-// Prices checked against the live Superhive listing on 2026-09-27.
-// Update this catalog when the promotion changes; PayPal uses these server-side totals.
+// Direct-store prices; PayPal and product metadata use these server-side totals.
 export const REEL_EDITIONS = [
   {
     id: "standard",
     name: "Reel Director",
     label: "Standard",
-    price: "12.00",
-    regularPrice: "16.00",
+    price: "16.00",
     currency: "USD",
     description: "Your everyday toolkit for turning finished scenes into fresh content.",
     downloadEnv: "REEL_DIRECTOR_DOWNLOAD_URL",
@@ -30,8 +28,7 @@ export const REEL_EDITIONS = [
     id: "pro",
     name: "Reel Director Pro",
     label: "Pro",
-    price: "16.50",
-    regularPrice: "22.00",
+    price: "22.00",
     currency: "USD",
     description: "The full toolkit, with more control over every shot and surface.",
     downloadEnv: "REEL_DIRECTOR_PRO_DOWNLOAD_URL",
