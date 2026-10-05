@@ -36,7 +36,7 @@ const comparison = [
 ] as const
 
 export function ReelDirectorPage({ availability }: { availability: Availability }) {
-  const [look, setLook] = useState(0)
+  const [look, setLook] = useState(2)
   const [workflow, setWorkflow] = useState("camera")
   const [demoOpen, setDemoOpen] = useState(false)
   const [edition, setEdition] = useState<EditionId | null>(null)
