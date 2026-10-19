@@ -16,6 +16,7 @@ import {
 import { getRequestLocale } from "@/lib/i18n"
 import { getDictionary } from "@/lib/locale-dictionary"
 import { REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
+import { AURA_PATH } from "@/lib/shop/product-aura"
 import {
   getAbsoluteUrl,
   getBlogArticleJsonLd,
@@ -230,6 +231,15 @@ export default async function ArticlePage({ params }: PageProps) {
                       ) : null}
                     </figure>
                   ) : null
+                case "gallery":
+                  return <div key={index} className="grid grid-cols-2 sm:grid-cols-3 gap-5 my-8">
+                    {section.images?.map((item) => <figure key={item.src} className="min-w-0">
+                      <a href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`View ${item.caption} at full size`}>
+                        <Image src={item.src} alt={item.alt} width={1024} height={1024} sizes="(max-width: 640px) 50vw, 256px" className="w-full aspect-square object-cover rounded-sm" />
+                      </a>
+                      <figcaption className="mt-2 text-sm text-muted-foreground">{item.caption}</figcaption>
+                    </figure>)}
+                  </div>
                 case "links":
                   return section.links?.length ? (
                     <div key={index} className="mb-8">
@@ -265,7 +275,11 @@ export default async function ArticlePage({ params }: PageProps) {
                   return null
               }
             })}
-            {article.relatedProduct && <aside className="mt-10 border-t border-border pt-6 space-y-3" aria-label="Reel Director product information">
+            {article.relatedProduct === "product-aura" ? <aside className="mt-10 border-t border-border pt-6 space-y-3" aria-label="Product Aura product information">
+              <h2 className="text-xl font-bold">Product Aura by Bevel Graphics</h2>
+              <p className="text-muted-foreground">Explore reactive scattering, the ten included decorations, compatibility and current purchase options.</p>
+              <Link href={AURA_PATH} className="inline-block underline underline-offset-4">Explore Product Aura for Blender</Link>
+            </aside> : article.relatedProduct && <aside className="mt-10 border-t border-border pt-6 space-y-3" aria-label="Reel Director product information">
               <h2 className="text-xl font-bold">Reel Director by Bevel Graphics</h2>
               <p className="text-muted-foreground">Compare Standard and Pro, check Blender compatibility, and see the current purchase options on the official product page.</p>
               <Link href={REEL_DIRECTOR_PATH} className="inline-block underline underline-offset-4">Explore Reel Director features and editions</Link>

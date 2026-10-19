@@ -3,9 +3,23 @@ import { BLOG_ARTICLES } from "@/lib/blog-data"
 import { SITE_CONFIG } from "@/lib/content"
 import { PROJECTS } from "@/lib/projects"
 import { REEL_CONTENT_UPDATED_AT, REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
+import { AURA_PATH, AURA_UPDATED_AT, AURA_IMAGE_ROOT } from "@/lib/shop/product-aura"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_CONFIG.siteUrl}/shop`,
+      lastModified: new Date(AURA_UPDATED_AT),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_CONFIG.siteUrl}${AURA_PATH}`,
+      lastModified: new Date(AURA_UPDATED_AT),
+      images: [`${SITE_CONFIG.siteUrl}${AURA_IMAGE_ROOT}product-aura.webp`],
+      changeFrequency: "monthly",
+      priority: 0.95,
+    },
     {
       url: `${SITE_CONFIG.siteUrl}${REEL_DIRECTOR_PATH}`,
       lastModified: new Date(REEL_CONTENT_UPDATED_AT),

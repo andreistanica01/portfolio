@@ -5,6 +5,7 @@ import type { Locale } from "@/lib/i18n"
 import type { Project } from "@/lib/projects"
 import { getLocalizedProject, getProjectMetadata } from "@/lib/projects"
 import { REEL_DIRECTOR_PATH } from "@/lib/shop/catalog"
+import { AURA_PATH } from "@/lib/shop/product-aura"
 
 export const getAbsoluteUrl = (path = "/") =>
   new URL(path, SITE_CONFIG.siteUrl).toString()
@@ -147,9 +148,9 @@ export const getBlogArticleJsonLd = (
     keywords: localizedArticle.keywords,
     about: article.relatedProduct ? [{
       "@type": "SoftwareApplication",
-      "@id": getAbsoluteUrl(`${REEL_DIRECTOR_PATH}#${article.relatedProduct}`),
-      name: article.relatedProduct === "pro" ? "Reel Director Pro" : "Reel Director",
-      url: getAbsoluteUrl(REEL_DIRECTOR_PATH),
+      "@id": getAbsoluteUrl(article.relatedProduct === "product-aura" ? `${AURA_PATH}#software` : `${REEL_DIRECTOR_PATH}#${article.relatedProduct}`),
+      name: article.relatedProduct === "product-aura" ? "Product Aura" : article.relatedProduct === "pro" ? "Reel Director Pro" : "Reel Director",
+      url: getAbsoluteUrl(article.relatedProduct === "product-aura" ? AURA_PATH : REEL_DIRECTOR_PATH),
     }] : localizedArticle.keywords?.slice(0, 6).map((name) => ({
       "@type": "Thing",
       name,

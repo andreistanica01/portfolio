@@ -173,7 +173,7 @@ export function HomePageClient() {
                   {navLinks.blog}
                 </Link>
                 <Link
-                  href="/shop/reel-director"
+                  href="/shop"
                   className="min-w-0 rounded-full px-1.5 py-1.5 text-xs leading-none transition-colors hover:text-muted-foreground sm:shrink-0 sm:px-3 sm:text-xs md:text-sm"
                 >
                   {navLinks.shop}

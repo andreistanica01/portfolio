@@ -1,6 +1,6 @@
 # Reel Director direct shop
 
-The landing page is `/shop/reel-director`. `/shop` redirects there. The portfolio navigation includes Shop, and the existing `reel.bevelgraphics.com` redirect points to the new page.
+The landing page is `/shop/reel-director`. `/shop` is the catalog for Reel Director and Product Aura, with portfolio navigation pointing there. The existing `reel.bevelgraphics.com` redirect still points to the Reel Director page. Product Aura uses external Superhive/Gumroad purchase links; the Reel Director PayPal catalog and protected downloads are unchanged.
 
 ## Configuration status (1 October 2026)
 

@@ -3,6 +3,7 @@
 // =============================================================================
 
 import type { Locale } from "@/lib/i18n"
+import { PRODUCT_AURA_ARTICLE } from "@/lib/product-aura-article"
 
 export interface BlogArticle {
   slug: string
@@ -24,7 +25,7 @@ export interface BlogArticle {
   readTime: number
   publishedAt: string
   updatedAt?: string
-  relatedProduct?: "standard" | "pro"
+  relatedProduct?: "standard" | "pro" | "product-aura"
   featured: boolean
   image: string
   imageAlt?: string
@@ -36,7 +37,7 @@ export interface BlogArticle {
 }
 
 export interface BlogSection {
-  type: "paragraph" | "heading" | "list" | "quote" | "faq" | "image" | "links"
+  type: "paragraph" | "heading" | "list" | "quote" | "faq" | "image" | "links" | "gallery"
   content?: string
   items?: string[]
   faqs?: { question: string; answer: string }[]
@@ -44,9 +45,11 @@ export interface BlogSection {
   alt?: string
   caption?: string
   links?: { label: string; url: string }[]
+  images?: { src: string; alt: string; caption: string }[]
 }
 
 export const BLOG_ARTICLES: BlogArticle[] = [
+  PRODUCT_AURA_ARTICLE,
 {
   slug: "reel-director-pro-wool-dynamics-blender-addon",
   relatedProduct: "pro",

@@ -101,7 +101,9 @@ try {
       assert.ok(data.body.includes("By Bevel Graphics"), `Missing byline: ${url.pathname}`)
       assert.ok(Date.parse(article.dateModified) >= Date.parse(article.datePublished))
       assert.equal(item.modified.slice(0, 10), article.dateModified)
-      if (article.about?.some((node) => node["@type"] === "SoftwareApplication")) assert.ok(data.links.includes(productPath))
+      for (const product of article.about?.filter((node) => node["@type"] === "SoftwareApplication") || []) {
+        assert.ok(data.links.includes(new URL(product.url).pathname), `Missing related product link: ${url.pathname}`)
+      }
     }
     if (url.pathname === productPath) {
       const products = data.graph.filter((node) => node["@type"] === "SoftwareApplication")

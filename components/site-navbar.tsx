@@ -45,7 +45,7 @@ export function SiteNavbar({ activePage }: SiteNavbarProps) {
     { href: "/#work", label: navLinks.work, active: false },
     { href: "/#services", label: navLinks.services, active: false },
     { href: "/blog", label: navLinks.blog, active: activePage === "blog" || activePage === "project" },
-    { href: "/shop/reel-director", label: navLinks.shop, active: false },
+    { href: "/shop", label: navLinks.shop, active: false },
     { href: "/#about", label: navLinks.about, active: false },
   ]
 

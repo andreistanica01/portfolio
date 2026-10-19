@@ -77,7 +77,7 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
     <header className="rd-header">
       <Link href="/" className="rd-brand" aria-label="Bevel Graphics portfolio"><Clapperboard size={23} /><span>Bevel<span className="rd-brand-light"> Graphics</span><small>CREATOR TOOLS</small></span></Link>
       <nav aria-label="Product navigation" className="rd-nav">
-        <a href="#features">Features</a><a href="#looks">Looks</a><a href="#pricing">Compare editions</a><a href="#faq">FAQ</a>
+        <Link href="/shop">Shop</Link><a href="#features">Features</a><a href="#looks">Looks</a><a href="#pricing">Compare editions</a><a href="#faq">FAQ</a>
       </nav>
       <a href="#pricing" className="rd-button rd-button-small">Get Reel Director <ArrowUpRight size={16} /></a>
     </header>

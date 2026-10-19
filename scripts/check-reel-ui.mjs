@@ -62,7 +62,7 @@ try {
   await page.goto(`${origin}/shop/terms`, { waitUntil: "networkidle" })
   await page.getByRole("heading", { name: "Purchase terms & privacy" }).waitFor()
   await page.goto(`${origin}/`, { waitUntil: "networkidle" })
-  assert.equal(await page.getByRole("link", { name: "Shop", exact: true }).getAttribute("href"), "/shop/reel-director")
+  assert.equal(await page.getByRole("link", { name: "Shop", exact: true }).getAttribute("href"), "/shop")
   assert.deepEqual(errors, [])
   console.log("Passed: cancellation, forged payment return, protected downloads, terms and portfolio navigation")
 } finally { await browser.close() }
