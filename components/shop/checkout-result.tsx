@@ -32,7 +32,7 @@ export function CheckoutResult({ orderId, cancelled, confirmedEdition }: { order
 
   const product = edition ? getEdition(edition)! : null
   return <main className="rd-document rd-receipt">
-    <Link href={REEL_DIRECTOR_PATH} className="rd-text-link"><ArrowLeft size={16} /> Back to Reel Director</Link>
+    <Link href="/shop" className="rd-text-link"><ArrowLeft size={16} /> Back to shop</Link>
     <h1>{state === "paid" ? "You're ready to create." : state === "checking" ? "Confirming your payment." : state === "cancelled" ? "Checkout cancelled." : "Let's check your order."}</h1>
     <div aria-live="polite">
       {state === "checking" && <><div className="rd-receipt-status"><LoaderCircle className="rd-spin" /> Checking with PayPal</div><p>Keep this page open while your payment is verified.</p></>}
@@ -41,7 +41,7 @@ export function CheckoutResult({ orderId, cancelled, confirmedEdition }: { order
         <p>Thank you for supporting Bevel Graphics. Download your addon below and keep your PayPal receipt for future support.</p>
         <dl><dt>Your addon</dt><dd>{product.name}</dd><dt>Order reference</dt><dd>{orderId}</dd><dt>Payment currency</dt><dd>USD</dd></dl>
         <a href={`/api/shop/download?edition=${edition}`} className="rd-button"><Download size={19} /> Download {product.name}</a>
-        <h2>Install in Blender</h2><p>Open Preferences, go to Add-ons and choose Install from Disk. Select the downloaded ZIP, then enable Reel Director. Use Blender 4.2-5.2; Wool Dynamics in Pro requires Blender 5.2.</p>
+        <h2>Install in Blender</h2><p>Open Preferences and choose Install from Disk. Select the downloaded ZIP, then enable {product.name}. Use Blender 4.2-5.2; Reel Director Pro Wool Dynamics requires Blender 5.2.</p>
         <p>Your download remains available in this browser for 7 days. Need it again later, or on another device? Email support with your PayPal receipt reference.</p>
       </>}
       {state === "cancelled" && <p>You can return to the product page whenever you are ready. If you completed payment in another tab, check its status here before buying again.</p>}

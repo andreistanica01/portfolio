@@ -4,7 +4,7 @@ import { z } from "zod"
 const sessionSchema = z.object({
   kind: z.enum(["checkout", "receipt"]),
   orderId: z.string().regex(/^[A-Z0-9]{10,32}$/),
-  edition: z.enum(["standard", "pro"]),
+  edition: z.enum(["standard", "pro", "product-aura"]),
   amount: z.string().regex(/^\d+\.\d{2}$/),
   currency: z.literal("USD"),
   environment: z.enum(["sandbox", "live"]),

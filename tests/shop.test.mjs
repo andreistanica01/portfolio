@@ -43,6 +43,19 @@ const orderId = "TESTORDER123456789"
 const captureId = "TESTCAPTURE1234567"
 const baseSession = { kind: "checkout", orderId, edition: "pro", amount: "16.50", currency: "USD", environment: "sandbox", expires: Date.now() + 3600000 }
 
+test("Product Aura has isolated delivery and a signed ten-dollar purchase", () => {
+  const product = load("lib/shop/catalog.ts").getEdition("product-aura")
+  assert.equal(product.price, "10.00")
+  assert.equal(product.currency, "USD")
+  assert.equal(product.blobKeyEnv, "PRODUCT_AURA_BLOB_KEY")
+  const session = { ...baseSession, edition: product.id, amount: product.price }
+  assert.equal(security.readSession(security.signSession(session, secret), secret).edition, "product-aura")
+  const order = { id: orderId, purchase_units: [{ custom_id: "reel-director:product-aura", amount: { value: "10.00", currency_code: "USD" } }] }
+  assert.equal(security.matchesOrder(order, session), true)
+  assert.equal(security.matchesOrder(order, { ...session, edition: "pro" }), false)
+  assert.equal(security.matchesOrder(order, { ...session, amount: "1.00" }), false)
+})
+
 function configure() {
   delete process.env.SHOP_DOWNLOAD_PROVIDER
   Object.assign(process.env, {

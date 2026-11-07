@@ -44,9 +44,16 @@ export const REEL_EDITIONS = [
   },
 ] as const
 
-export type EditionId = (typeof REEL_EDITIONS)[number]["id"]
+export const AURA_EDITION = {
+  id: "product-aura", name: "Product Aura", label: "Product Aura",
+  price: "10.00", currency: "USD", description: "Reactive scattering and ten included assets for Blender.",
+  downloadEnv: "PRODUCT_AURA_DOWNLOAD_URL", blobKeyEnv: "PRODUCT_AURA_BLOB_KEY",
+  filename: "product-aura-0.18.3.zip",
+} as const
+export const SHOP_PRODUCTS = [...REEL_EDITIONS, AURA_EDITION] as const
+export type EditionId = (typeof SHOP_PRODUCTS)[number]["id"]
 export function getEdition(id: string) {
-  return REEL_EDITIONS.find((edition) => edition.id === id)
+  return SHOP_PRODUCTS.find((edition) => edition.id === id)
 }
 
 export function formatPrice(value: string) {

@@ -53,6 +53,7 @@ export function checkoutAvailability() {
     environment: paypalEnvironment(),
     standard: connected && downloadConfigured("standard"),
     pro: connected && downloadConfigured("pro"),
+    "product-aura": connected && downloadConfigured("product-aura"),
   }
 }
 

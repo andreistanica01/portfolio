@@ -6,6 +6,10 @@ import { ShopNavigation, ShopFooter } from "@/components/shop/shop-navigation"
 import { AURA_PATH, AURA_BLOG_PATH, AURA_DESCRIPTION, AURA_FAQS, AURA_ASSETS, AURA_STORES, AURA_UPDATED_AT, AURA_IMAGE_ROOT } from "@/lib/shop/product-aura"
 import { getAbsoluteUrl, getBreadcrumbJsonLd, ORGANIZATION_ID, WEBSITE_ID, serializeJsonLd } from "@/lib/seo"
 import "../store.css"
+import { AuraCheckout } from "@/components/shop/aura-checkout"
+import { checkoutAvailability } from "@/lib/shop/paypal"
+
+export const dynamic = "force-dynamic"
 
 const title = "Product Aura: Reactive Scattering Addon for Blender"
 const description = "Create reactive product scenes in Blender with Product Aura. Mix two decoration sources, control the fill and explore ten included assets. Buy on Superhive or Gumroad."
@@ -86,6 +90,7 @@ export default function ProductAuraPage() {
       <section className="aura-buy" id="buy"><div className="store-container">
         <p className="store-kicker">Product Aura by Bevel Graphics</p>
         <h2>Make room for your next idea.</h2>
+        <AuraCheckout available={checkoutAvailability()["product-aura"]} />
         <p>Get the Blender addon and all ten decoration assets. Choose your store for current pricing, checkout and delivery.</p>
         <div className="aura-actions">{AURA_STORES.map((store, index) => <a key={store.name} href={store.url} target="_blank" rel="noopener noreferrer" className={`aura-button ${index ? "aura-secondary" : ""}`}>Buy on {store.name}<ArrowUpRight size={18} /></a>)}</div>
         <p className="aura-store-note">Product Aura 0.18.3 requires Blender 4.2 or newer. Check the supplied version and platform requirements on your chosen store before purchasing.</p>

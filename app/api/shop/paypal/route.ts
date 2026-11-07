@@ -6,7 +6,7 @@ import { isPayPalApprovalUrl, signSession, type PayPalOrder } from "@/lib/shop/s
 import { CHECKOUT_COOKIE, checkoutAvailability, cookieOptions, releaseAvailable, noStoreHeaders, paypalEnvironment, paypalRequest, shopOrigin, shopSecret } from "@/lib/shop/paypal"
 
 export const runtime = "nodejs"
-const inputSchema = z.object({ edition: z.enum(["standard", "pro"]), acceptedTerms: z.literal(true) }).strict()
+const inputSchema = z.object({ edition: z.enum(["standard", "pro", "product-aura"]), acceptedTerms: z.literal(true) }).strict()
 
 export async function POST(request: NextRequest) {
   if (request.headers.get("origin") !== shopOrigin()) {

@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SITE_CONFIG } from "@/lib/content"
 import { REEL_DESCRIPTION, REEL_EDITIONS, REEL_FAQS, SUPERHIVE_URL, formatPrice, getEdition, type EditionId } from "@/lib/shop/catalog"
 
-type Availability = { standard: boolean; pro: boolean; environment: "sandbox" | "live" }
+type Availability = { standard: boolean; pro: boolean; "product-aura"?: boolean; environment: "sandbox" | "live" }
 const imagePath = "/images/reel-director/"
 const looks = [
   { name: "Wireframe", image: "hero-wire.webp", color: "#447dcc", alt: "Blue clay and gold wireframe architectural render created with Reel Director" },
@@ -39,7 +39,7 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
   const [look, setLook] = useState(2)
   const [workflow, setWorkflow] = useState("camera")
   const [demoOpen, setDemoOpen] = useState(false)
-  const [edition, setEdition] = useState<EditionId | null>(null)
+  const [edition, setEdition] = useState<Exclude<EditionId, "product-aura"> | null>(null)
   const [accepted, setAccepted] = useState(false)
   const [pending, setPending] = useState(false)
   const [error, setError] = useState("")
@@ -47,7 +47,7 @@ export function ReelDirectorPage({ availability }: { availability: Availability 
   const demoTrigger = useRef<HTMLElement | null>(null)
   const selected = edition ? getEdition(edition)! : null
 
-  function openCheckout(id: EditionId) {
+  function openCheckout(id: Exclude<EditionId, "product-aura">) {
     checkoutTrigger.current = document.activeElement as HTMLElement | null
     setEdition(id)
     setAccepted(false)
