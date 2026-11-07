@@ -21,7 +21,7 @@ export default function ProductAuraPage() {
   const url = getAbsoluteUrl(AURA_PATH)
   const schema = { "@context": "https://schema.org", "@graph": [
     { "@type": "WebPage", "@id": `${url}#webpage`, url, name: title, description: AURA_DESCRIPTION, inLanguage: "en", dateModified: AURA_UPDATED_AT, isPartOf: { "@id": WEBSITE_ID }, publisher: { "@id": ORGANIZATION_ID }, mainEntity: { "@id": `${url}#software` } },
-    { "@type": "SoftwareApplication", "@id": `${url}#software`, name: "Product Aura", url, description: AURA_DESCRIPTION, applicationCategory: "MultimediaApplication", softwareVersion: "0.18.0", softwareRequirements: "Blender 4.2-5.2; Cycles or Eevee. Windows release qualification; macOS and Linux qualification pending.", creator: { "@id": ORGANIZATION_ID }, publisher: { "@id": ORGANIZATION_ID }, image: getAbsoluteUrl(`${AURA_IMAGE_ROOT}product-aura.webp`), sameAs: AURA_STORES.map((store) => store.url), license: "https://www.gnu.org/licenses/gpl-3.0.html", mainEntityOfPage: { "@id": `${url}#webpage` }, featureList: ["Live Flow and Clear reactions", "Two decoration sources with independent size and rotation", "Ten bundled decoration assets", "Dense Fill and Maximum Fill presets", "Follow Mesh and Solid Envelope hero shapes", "Saved presets and repeatable layout seeds"] },
+    { "@type": "SoftwareApplication", "@id": `${url}#software`, name: "Product Aura", url, description: AURA_DESCRIPTION, applicationCategory: "MultimediaApplication", softwareVersion: "0.18.3", softwareRequirements: "Blender 4.2 minimum; marketplace lists Blender 4.2-5.2 with Cycles or Eevee. Check the supplied version and platform requirements before purchase.", creator: { "@id": ORGANIZATION_ID }, publisher: { "@id": ORGANIZATION_ID }, image: getAbsoluteUrl(`${AURA_IMAGE_ROOT}product-aura.webp`), sameAs: AURA_STORES.map((store) => store.url), license: "https://www.gnu.org/licenses/gpl-3.0.html", mainEntityOfPage: { "@id": `${url}#webpage` }, featureList: ["Live Flow and Clear reactions", "Two decoration sources with independent size and rotation", "Ten bundled decoration assets", "Dense Fill and Maximum Fill presets", "Follow Mesh and Solid Envelope hero shapes", "Saved presets and repeatable layout seeds", "Automatic static decoration geometry updates", "No addon count cap when Count Protection is off"] },
     { "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: AURA_FAQS.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) },
     getBreadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Shop", path: "/shop" }, { name: "Product Aura", path: AURA_PATH }]),
   ] }
@@ -79,7 +79,7 @@ export default function ProductAuraPage() {
         </section>
         <section className="aura-section aura-faq" id="faq">
           <h2>Before you create.</h2>
-          <p>Current release: 0.18.0. Count Protection caps requests at 2,000; disabling it allows up to 20,000. Actual count and performance depend on available space, source geometry and your hardware. The addon creates geometric layouts, not a physics simulation or a complete lighting setup.</p>
+          <p>Current release: 0.18.3. Count Protection caps requested and animated output at 2,000. Turning it off removes the old 20,000-item addon limit; native Blender limits and available memory still apply. Actual placement depends on space, source geometry and clearance. Save first and increase counts gradually.</p>
           {AURA_FAQS.map((faq) => <details key={faq.question}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}
         </section>
       </div>
@@ -88,7 +88,7 @@ export default function ProductAuraPage() {
         <h2>Make room for your next idea.</h2>
         <p>Get the Blender addon and all ten decoration assets. Choose your store for current pricing, checkout and delivery.</p>
         <div className="aura-actions">{AURA_STORES.map((store, index) => <a key={store.name} href={store.url} target="_blank" rel="noopener noreferrer" className={`aura-button ${index ? "aura-secondary" : ""}`}>Buy on {store.name}<ArrowUpRight size={18} /></a>)}</div>
-        <p className="aura-store-note">Superhive lists Blender 4.2-5.2. Gumroad currently lists Blender 5.2 or newer; check the supplied version before purchasing.</p>
+        <p className="aura-store-note">Product Aura 0.18.3 requires Blender 4.2 or newer. Check the supplied version and platform requirements on your chosen store before purchasing.</p>
         <Link className="aura-link" href="/shop">Explore all Bevel Graphics addons <ArrowRight size={16} /></Link>
       </div></section>
     </main>

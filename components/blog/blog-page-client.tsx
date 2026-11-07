@@ -28,9 +28,9 @@ export function BlogPageClient() {
 
   const filteredArticles =
     selectedCategory === "all"
-      ? localizedArticles.filter((a) => !a.featured)
+      ? localizedArticles.filter((a) => a.slug !== featuredArticle?.slug)
       : localizedArticles.filter(
-          (a) => a.category === selectedCategory && !a.featured,
+          (a) => a.category === selectedCategory && a.slug !== featuredArticle?.slug,
         )
 
   return (

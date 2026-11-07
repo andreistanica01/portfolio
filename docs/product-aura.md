@@ -1,5 +1,20 @@
 # Product Aura shop and article
 
+## Article refresh: 7 November 2026
+
+The original article URL is retained with its 20 October publication date and a
+7 November modification date. It is now featured on the blog. Other articles
+remain in the grid even if they have an older featured flag.
+
+The 0.18.3 manifest and patch notes in Desktop/PRODUCT AURA, plus the published
+Superhive description and guide, confirm automatic static source updates and
+removal of the old 20,000-item cap with Count Protection off. Article text, shared
+FAQs and product structured data now agree on those facts. Earlier screenshot
+labels are explicitly identified as such. Added workflow comparisons, three
+composition examples and troubleshooting answers. Platform and marketplace
+requirements are referred to the supplied version instead of repeating stale
+Gumroad copy. The historical launch notes below record the prior state.
+
 Added 20 October 2026:
 
 - `/shop`: catalog containing Product Aura and Reel Director.
