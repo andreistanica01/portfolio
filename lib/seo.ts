@@ -148,9 +148,9 @@ export const getBlogArticleJsonLd = (
     keywords: localizedArticle.keywords,
     about: article.relatedProduct ? [{
       "@type": "SoftwareApplication",
-      "@id": getAbsoluteUrl(article.relatedProduct === "product-aura" ? `${AURA_PATH}#software` : `${REEL_DIRECTOR_PATH}#${article.relatedProduct}`),
-      name: article.relatedProduct === "product-aura" ? "Product Aura" : article.relatedProduct === "pro" ? "Reel Director Pro" : "Reel Director",
-      url: getAbsoluteUrl(article.relatedProduct === "product-aura" ? AURA_PATH : REEL_DIRECTOR_PATH),
+      "@id": getAbsoluteUrl(article.relatedProduct === "blender-to-obs" ? "/shop/blender-to-obs#software" : article.relatedProduct === "product-aura" ? `${AURA_PATH}#software` : `${REEL_DIRECTOR_PATH}#${article.relatedProduct}`),
+      name: article.relatedProduct === "blender-to-obs" ? "Blender to OBS" : article.relatedProduct === "product-aura" ? "Product Aura" : article.relatedProduct === "pro" ? "Reel Director Pro" : "Reel Director",
+      url: getAbsoluteUrl(article.relatedProduct === "blender-to-obs" ? "/shop/blender-to-obs" : article.relatedProduct === "product-aura" ? AURA_PATH : REEL_DIRECTOR_PATH),
     }] : localizedArticle.keywords?.slice(0, 6).map((name) => ({
       "@type": "Thing",
       name,

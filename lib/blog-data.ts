@@ -4,6 +4,7 @@
 
 import type { Locale } from "@/lib/i18n"
 import { PRODUCT_AURA_ARTICLE } from "@/lib/product-aura-article"
+import { BLENDER_TO_OBS_ARTICLE } from "@/lib/blender-to-obs-article"
 
 export interface BlogArticle {
   slug: string
@@ -25,7 +26,7 @@ export interface BlogArticle {
   readTime: number
   publishedAt: string
   updatedAt?: string
-  relatedProduct?: "standard" | "pro" | "product-aura"
+  relatedProduct?: "standard" | "pro" | "product-aura" | "blender-to-obs"
   featured: boolean
   image: string
   imageAlt?: string
@@ -49,6 +50,7 @@ export interface BlogSection {
 }
 
 export const BLOG_ARTICLES: BlogArticle[] = [
+  BLENDER_TO_OBS_ARTICLE,
   PRODUCT_AURA_ARTICLE,
 {
   slug: "reel-director-pro-wool-dynamics-blender-addon",

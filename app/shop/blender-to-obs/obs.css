@@ -1,0 +1,8 @@
+.obs-intro { padding-top: 64px; padding-bottom: 32px; }
+.obs-intro h1 { font-size: 64px; line-height: 1.08; margin: 16px 0; letter-spacing: 0; }
+.obs-intro > p { max-width: 800px; }
+.obs-cover { display: block; width: 100%; height: auto; }
+.obs-steps { padding-left: 24px; max-width: 850px; }
+.obs-steps li { padding-left: 8px; margin: 18px 0; line-height: 1.7; }
+.obs-page .aura-actions { flex-wrap: wrap; }
+@media (max-width: 700px) { .obs-intro { padding-top: 36px; } .obs-intro h1 { font-size: 40px; } }

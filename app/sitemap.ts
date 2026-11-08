@@ -7,9 +7,10 @@ import { AURA_PATH, AURA_UPDATED_AT, AURA_IMAGE_ROOT } from "@/lib/shop/product-
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
+    { url: `${SITE_CONFIG.siteUrl}/shop/blender-to-obs`, lastModified: new Date("2026-11-08"), images: [`${SITE_CONFIG.siteUrl}/images/blender-to-obs/cover.webp`], changeFrequency: "monthly", priority: 0.95 },
     {
       url: `${SITE_CONFIG.siteUrl}/shop`,
-      lastModified: new Date(AURA_UPDATED_AT),
+      lastModified: new Date("2026-11-08"),
       changeFrequency: "weekly",
       priority: 0.9,
     },

@@ -8,8 +8,8 @@ import { AURA_PATH, AURA_IMAGE_ROOT } from "@/lib/shop/product-aura"
 import { getAbsoluteUrl, getBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo"
 import "./store.css"
 
-const title = "Blender Addons: Product Aura & Reel Director"
-const description = "Shop Blender addons by Bevel Graphics. Build reactive product scenes with Product Aura or create camera animation and render breakdowns with Reel Director."
+const title = "Blender Addons: Capture, Scattering & Animation"
+const description = "Explore Blender to OBS, Product Aura and Reel Director by Bevel Graphics: clean viewport capture, reactive scattering and scene animation tools."
 export const metadata: Metadata = {
   title: { absolute: `${title} | Bevel Graphics` }, description,
   alternates: { canonical: "/shop" },
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 export default function ShopPage() {
   const products = [
+    { name: "Blender to OBS", path: "/shop/blender-to-obs", image: "/images/blender-to-obs/cover.webp", tag: "Clean viewport capture", text: "Keep your working tools while controlling the audience view. Capture your viewport and separate Blender editors in OBS.", detail: "Available on Superhive" },
     { name: "Product Aura", path: AURA_PATH, image: `${AURA_IMAGE_ROOT}product-aura.webp`, tag: "Reactive scattering", text: "Build a world around your hero. Live decoration layouts, two asset slots, and ten included ingredients.", detail: "Available on Superhive & Gumroad" },
     { name: "Reel Director", path: REEL_DIRECTOR_PATH, image: "/images/secondary/reel-director-thumbnail.webp", tag: "Animation & scene breakdowns", text: "Turn finished Blender scenes into new content with camera moves, clay renders and creative surface tools.", detail: `Standard ${formatPrice(REEL_EDITIONS[0].price)} / Pro ${formatPrice(REEL_EDITIONS[1].price)}` },
   ]
